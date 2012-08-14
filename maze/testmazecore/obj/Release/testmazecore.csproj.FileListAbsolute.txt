@@ -1,0 +1,17 @@
+C:\Users\dave\documents\visual studio 2010\Projects\maze\testmazecore\bin\Release\testmazecore.dll
+C:\Users\dave\documents\visual studio 2010\Projects\maze\testmazecore\bin\Release\testmazecore.pdb
+C:\Users\dave\documents\visual studio 2010\Projects\maze\testmazecore\bin\Release\mazecore.dll
+C:\Users\dave\documents\visual studio 2010\Projects\maze\testmazecore\bin\Release\nunit-console-runner.dll
+C:\Users\dave\documents\visual studio 2010\Projects\maze\testmazecore\bin\Release\nunit-gui-runner.dll
+C:\Users\dave\documents\visual studio 2010\Projects\maze\testmazecore\bin\Release\nunit.core.dll
+C:\Users\dave\documents\visual studio 2010\Projects\maze\testmazecore\bin\Release\nunit.core.interfaces.dll
+C:\Users\dave\documents\visual studio 2010\Projects\maze\testmazecore\bin\Release\nunit.framework.dll
+C:\Users\dave\documents\visual studio 2010\Projects\maze\testmazecore\bin\Release\nunit.mocks.dll
+C:\Users\dave\documents\visual studio 2010\Projects\maze\testmazecore\bin\Release\nunit.uiexception.dll
+C:\Users\dave\documents\visual studio 2010\Projects\maze\testmazecore\bin\Release\nunit.uikit.dll
+C:\Users\dave\documents\visual studio 2010\Projects\maze\testmazecore\bin\Release\nunit.util.dll
+C:\Users\dave\documents\visual studio 2010\Projects\maze\testmazecore\bin\Release\mazecore.pdb
+C:\Users\dave\documents\visual studio 2010\Projects\maze\testmazecore\bin\Release\nunit.framework.xml
+C:\Users\dave\documents\visual studio 2010\Projects\maze\testmazecore\obj\Release\ResolveAssemblyReference.cache
+C:\Users\dave\documents\visual studio 2010\Projects\maze\testmazecore\obj\Release\testmazecore.dll
+C:\Users\dave\documents\visual studio 2010\Projects\maze\testmazecore\obj\Release\testmazecore.pdb
