@@ -1,7 +1,7 @@
-﻿namespace mazecore.test.elements {
+﻿using mazecore.elements;
+using NUnit.Framework;
 
-    using mazecore.elements;
-    using NUnit.Framework;
+namespace mazecore.elements.test {
 
     [TestFixture]
     class TestTileStorage {
