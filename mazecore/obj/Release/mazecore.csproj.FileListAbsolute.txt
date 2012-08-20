@@ -3,5 +3,3 @@ C:\Users\dave\documents\visual studio 2010\Projects\maze\mazecore\bin\Release\ma
 C:\Users\dave\documents\visual studio 2010\Projects\maze\mazecore\obj\Release\ResolveAssemblyReference.cache
 C:\Users\dave\documents\visual studio 2010\Projects\maze\mazecore\obj\Release\mazecore.dll
 C:\Users\dave\documents\visual studio 2010\Projects\maze\mazecore\obj\Release\mazecore.pdb
-C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Release\nunit.framework.dll
-C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Release\nunit.framework.xml
