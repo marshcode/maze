@@ -4,15 +4,11 @@ namespace mazecore.elements {
     public enum Direction { North, East, South, West };
 
     class TileStorage {
-
-        private int x_range, y_range;
-        private ITile[,] storage;
+        private Tile[,] storage;
         
 
         public TileStorage(int x_range, int y_range){
-            this.x_range = x_range;
-            this.y_range = y_range;
-            this.storage = new ITile[this.x_range, this.y_range];
+            this.storage = new Tile[x_range, y_range];
         }
 
         //range check
@@ -25,18 +21,18 @@ namespace mazecore.elements {
 
         //getters and setters
         public int get_x_range() {
-            return this.x_range;
+            return this.storage.GetLength(0);
         }
         public int get_y_range() {
-            return this.y_range;
+            return this.storage.GetLength(1);
         }
 
-        public void set_tile(ITile tile, int x, int y){
+        public void set_tile(Tile tile, int x, int y) {
             this.check_range(x, y);
             this.storage[x, y] = tile;
         }
 
-        public ITile get_tile(int x, int y) {
+        public Tile get_tile(int x, int y) {
             this.check_range(x, y);
             return this.storage[x, y];
         }
