@@ -8,12 +8,16 @@ namespace mazecore.elements {
         
 
         public TileStorage(int x_range, int y_range){
+            if (x_range <= 0 || y_range <= 0) {
+                throw new ArgumentOutOfRangeException(string.Format("({0}, {1}) is an invalid range", x_range, y_range));
+            }
             this.storage = new Tile[x_range, y_range];
+            
         }
 
         //range check
         private void check_range(int x, int y) {
-            if ( x <  0 | x > this.get_x_range() | y < 0 | y > this.get_y_range()) {
+            if ( x <  0 || x > this.get_x_range() || y < 0 || y > this.get_y_range()) {
                 throw new ArgumentOutOfRangeException( string.Format("({0}, {1}) is out of range: ({2}, {3})", 
                                                                        x, y, this.get_x_range(), this.get_y_range() ) );
             }

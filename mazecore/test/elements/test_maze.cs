@@ -31,6 +31,19 @@ namespace mazecore.elements.test {
 
         }
 
+        [TestCase(0, 0)]
+        [TestCase(-1, 0)]
+        [TestCase(0, -1)]
+        [TestCase(1, 0)]
+        [TestCase(0, 1)]
+        [TestCase(1, -1)]
+        [TestCase(-1, 1)]
+        public void test_bad_init(int x_range, int y_range) {
+            Assert.Throws<ArgumentOutOfRangeException>(
+                    delegate { new TileStorage(x_range, y_range); });
+
+        }
+
         [Test]
         public void test_get_set_remove_tile() {
             //test in and out of tiles
