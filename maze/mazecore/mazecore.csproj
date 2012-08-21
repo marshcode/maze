@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="elements\maze.cs" />
     <Compile Include="elements\tile.cs" />
+    <Compile Include="elements\wall.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="test\**\*.cs" Condition=" '$(Configuration)' == 'Debug' " />
   </ItemGroup>
