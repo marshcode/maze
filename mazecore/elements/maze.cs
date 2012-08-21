@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 namespace mazecore.elements {
 
     public enum Direction { North, East, South, West };
@@ -59,10 +60,12 @@ namespace mazecore.elements {
         //wall storage uses North-East-Notation (trac.davemarsh.webfactional.com\maze).
 
         private int x_range, y_range;
+        private Dictionary<string, Wall> storage;
 
         public WallStorage(int x_range, int y_range) : base(x_range, y_range){
             this.x_range = x_range;
             this.y_range = y_range;
+            this.storage = new Dictionary<string, Wall>();
         }
    
         //helper methods
@@ -74,10 +77,10 @@ namespace mazecore.elements {
         private void position_correct(ref int x, ref int y, ref Direction direction) {
 
             if (direction == Direction.South) {
-                y -= 1;
+                x += 1;
                 direction = Direction.North;
             }else if (direction == Direction.West) {
-                x -= 1;
+                y -= 1;
                 direction = Direction.East;
             }
         }
@@ -89,14 +92,23 @@ namespace mazecore.elements {
             return this.y_range;
         }
 
-        public void set_wall(int x, int y, Direction direction){
-            
+        public void set_wall(Wall wall, int x, int y, Direction direction){
+            string key = this.get_key(x, y, direction);
+            this.storage[key] = wall;
         }
-        public Tile get_wall(int x, int y, Direction direction){
-            return null;
+        public Wall get_wall(int x, int y, Direction direction){
+            string key = this.get_key(x, y, direction);
+            Wall value;
+            
+            if (!this.storage.TryGetValue(key, out value)){
+                value = null;
+            }
+            return value;
         }
         public void remove_wall(int x, int y, Direction direction){
-            
+            string key = this.get_key(x, y, direction);
+            this.storage.Remove(key);
+
         }
     }
 }
