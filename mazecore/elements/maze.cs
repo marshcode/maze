@@ -93,10 +93,12 @@ namespace mazecore.elements {
         }
 
         public void set_wall(Wall wall, int x, int y, Direction direction){
+            this.check_range(x, y);
             string key = this.get_key(x, y, direction);
             this.storage[key] = wall;
         }
         public Wall get_wall(int x, int y, Direction direction){
+            this.check_range(x, y);
             string key = this.get_key(x, y, direction);
             Wall value;
             
@@ -106,6 +108,7 @@ namespace mazecore.elements {
             return value;
         }
         public void remove_wall(int x, int y, Direction direction){
+            this.check_range(x, y);
             string key = this.get_key(x, y, direction);
             this.storage.Remove(key);
 
