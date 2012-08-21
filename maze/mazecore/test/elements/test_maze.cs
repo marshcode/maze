@@ -173,7 +173,7 @@ namespace mazecore.elements.test {
             Wall wall = TestWallStorage.create_wall();
 
             Assert.Null( wall_storage.get_wall(1, 0, Direction.North) );
-            wall_storage.set_wall(1, 0, Direction.North);
+            wall_storage.set_wall(wall, 1, 0, Direction.North);
 
             Assert.AreEqual(wall_storage.get_wall(1, 0, Direction.North), wall);
             Assert.AreEqual(wall_storage.get_wall(0, 0, Direction.South), wall);
@@ -190,7 +190,7 @@ namespace mazecore.elements.test {
             Wall wall = TestWallStorage.create_wall();
 
             Assert.Null(wall_storage.get_wall(1, 0, Direction.East));
-            wall_storage.set_wall(1, 0, Direction.East);
+            wall_storage.set_wall(wall, 1, 0, Direction.East);
 
             Assert.AreEqual(wall_storage.get_wall(1, 0, Direction.East), wall);
             Assert.AreEqual(wall_storage.get_wall(1, 1, Direction.West), wall);
