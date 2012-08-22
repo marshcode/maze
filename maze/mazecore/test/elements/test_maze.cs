@@ -5,6 +5,68 @@ using System;
 namespace mazecore.elements.test {
 
     [TestFixture]
+    class TestMaze {
+        /********************
+         * Testing factory methods
+         * *****************/
+        static Maze create_maze() {
+            return new Maze(10, 15);
+        }static Tile create_tile() {
+            return new Tile();
+        }static Wall create_wall() {
+            return new Wall();
+        }static Character create_character() {
+            return new Character();
+        }
+
+        /********************
+         * Tests
+         * 
+         * Not sure if it is worth it to re-test the corner cases that I've already tested below.
+         * For now, do simple get/set/remove tests
+         * ******************/
+        [Test]
+        public void test_init(){
+            Maze maze = TestMaze.create_maze();
+            Assert.AreEqual(maze.get_x_range(), 10);
+            Assert.AreEqual(maze.get_y_range(), 15);
+        }
+        [Test]
+        public void test_tile() {
+            Maze maze = TestMaze.create_maze();
+            Tile tile = TestMaze.create_tile();
+
+            Assert.Null(maze.get_tile(1, 1));
+            maze.set_tile(tile, 1, 1);
+            Assert.AreEqual(tile, maze.get_tile(1,1));
+            maze.remove_tile(1, 1);
+            Assert.Null(maze.get_tile(1,1));
+        }
+
+        [TestCase(-1, -1)]
+        public void test_tile_out_of_bounds(int x, int y) {
+            Maze maze = TestMaze.create_maze();
+            Tile tile = TestMaze.create_tile();
+
+            Assert.Throws<ArgumentOutOfRangeException>(
+                    delegate { maze.get_tile(x, y); });
+
+            Assert.Throws<ArgumentOutOfRangeException>(
+                    delegate { maze.remove_tile(x, y); });
+
+            Assert.Throws<ArgumentOutOfRangeException>(
+                    delegate { maze.set_tile(tile, x, y); });
+
+
+        }
+
+
+
+    }
+
+
+
+    [TestFixture]
     class TestGridStorage {
 
         /************************

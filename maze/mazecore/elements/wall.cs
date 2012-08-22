@@ -1,4 +1,4 @@
 ﻿namespace mazecore.elements {
-    class Wall {
+    public class Wall {
     }
 }
