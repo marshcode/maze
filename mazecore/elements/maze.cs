@@ -4,7 +4,7 @@ namespace mazecore.elements {
 
     public enum Direction { North, East, South, West };
 
-    abstract class Storage {
+    abstract class Storage<T> {
 
         public Storage(int x_range, int y_range) {
             if (x_range <= 0 || y_range <= 0) {
@@ -25,12 +25,12 @@ namespace mazecore.elements {
 
     }
 
-    class TileStorage : Storage {
-        private Tile[,] storage;
+    class GridStorage<T> : Storage<T> {
+        private T[,] storage;
         
-        public TileStorage(int x_range, int y_range) : base(x_range, y_range){
+        public GridStorage(int x_range, int y_range) : base(x_range, y_range){
             
-            this.storage = new Tile[x_range, y_range];    
+            this.storage = new T[x_range, y_range];    
         }
 
 
@@ -41,31 +41,31 @@ namespace mazecore.elements {
         public override int get_y_range() {
             return this.storage.GetLength(1);
         }
-        public void set_tile(Tile tile, int x, int y) {
+        public void set_item(T item, int x, int y) {
             this.check_range(x, y);
-            this.storage[x, y] = tile;
+            this.storage[x, y] = item;
         }
-        public Tile get_tile(int x, int y) {
+        public T get_item(int x, int y) {
             this.check_range(x, y);
             return this.storage[x, y];
         }
-        public void remove_tile(int x, int y){
+        public void remove_item(int x, int y){
             this.check_range(x, y);
-            this.storage[x, y] = null;
+            this.storage[x, y] = default(T);
         }
     }
 
-    class WallStorage : Storage {
+    class SharedEdgeStorage<T> : Storage<T> {
         
         //wall storage uses North-East-Notation (trac.davemarsh.webfactional.com\maze).
 
         private int x_range, y_range;
-        private Dictionary<string, Wall> storage;
+        private Dictionary<string, T> storage;
 
-        public WallStorage(int x_range, int y_range) : base(x_range, y_range){
+        public SharedEdgeStorage(int x_range, int y_range) : base(x_range, y_range){
             this.x_range = x_range;
             this.y_range = y_range;
-            this.storage = new Dictionary<string, Wall>();
+            this.storage = new Dictionary<string, T>();
         }
    
         //helper methods
@@ -92,22 +92,22 @@ namespace mazecore.elements {
             return this.y_range;
         }
 
-        public void set_wall(Wall wall, int x, int y, Direction direction){
+        public void set_item(T item, int x, int y, Direction direction){
             this.check_range(x, y);
             string key = this.get_key(x, y, direction);
-            this.storage[key] = wall;
+            this.storage[key] = item;
         }
-        public Wall get_wall(int x, int y, Direction direction){
+        public T get_item(int x, int y, Direction direction){
             this.check_range(x, y);
             string key = this.get_key(x, y, direction);
-            Wall value;
+            T value;
             
             if (!this.storage.TryGetValue(key, out value)){
-                value = null;
+                value = default(T);
             }
             return value;
         }
-        public void remove_wall(int x, int y, Direction direction){
+        public void remove_item(int x, int y, Direction direction){
             this.check_range(x, y);
             string key = this.get_key(x, y, direction);
             this.storage.Remove(key);
