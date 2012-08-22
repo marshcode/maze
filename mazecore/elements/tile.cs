@@ -1,7 +1,7 @@
 ﻿namespace mazecore.elements
 {
     
-    class Tile{
+    public class Tile{
     }
 
 }

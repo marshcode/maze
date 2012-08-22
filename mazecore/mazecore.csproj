@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="elements\character.cs" />
     <Compile Include="elements\maze.cs" />
     <Compile Include="elements\tile.cs" />
     <Compile Include="elements\wall.cs" />
