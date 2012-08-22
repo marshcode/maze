@@ -5,13 +5,13 @@ using System;
 namespace mazecore.elements.test {
 
     [TestFixture]
-    class TestTileStorage {
+    class TestGridStorage {
 
         /************************
          * Testing Classes
         ************************/
-        class TestTile : Tile {
-            public TestTile() {
+        class TestClass {
+            public TestClass() {
                 //define a parameterless constructor that we can instantiate.  This way we can test the 
                 //storage module without creating any dependicies of the tile.
             }
@@ -23,11 +23,11 @@ namespace mazecore.elements.test {
         static int x_range = 10;
         static int y_range = 15;
 
-        static TileStorage create_storage() {
-            return new TileStorage(TestTileStorage.x_range, TestTileStorage.y_range);
+        static GridStorage<TestClass> create_storage() {
+            return new GridStorage<TestClass>(TestGridStorage.x_range, TestGridStorage.y_range);
         }
-        static Tile create_tile() {
-            return new TestTile();
+        static TestClass create_tile() {
+            return new TestClass();
         }
         /***************************
          * Test Cases
@@ -35,7 +35,7 @@ namespace mazecore.elements.test {
 
         [Test]
         public void test_init(){
-            TileStorage ts = TestTileStorage.create_storage();
+            GridStorage<TestClass> ts = TestGridStorage.create_storage();
             Assert.AreEqual(ts.get_x_range(), 10);
             Assert.AreEqual(ts.get_y_range(), 15);
 
@@ -50,34 +50,34 @@ namespace mazecore.elements.test {
         [TestCase(-1, 1)]
         public void test_bad_init(int x_range, int y_range) {
             Assert.Throws<ArgumentOutOfRangeException>(
-                    delegate { new TileStorage(x_range, y_range); });
+                    delegate { new GridStorage<TestClass>(x_range, y_range); });
 
         }
 
         [Test]
         public void test_get_set_remove_tile() {
             //test in and out of tiles
-            TileStorage tile_storage = TestTileStorage.create_storage();
-            Tile tile = TestTileStorage.create_tile();
+            GridStorage<TestClass> tile_storage = TestGridStorage.create_storage();
+            TestClass test_class = TestGridStorage.create_tile();
 
-            Assert.Null(tile_storage.get_tile(1, 1));
-            tile_storage.set_tile(tile, 1, 1);
-            Assert.AreEqual(tile, tile_storage.get_tile(1, 1));
-            tile_storage.remove_tile(1, 1);
-            Assert.Null(tile_storage.get_tile(1, 1)); 
+            Assert.Null(tile_storage.get_item(1, 1));
+            tile_storage.set_item(test_class, 1, 1);
+            Assert.AreEqual(test_class, tile_storage.get_item(1, 1));
+            tile_storage.remove_item(1, 1);
+            Assert.Null(tile_storage.get_item(1, 1)); 
 
         }
 
         [Test]
         public void test_tile_override() {
-            TileStorage tile_storage = TestTileStorage.create_storage();
-            Tile tile1, tile2;
-            tile1 = TestTileStorage.create_tile();
-            tile2 = TestTileStorage.create_tile();
-            tile_storage.set_tile(tile1, 1, 1);
-            Assert.AreEqual(tile1, tile_storage.get_tile(1, 1));
-            tile_storage.set_tile(tile2, 1, 1);
-            Assert.AreEqual(tile2, tile_storage.get_tile(1, 1));
+            GridStorage<TestClass> tile_storage = TestGridStorage.create_storage();
+            TestClass tc1, tc2;
+            tc1 = TestGridStorage.create_tile();
+            tc2 = TestGridStorage.create_tile();
+            tile_storage.set_item(tc1, 1, 1);
+            Assert.AreEqual(tc1, tile_storage.get_item(1, 1));
+            tile_storage.set_item(tc2, 1, 1);
+            Assert.AreEqual(tc2, tile_storage.get_item(1, 1));
 
  
         }
@@ -89,10 +89,10 @@ namespace mazecore.elements.test {
         [TestCase( 0, 16)]
         [TestCase(11,  0)]
         public void test_set_tile_out_of_range(int x, int y) {
-            TileStorage tile_storage = TestTileStorage.create_storage();
-            Tile tile = TestTileStorage.create_tile();
+            GridStorage<TestClass> tile_storage = TestGridStorage.create_storage();
+            TestClass test_class = TestGridStorage.create_tile();
             Assert.Throws<ArgumentOutOfRangeException>(
-                    delegate { tile_storage.set_tile(tile, x, y); });
+                    delegate { tile_storage.set_item(test_class, x, y); });
         }
 
         [TestCase(-1, -1)]
@@ -103,7 +103,7 @@ namespace mazecore.elements.test {
         [TestCase(11, 0)]
         public void test_get_tile_out_of_range(int x, int y) {
             Assert.Throws<ArgumentOutOfRangeException>(
-                    delegate { TestTileStorage.create_storage().get_tile(x, y); });
+                    delegate { TestGridStorage.create_storage().get_item(x, y); });
         }
 
         [TestCase(-1, -1)]
@@ -114,22 +114,20 @@ namespace mazecore.elements.test {
         [TestCase(11, 0)]
         public void test_remove_tile_out_of_range(int x, int y) {
             Assert.Throws<ArgumentOutOfRangeException>(
-                    delegate { TestTileStorage.create_storage().get_tile(x, y); });
+                    delegate { TestGridStorage.create_storage().get_item(x, y); });
         }
 
 
     }
 
     [TestFixture]
-    class TestWallStorage {
+    class TestSharedEdgeStorage {
 
         /*********************
          * Test Classes
          *********************/
-        class TestWall : Wall {
-            public TestWall(){
-                //provide default constructor 
-            }
+        class TestClass {
+
         }
 
         /*******************
@@ -138,11 +136,11 @@ namespace mazecore.elements.test {
         static int X_RANGE = 10;
         static int Y_RANGE = 15;
 
-        static WallStorage create_storage(){
-            return new WallStorage(TestWallStorage.X_RANGE, TestWallStorage.Y_RANGE);
+        static SharedEdgeStorage<TestClass> create_storage() {
+            return new SharedEdgeStorage<TestClass>(TestSharedEdgeStorage.X_RANGE, TestSharedEdgeStorage.Y_RANGE);
         }
-        static Wall create_wall() {
-            return new TestWall();
+        static TestClass create_wall() {
+            return new TestClass();
         }
         /***********************
          * Tests
@@ -151,7 +149,7 @@ namespace mazecore.elements.test {
 
         [Test]
         public void test_init() {
-            WallStorage wall_storage = TestWallStorage.create_storage();
+            SharedEdgeStorage<TestClass> wall_storage = TestSharedEdgeStorage.create_storage();
             Assert.AreEqual(wall_storage.get_x_range(), 10);
             Assert.AreEqual(wall_storage.get_y_range(), 15);
         }
@@ -164,45 +162,54 @@ namespace mazecore.elements.test {
         [TestCase(-1, 1)]
         public void test_bad_init(int x_range, int y_range) {
             Assert.Throws<ArgumentOutOfRangeException>(
-                    delegate { new WallStorage(x_range, y_range); });
+                    delegate { new SharedEdgeStorage<TestClass>(x_range, y_range); });
         }
         [Test]
         public void test_get_set_remove_wall_north_south() {
 
-            WallStorage wall_storage = TestWallStorage.create_storage();
-            Wall wall = TestWallStorage.create_wall();
+            SharedEdgeStorage<TestClass> wall_storage = TestSharedEdgeStorage.create_storage();
+            TestClass test_class = TestSharedEdgeStorage.create_wall();
 
-            Assert.Null( wall_storage.get_wall(1, 0, Direction.North) );
-            wall_storage.set_wall(wall, 1, 0, Direction.North);
+            Assert.Null( wall_storage.get_item(1, 0, Direction.North) );
+            wall_storage.set_item(test_class, 1, 0, Direction.North);
 
-            Assert.AreEqual(wall_storage.get_wall(1, 0, Direction.North), wall);
-            Assert.AreEqual(wall_storage.get_wall(0, 0, Direction.South), wall);
+            Assert.AreEqual(wall_storage.get_item(1, 0, Direction.North), test_class);
+            Assert.AreEqual(wall_storage.get_item(0, 0, Direction.South), test_class);
 
-            wall_storage.remove_wall(1, 0, Direction.North);
-            Assert.Null(wall_storage.get_wall(1, 0, Direction.North));
-            Assert.Null(wall_storage.get_wall(0, 0, Direction.South));
+            wall_storage.remove_item(1, 0, Direction.North);
+            Assert.Null(wall_storage.get_item(1, 0, Direction.North));
+            Assert.Null(wall_storage.get_item(0, 0, Direction.South));
         }
 
         [Test]
         public void test_get_set_remove_wall_east_west() {
 
-            WallStorage wall_storage = TestWallStorage.create_storage();
-            Wall wall = TestWallStorage.create_wall();
+            SharedEdgeStorage<TestClass> wall_storage = TestSharedEdgeStorage.create_storage();
+            TestClass test_class = TestSharedEdgeStorage.create_wall();
 
-            Assert.Null(wall_storage.get_wall(1, 0, Direction.East));
-            wall_storage.set_wall(wall, 1, 0, Direction.East);
+            Assert.Null(wall_storage.get_item(1, 0, Direction.East));
+            wall_storage.set_item(test_class, 1, 0, Direction.East);
 
-            Assert.AreEqual(wall_storage.get_wall(1, 0, Direction.East), wall);
-            Assert.AreEqual(wall_storage.get_wall(1, 1, Direction.West), wall);
+            Assert.AreEqual(wall_storage.get_item(1, 0, Direction.East), test_class);
+            Assert.AreEqual(wall_storage.get_item(1, 1, Direction.West), test_class);
 
-            wall_storage.remove_wall(1, 0, Direction.East);
-            Assert.Null(wall_storage.get_wall(1, 0, Direction.East));
-            Assert.Null(wall_storage.get_wall(1, 1, Direction.West));
+            wall_storage.remove_item(1, 0, Direction.East);
+            Assert.Null(wall_storage.get_item(1, 0, Direction.East));
+            Assert.Null(wall_storage.get_item(1, 1, Direction.West));
         }
 
+        [Test]
+        public void test_tile_override() {
+            SharedEdgeStorage<TestClass> shared_edge_storage = TestSharedEdgeStorage.create_storage();
+            TestClass tc1, tc2;
+            tc1 = TestSharedEdgeStorage.create_wall();
+            tc2 = TestSharedEdgeStorage.create_wall();
+            shared_edge_storage.set_item(tc1, 1, 1, Direction.North);
+            Assert.AreEqual(tc1, shared_edge_storage.get_item(1, 1, Direction.North));
+            shared_edge_storage.set_item(tc2, 1, 1, Direction.North);
+            Assert.AreEqual(tc2, shared_edge_storage.get_item(1, 1, Direction.North));
 
 
+        }   
     }
-
-
 }
