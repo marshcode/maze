@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1048]mazecore.elements.test</TopNode>
-  <SelectedNode>[0-1048]mazecore.elements.test</SelectedNode>
+  <TopNode>[0-1051]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll</TopNode>
+  <SelectedNode>[0-1000]mazecore.elements.test.TestMaze</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1045]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll" Expanded="true" />
-    <Node UniqueName="[0-1046]mazecore" Expanded="true" />
-    <Node UniqueName="[0-1047]mazecore.elements" Expanded="true" />
-    <Node UniqueName="[0-1048]mazecore.elements.test" Expanded="true" />
-    <Node UniqueName="[0-1000]mazecore.elements.test.TestTileStorage" Expanded="true" />
-    <Node UniqueName="[0-1002]mazecore.elements.test.TestTileStorage.test_bad_init" Expanded="true" />
-    <Node UniqueName="[0-1019]mazecore.elements.test.TestTileStorage.test_get_tile_out_of_range" Expanded="true" />
-    <Node UniqueName="[0-1026]mazecore.elements.test.TestTileStorage.test_remove_tile_out_of_range" Expanded="true" />
-    <Node UniqueName="[0-1012]mazecore.elements.test.TestTileStorage.test_set_tile_out_of_range" Expanded="true" />
-    <Node UniqueName="[0-1033]mazecore.elements.test.TestWallStorage" Expanded="true" />
+    <Node UniqueName="[0-1051]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll" Expanded="true" />
+    <Node UniqueName="[0-1052]mazecore" Expanded="true" />
+    <Node UniqueName="[0-1053]mazecore.elements" Expanded="true" />
+    <Node UniqueName="[0-1054]mazecore.elements.test" Expanded="true" />
+    <Node UniqueName="[0-1000]mazecore.elements.test.TestMaze" Expanded="true" />
+    <Node UniqueName="[0-1003]mazecore.elements.test.TestMaze.test_tile_out_of_bounds" Expanded="true" />
   </Nodes>
 </VisualState>
