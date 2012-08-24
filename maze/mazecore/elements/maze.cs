@@ -4,6 +4,12 @@ namespace mazecore.elements {
 
     public enum Direction { North, East, South, West };
 
+    public class MazeException : Exception {
+        public MazeException(string message)
+            : base(message) {
+        }
+    }
+
     public class Maze {
 
 
@@ -24,11 +30,21 @@ namespace mazecore.elements {
         public Tile get_tile(int x, int y) { return this.tile_storage.get_item(x, y); }
         public void remove_tile(int x, int y) { this.tile_storage.remove_item(x, y); }
 
+        //should you be allowed to set walls where there are no tiles?  Nobody would really notice.
         public void set_wall(Wall wall, int x, int y, Direction direction) { this.wall_storage.set_item(wall, x, y, direction); }
         public Wall get_wall(int x, int y, Direction direction) { return this.wall_storage.get_item(x, y, direction); }
         public void remove_wall(int x, int y, Direction direction) { this.wall_storage.remove_item(x, y, direction); }
 
-        public void set_character(Character character, int x, int y) { this.character_storage.set_item(character, x, y); }
+        public void set_character(Character character, int x, int y) {
+            if (this.tile_storage.get_item(x, y) == null) {
+                throw new MazeException(string.Format("Cannot set character: tile at {0}, {1} is null", x, y));
+            }else if (this.character_storage.get_item(x, y) != null) {
+                throw new MazeException(string.Format("Cannot set character on {0}, {1}.  Tile is already occupied", x, y));
+            }
+            this.character_storage.set_item(character, x, y); 
+        
+        
+        }
         public Character get_character(int x, int y) { return this.character_storage.get_item(x, y); }
         public void remove_character(int x, int y) { this.character_storage.remove_item(x, y); }
 
