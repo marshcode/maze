@@ -236,6 +236,32 @@ namespace mazecore.elements.test {
             Assert.Null(position);
         }
 
+        [Test]
+        public void test_get_position_two_objects() {
+            GridStorage<TestClass> grid_storage = TestGridStorage.create_storage();
+            TestClass test_class = TestGridStorage.create_tile();
+            TestClass test_class_2 = TestGridStorage.create_tile();
+            grid_storage.set_item(test_class, 1, 1);
+
+
+            int[] position = grid_storage.get_position(test_class_2);
+            Assert.Null(position);
+        }
+
+        [Test]
+        public void test_move() {
+            GridStorage<TestClass> grid_storage = TestGridStorage.create_storage();
+            TestClass test_class = TestGridStorage.create_tile();
+
+            grid_storage.move(test_class, 1, 1);
+            Assert.AreEqual(grid_storage.get_item(1, 1), test_class);
+            Assert.Null(grid_storage.get_item(1, 2));
+            grid_storage.move(test_class, 1, 2);
+            Assert.AreEqual(grid_storage.get_item(1, 2), test_class);
+            Assert.Null(grid_storage.get_item(1, 1));
+
+        }
+
 
         [Test]
         public void test_get_set_remove_tile() {
