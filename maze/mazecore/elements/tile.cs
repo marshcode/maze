@@ -27,6 +27,7 @@ namespace mazecore.elements
             DirectionControl.move(ref x, ref y, direction, 1);
 
             try{
+                Console.WriteLine(String.Format("{0}, {1}", x, y));
                 return this.maze.get_tile(x, y);
             }catch(ArgumentOutOfRangeException){
                 return null;

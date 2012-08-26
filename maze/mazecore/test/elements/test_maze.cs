@@ -325,6 +325,8 @@ namespace mazecore.elements.test {
         [TestCase(-1,  0)]
         [TestCase( 0, 16)]
         [TestCase(11,  0)]
+        [TestCase(10, 0)]
+        [TestCase(0, 15)]
         public void test_set_tile_out_of_range(int x, int y) {
             GridStorage<TestClass> tile_storage = TestGridStorage.create_storage();
             TestClass test_class = TestGridStorage.create_tile();
