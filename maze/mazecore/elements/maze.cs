@@ -42,12 +42,7 @@ namespace mazecore.elements {
                 throw new MazeException(string.Format("Cannot set character on {0}, {1}.  Tile is already occupied", x, y));
             }
 
-            int[] character_position = this.character_storage.get_position(character);
-            if(character_position != null){
-                this.character_storage.remove_item( character_position[0], 
-                                                    character_position[1] );
-            }
-            this.character_storage.set_item(character, x, y); 
+            this.character_storage.move(character, x, y);
 
             //maze will be responsible for tile events
         

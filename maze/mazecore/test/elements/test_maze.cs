@@ -98,11 +98,18 @@ namespace mazecore.elements.test {
             Maze maze = TestMaze.create_maze();
             Character character = TestMaze.create_character();
             Tile tile = TestMaze.create_tile();
+            Tile tile2 = TestMaze.create_tile();
             maze.set_tile(tile, 1, 1);
+            maze.set_tile(tile2, 2, 3);
 
             Assert.Null(maze.get_character(1,1));
             maze.set_character(character, 1, 1);
             Assert.AreEqual(character, maze.get_character(1, 1));
+
+            maze.set_character(character, 2, 3);
+            Assert.AreEqual(character, maze.get_character(2, 3));
+            Assert.Null(maze.get_character(1, 1));
+
             maze.remove_character(1, 1);
             Assert.Null(maze.get_character(1, 1));
 
