@@ -15,6 +15,10 @@ namespace mazecore.elements.test {
         public static Character create_character(Maze maze, int x, int y) {
             return new Character(maze, x, y);
         }
+        public static Wall create_wall(Maze maze, int x, int y, Direction direction) {
+            return new Wall(maze, x, y, direction);
+        }
+
 
 
         [Test]
@@ -51,7 +55,7 @@ namespace mazecore.elements.test {
 
 
             Maze maze = TestTile.create_maze();
-            Tile center = TestTile.create_tile(maze, 2, 2);
+            Tile center = TestTile.create_tile(maze, x, y);
             Tile north_tile = TestTile.create_tile(maze, north_x, y);
             Tile south_tile = TestTile.create_tile(maze, south_x, y);
             Tile east_tile = TestTile.create_tile(maze, x, east_y);
@@ -77,6 +81,44 @@ namespace mazecore.elements.test {
             Assert.Null(center.get_neighbor_tile(Direction.South), null);
             Assert.Null(center.get_neighbor_tile(Direction.East), null);
             Assert.Null(center.get_neighbor_tile(Direction.West), null);
+
+        }
+        [Test]
+        public void get_wall_good() {
+            int x = 2, y = 2;
+            int west_y = DirectionControl.adjust(y, Direction.West, 1);
+
+            Maze maze = TestTile.create_maze();
+            Tile a = TestTile.create_tile(maze, x, y);
+            Tile b = TestTile.create_tile(maze, x, west_y);
+            Wall north = TestTile.create_wall(maze, x, y, Direction.North);
+            Wall south = TestTile.create_wall(maze, x, y, Direction.South);
+            Wall east = TestTile.create_wall(maze, x, y, Direction.East);
+            Wall west = TestTile.create_wall(maze, x, y, Direction.West);
+
+
+            Assert.AreEqual(a.get_wall(Direction.North), north);
+            Assert.AreEqual(a.get_wall(Direction.South), south);
+            Assert.AreEqual(a.get_wall(Direction.East), east);
+            Assert.AreEqual(a.get_wall(Direction.West), west);
+
+            Assert.AreEqual(b.get_wall(Direction.East), west);
+
+        }
+
+        [Test]
+        public void get_wall_null() {
+            int x = 2, y = 2;
+            Maze maze = TestTile.create_maze();
+            Tile tile = TestTile.create_tile(maze, x, y);
+
+            Assert.Null(tile.get_wall(Direction.North));
+            Assert.Null(tile.get_wall(Direction.South));
+            Assert.Null(tile.get_wall(Direction.East));
+            Assert.Null(tile.get_wall(Direction.West));
+
+
+
 
         }
 
