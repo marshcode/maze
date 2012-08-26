@@ -3,6 +3,28 @@ using System.Collections.Generic;
 namespace mazecore.elements {
 
     public enum Direction { North, East, South, West };
+    public class DirectionControl{
+        //keep all direction manipulation in one place, so we can define
+        public static int adjust(int coord, Direction direction, int by) {
+            if (direction == Direction.North || direction == Direction.West) {
+                coord -= by;
+            }else 
+                coord += by;
+            return coord;
+        }
+
+        public static void move(ref int x, ref int y, Direction direction, int by) {
+
+            if (direction == Direction.North || direction == Direction.South) {
+                x = DirectionControl.adjust(x, direction, by);
+            }else {
+                y = DirectionControl.adjust(x, direction, by);
+            }
+
+        }
+
+    }
+
 
     public class MazeException : Exception {
         public MazeException(string message)
@@ -148,11 +170,14 @@ namespace mazecore.elements {
         private void position_correct(ref int x, ref int y, ref Direction direction) {
 
             if (direction == Direction.South) {
-                x += 1;
+                x = DirectionControl.adjust(x, direction, 1);
                 direction = Direction.North;
+                
             }else if (direction == Direction.West) {
-                y -= 1;
+                y = DirectionControl.adjust(y, direction, 1);
                 direction = Direction.East;
+                
+                
             }
         }
         //public interface
