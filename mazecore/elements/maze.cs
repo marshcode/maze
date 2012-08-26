@@ -42,7 +42,8 @@ namespace mazecore.elements {
                 throw new MazeException(string.Format("Cannot set character on {0}, {1}.  Tile is already occupied", x, y));
             }
             this.character_storage.set_item(character, x, y); 
-        
+            //must determine character's previous character position.
+            //maze will be responsible for tile events
         
         }
         public Character get_character(int x, int y) { return this.character_storage.get_item(x, y); }
@@ -79,6 +80,19 @@ namespace mazecore.elements {
             this.storage = new T[x_range, y_range];    
         }
 
+        public int[] get_position(T item) {
+            T temp;
+
+            for (int x = 0; x < this.get_x_range();x++ ) {
+                for (int y = 0; y < this.get_y_range(); y++) {
+                    temp = this.get_item(x, y);
+                    if (temp != null && temp.Equals(item)) {
+                        return new int[]{x, y};
+                    }
+                }
+            }
+            return null;
+        }
 
         //getters and setters
         public override int get_x_range() {
@@ -130,7 +144,7 @@ namespace mazecore.elements {
                 direction = Direction.East;
             }
         }
-
+        //public interface
         public override int get_x_range(){
             return this.x_range;
         }

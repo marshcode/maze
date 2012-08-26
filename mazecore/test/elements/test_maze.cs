@@ -155,11 +155,7 @@ namespace mazecore.elements.test {
 
             Assert.Throws<ArgumentOutOfRangeException>(
                     delegate { maze.set_character(character, x, y); });
-
-
         }
-
-
     }
 
 
@@ -213,6 +209,33 @@ namespace mazecore.elements.test {
                     delegate { new GridStorage<TestClass>(x_range, y_range); });
 
         }
+
+
+        [TestCase(0, 0)]
+        [TestCase(1, 1)]
+        [TestCase(1, 2)]
+        [TestCase(9, 14)]
+        public void test_get_position_good(int x, int y) {
+            GridStorage<TestClass> grid_storage = TestGridStorage.create_storage();
+            TestClass test_class = TestGridStorage.create_tile();
+            grid_storage.set_item(test_class, x, y);
+
+
+            int[] position = grid_storage.get_position(test_class);
+            Assert.NotNull(position);
+            Assert.AreEqual(position.Length, 2);
+            Assert.AreEqual(position[0], x);
+            Assert.AreEqual(position[1], y);
+        }
+
+        [Test]
+        public void test_get_position_bad() {
+            GridStorage<TestClass> grid_storage = TestGridStorage.create_storage();
+            TestClass test_class = TestGridStorage.create_tile();
+            int[] position = grid_storage.get_position(test_class);
+            Assert.Null(position);
+        }
+
 
         [Test]
         public void test_get_set_remove_tile() {
