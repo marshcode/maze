@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1051]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll</TopNode>
-  <SelectedNode>[0-1000]mazecore.elements.test.TestMaze</SelectedNode>
+  <TopNode>[0-1059]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll</TopNode>
+  <SelectedNode>[0-1061]mazecore.elements</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1051]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll" Expanded="true" />
-    <Node UniqueName="[0-1052]mazecore" Expanded="true" />
-    <Node UniqueName="[0-1053]mazecore.elements" Expanded="true" />
-    <Node UniqueName="[0-1054]mazecore.elements.test" Expanded="true" />
+    <Node UniqueName="[0-1059]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll" Expanded="true" />
+    <Node UniqueName="[0-1060]mazecore" Expanded="true" />
+    <Node UniqueName="[0-1061]mazecore.elements" Expanded="true" />
+    <Node UniqueName="[0-1062]mazecore.elements.test" Expanded="true" />
     <Node UniqueName="[0-1000]mazecore.elements.test.TestMaze" Expanded="true" />
     <Node UniqueName="[0-1003]mazecore.elements.test.TestMaze.test_tile_out_of_bounds" Expanded="true" />
   </Nodes>
