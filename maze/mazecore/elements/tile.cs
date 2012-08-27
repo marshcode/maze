@@ -19,14 +19,21 @@ namespace mazecore.elements
 
         public int get_x() { return this.x; }
         public int get_y() { return this.y; }
+        public Maze get_maze() { return this.maze; }
 
         public bool is_occupied() { return this.maze.get_character(this.x, this.y) != null; }
+        public bool can_stand() { return true; }
+
         public Tile get_neighbor_tile(Direction direction) {
 
             int x = this.x, y = this.y;
-            DirectionControl.move(ref x, ref y, direction, 1);
 
+            Console.WriteLine(x);
+            Console.WriteLine(y);
+            DirectionControl.move(ref x, ref y, direction, 1);
             try{
+                Console.WriteLine(x);
+                Console.WriteLine(y);
                 return this.maze.get_tile(x, y);
             }catch(ArgumentOutOfRangeException){
                 return null;

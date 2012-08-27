@@ -1,25 +1,22 @@
 ﻿using mazecore.elements;
+using mazecore.test;
 using NUnit.Framework;
 
 namespace mazecore.elements.test {
 
     [TestFixture]
-    class TestTile {
+    class TestTile : TestBaseClass {
 
-        public static Maze create_maze() {
-            return new Maze(10, 15);
-        }
-        public static Tile create_tile(Maze maze, int x, int y){
-            return new Tile(maze, x, y);
-        }
-        public static Character create_character(Maze maze, int x, int y) {
-            return new Character(maze, x, y);
-        }
-        public static Wall create_wall(Maze maze, int x, int y, Direction direction) {
-            return new Wall(maze, x, y, direction);
-        }
+        [Test]
+        public void test_init_registration() {
 
+            Maze maze = TestTile.create_maze();
+            Tile tile = TestTile.create_tile(maze, 2, 3);
 
+            Assert.AreEqual(maze.get_tile(2, 3), tile);
+            Assert.AreEqual(maze, tile.get_maze());
+
+        }
 
         [Test]
         public void test_get_positions(){
@@ -30,6 +27,14 @@ namespace mazecore.elements.test {
             Assert.AreEqual(tile.get_y(), 3);
             Assert.AreEqual(maze.get_tile(2, 3), tile);  
 
+        }
+
+        [Test]
+        public void test_can_stand() {
+
+            Maze maze = TestTile.create_maze();
+            Tile tile = TestTile.create_tile(maze, 1, 1);
+            Assert.True(tile.can_stand());
         }
 
         [Test]

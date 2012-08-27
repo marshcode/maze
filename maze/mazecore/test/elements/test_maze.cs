@@ -1,4 +1,5 @@
 ﻿using mazecore.elements;
+using mazecore.test;
 using NUnit.Framework;
 using System;
 
@@ -23,6 +24,7 @@ namespace mazecore.elements.test {
         [TestCase(1, 1, Direction.South, 2, 1)]
         [TestCase(1, 1, Direction.East, 1, 2)]
         [TestCase(1, 1, Direction.West, 1, 0)]
+        [TestCase(2, 3, Direction.West, 2, 2)]//symmetrical test vectors are, of course, the devil.  This will fix that.
         public void test_move(int x, int y, Direction direction, int exp_x, int exp_y) {
             DirectionControl.move(ref x, ref y, direction, 1);
             Assert.AreEqual(x, exp_x);
@@ -33,20 +35,7 @@ namespace mazecore.elements.test {
     }
     
     [TestFixture]
-    class TestMaze {
-        /********************
-         * Testing factory methods
-         * *****************/
-        static Maze create_maze() {
-            return new Maze(10, 15);
-        }static Tile create_tile(Maze maze, int x, int y) {
-            return new Tile(maze, x, y);
-        }static Wall create_wall(Maze maze, int x, int y, Direction direction) {
-            return new Wall(maze, x, y, direction);
-        }static Character create_character(Maze maze, int x, int y) {
-            return new Character(maze, x, y);
-        }
-
+    class TestMaze : TestBaseClass {
         /********************
          * Tests
          * 

@@ -4,6 +4,7 @@ namespace mazecore.elements {
 
     public enum Direction { North, East, South, West };
     public class DirectionControl{
+
         //keep all direction manipulation in one place, so we can define
         public static int adjust(int coord, Direction direction, int by) {
             if (direction == Direction.North || direction == Direction.West) {
@@ -18,7 +19,7 @@ namespace mazecore.elements {
             if (direction == Direction.North || direction == Direction.South) {
                 x = DirectionControl.adjust(x, direction, by);
             }else {
-                y = DirectionControl.adjust(x, direction, by);
+                y = DirectionControl.adjust(y, direction, by);
             }
 
         }
