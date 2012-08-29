@@ -5,6 +5,67 @@ using System;
 namespace mazecore.elements.test {
 
     [TestFixture]
+    class TestCharacter : TestBaseClass {
+
+        [TestCase(Direction.North, true,  0, 2)]
+        [TestCase(Direction.East,  false, 1, 2)]
+        [TestCase(Direction.South, false, 1, 2)]
+        [TestCase(Direction.West,  false, 1, 2)]
+        
+        public void test_move(Direction direction, bool expected_result, int exp_x, int exp_y) {
+            /* Test Move.  Character movement scenario in the following maze:
+              O
+             XO| 
+              X
+             
+             Start in the center.  Available tile to the north, wall to the west.  Null tiles to the south and east
+             */
+            int x = 1, y = 2;
+            int t_x, t_y;
+
+            Maze maze = TestCharacter.create_maze();
+            Tile tile = TestCharacter.create_tile(maze, x, y);
+
+            t_x = x; t_y = y;
+            DirectionControl.move(ref t_x, ref t_y, Direction.North, 1);
+            Tile tile_north = TestCharacter.create_tile(maze, t_x, t_y);
+
+            Wall west_wall = TestCharacter.create_wall(maze, x, y, Direction.West);
+            Character character = TestCharacter.create_character(maze, 1, 2);
+
+            Assert.AreEqual(character.move(direction), expected_result);
+            Assert.AreEqual(character.get_x(), exp_x);
+            Assert.AreEqual(character.get_y(), exp_y);
+
+
+        }
+
+
+        [Test]
+        public void test_init_registration(){
+            Maze maze = TestCharacter.create_maze();
+            Tile tile = TestCharacter.create_tile(maze, 1, 2);
+            Character character = TestCharacter.create_character(maze, 1, 2);
+
+            Assert.AreEqual(maze, character.get_maze());
+        }
+        [Test]
+        public void test_get_x_get_y() {
+            Maze maze = TestCharacter.create_maze();
+            Tile tile = TestCharacter.create_tile(maze, 1, 2);
+            Character character = TestCharacter.create_character(maze, 1, 2);
+
+            Assert.AreEqual(character.get_x(), 1);
+            Assert.AreEqual(character.get_y(), 2);
+
+        }
+
+
+    }
+
+
+
+    [TestFixture]
     class TestNavigation : TestBaseClass {
 
         public static Navigation create_navigation(Character character) {

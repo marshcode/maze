@@ -28,12 +28,8 @@ namespace mazecore.elements
 
             int x = this.x, y = this.y;
 
-            Console.WriteLine(x);
-            Console.WriteLine(y);
             DirectionControl.move(ref x, ref y, direction, 1);
             try{
-                Console.WriteLine(x);
-                Console.WriteLine(y);
                 return this.maze.get_tile(x, y);
             }catch(ArgumentOutOfRangeException){
                 return null;

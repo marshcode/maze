@@ -2,20 +2,37 @@
 namespace mazecore.elements {
 
     public class Character {
-        int x, y;
-        Maze maze;
+        protected int x, y;
+        protected Maze maze;
+        protected Navigation navigation;
+
 
         public Character(Maze maze, int x, int y) {
             maze.set_character(this, x, y);
             this.x = x;
             this.y = y;
             this.maze = maze;
+            this.navigation = new Navigation(this);
+
+        }
+
+        public bool move(Direction direction) {
+            bool can_move = this.navigation.can_move(direction);
+
+            if(!can_move){
+                return false;
+            }
+
+            DirectionControl.move(ref this.x, ref this.y, direction, 1);
+            this.maze.set_character(this, this.x, this.y);
+
+            return true;
+
         }
 
         public Maze get_maze() {
             return this.maze;
         }
-
         public int get_x() {
             return this.x;
         }
