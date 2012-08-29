@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1090]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll</TopNode>
-  <SelectedNode>[0-1093]mazecore.elements.test</SelectedNode>
+  <TopNode>[0-1114]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll</TopNode>
+  <SelectedNode>[0-1117]mazecore.elements.test</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1090]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll" Expanded="true" />
-    <Node UniqueName="[0-1091]mazecore" Expanded="true" />
-    <Node UniqueName="[0-1092]mazecore.elements" Expanded="true" />
-    <Node UniqueName="[0-1093]mazecore.elements.test" Expanded="true" />
-    <Node UniqueName="[0-1034]mazecore.elements.test.TestGridStorage" Expanded="true" />
-    <Node UniqueName="[0-1054]mazecore.elements.test.TestGridStorage.test_set_tile_out_of_range" Expanded="true" />
-    <Node UniqueName="[0-1000]mazecore.elements.test.TestTile" Expanded="true" />
-    <Node UniqueName="[0-1004]mazecore.elements.test.TestTile.get_neighbor_tile_bad" Expanded="true" />
+    <Node UniqueName="[0-1114]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll" Expanded="true" />
+    <Node UniqueName="[0-1115]mazecore" Expanded="true" />
+    <Node UniqueName="[0-1116]mazecore.elements" Expanded="true" />
+    <Node UniqueName="[0-1117]mazecore.elements.test" Expanded="true" />
+    <Node UniqueName="[0-1028]mazecore.elements.test.TestDirectionControl" Expanded="true" />
+    <Node UniqueName="[0-1036]mazecore.elements.test.TestDirectionControl.test_move" Expanded="true" />
+    <Node UniqueName="[0-1000]mazecore.elements.test.TestNavigation" Expanded="true" />
+    <Node UniqueName="[0-1001]mazecore.elements.test.TestNavigation.test_can_move_uninhibited" Expanded="true" />
+    <Node UniqueName="[0-1011]mazecore.elements.test.TestNavigation.test_cannot_move_at_all_walled_in" Expanded="true" />
+    <Node UniqueName="[0-1006]mazecore.elements.test.TestNavigation.test_cannot_move_null_tiles" Expanded="true" />
+    <Node UniqueName="[0-1016]mazecore.elements.test.TestTile" Expanded="true" />
   </Nodes>
 </VisualState>
