@@ -60,11 +60,13 @@ namespace mazecore.elements {
             Wall wall = tile.get_wall(direction);              //potential wall
             tile = tile.get_neighbor_tile(direction); //potential tile            
 
-            if (wall != null && !wall.can_pass()) { //we tried to move through a wall and it said no
+            //we tried to move through a wall and it said no
+            if (wall != null && !wall.can_pass()) { 
                 return false;
             }
 
-            if (tile == null || !tile.can_stand()) { //there is no tile for us to stand on or there is but we can't.
+            //there is no tile for us to stand on or there is but we can't or it is occupied.
+            if (tile == null || !tile.can_stand() || tile.is_occupied()) { 
                 return false;
             }
             return true;
