@@ -71,19 +71,5 @@ namespace mazecore.elements {
             }
             return true;
         }
-    
     }
-
-
-    public class Controller {
-        //private helper class for characters.  Controls the character actions
-
-        public Controller(Character character) { }
-        public void set_active(bool is_active){}
-        public void update(int tick) { }
-
-
-    }
-
-
 }
