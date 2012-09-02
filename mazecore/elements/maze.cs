@@ -8,7 +8,7 @@ namespace mazecore.elements {
         //that way, depicting (row, column) isn't as goofy.  Fix this by branching first.  
         //keep all direction manipulation in one place, so we can define
         public static int adjust(int coord, Direction direction, int by) {
-            if (direction == Direction.North || direction == Direction.West) {
+            if (direction == Direction.South || direction == Direction.West) {
                 coord -= by;
             }else 
                 coord += by;
@@ -18,9 +18,9 @@ namespace mazecore.elements {
         public static void move(ref int x, ref int y, Direction direction, int by) {
 
             if (direction == Direction.North || direction == Direction.South) {
-                x = DirectionControl.adjust(x, direction, by);
-            }else {
                 y = DirectionControl.adjust(y, direction, by);
+            }else {
+                x = DirectionControl.adjust(x, direction, by);
             }
 
         }
@@ -172,11 +172,11 @@ namespace mazecore.elements {
         private void position_correct(ref int x, ref int y, ref Direction direction) {
 
             if (direction == Direction.South) {
-                x = DirectionControl.adjust(x, direction, 1);
+                y = DirectionControl.adjust(y, direction, 1);
                 direction = Direction.North;
                 
             }else if (direction == Direction.West) {
-                y = DirectionControl.adjust(y, direction, 1);
+                x = DirectionControl.adjust(x, direction, 1);
                 direction = Direction.East;
                 
                 

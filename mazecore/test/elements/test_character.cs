@@ -51,7 +51,7 @@ namespace mazecore.elements.test {
 
         }
 
-        [TestCase(Direction.North, true,  0, 2)]
+        [TestCase(Direction.North, true,  1, 3)]
         [TestCase(Direction.East,  false, 1, 2)]
         [TestCase(Direction.South, false, 1, 2)]
         [TestCase(Direction.West,  false, 1, 2)]
