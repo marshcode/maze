@@ -5,16 +5,34 @@ namespace mazecore.elements {
         protected int x, y;
         protected Maze maze;
         protected Navigation navigation;
-
+        protected Direction orientation;
 
         public Character(Maze maze, int x, int y) {
             maze.set_character(this, x, y);
             this.x = x;
             this.y = y;
+            this.orientation = Direction.North;
+
             this.maze = maze;
             this.navigation = new Navigation(this);
 
         }
+
+        public Direction get_orientation(){
+            return this.orientation;
+        }public void set_orientation(Direction orientation){
+            this.orientation = orientation;
+        }
+        
+        public Wall get_facing_wall() {
+            return this.get_maze().get_wall(this.get_x(), this.get_y(), this.get_orientation());
+        }
+        public Tile get_tile() {
+            return this.get_maze().get_tile(this.get_x(), this.get_y());
+        }
+
+
+
 
         public bool move(Direction direction) {
             bool can_move = this.navigation.can_move(direction);
@@ -32,11 +50,9 @@ namespace mazecore.elements {
 
         public Maze get_maze() {
             return this.maze;
-        }
-        public int get_x() {
+        }public int get_x() {
             return this.x;
-        }
-        public int get_y() {
+        }public int get_y() {
             return this.y;
         }
 

@@ -7,11 +7,54 @@ namespace mazecore.elements.test {
     [TestFixture]
     class TestCharacter : TestBaseClass {
 
+        [Test]
+        public void test_get_tile() {
+            int x = 1, y = 1;
+
+            Maze maze = TestCharacter.create_maze();
+            Tile tile = TestCharacter.create_tile(maze, x, y);
+            Character character = TestCharacter.create_character(maze, x, y);
+
+
+            DirectionControl.move(ref x, ref y, Direction.South, 1);
+            Tile tile_south = TestCharacter.create_tile(maze, x, y);
+
+            Assert.AreEqual(character.get_tile(), tile);
+            character.move(Direction.South);
+            Assert.AreEqual(character.get_tile(), tile_south);
+
+        
+        }
+
+        [Test]
+        public void test_get_facing_wall() {
+
+            Maze maze = TestCharacter.create_maze();
+            Tile tile = TestCharacter.create_tile(maze, 1, 1);
+
+            Wall wall_north = TestCharacter.create_wall(maze, 1, 1, Direction.North);
+            Wall wall_south = TestCharacter.create_wall(maze, 1, 1, Direction.South);
+
+
+            Character character = TestCharacter.create_character(maze, 1, 1);
+
+            Assert.AreEqual(character.get_facing_wall(), wall_north);
+
+            character.set_orientation(Direction.South);
+            Assert.AreEqual(character.get_facing_wall(), wall_south);
+
+            character.set_orientation(Direction.East);
+            Assert.Null(character.get_facing_wall());
+
+            character.set_orientation(Direction.West);
+            Assert.Null(character.get_facing_wall());
+
+        }
+
         [TestCase(Direction.North, true,  0, 2)]
         [TestCase(Direction.East,  false, 1, 2)]
         [TestCase(Direction.South, false, 1, 2)]
         [TestCase(Direction.West,  false, 1, 2)]
-        
         public void test_move(Direction direction, bool expected_result, int exp_x, int exp_y) {
             /* Test Move.  Character movement scenario in the following maze:
               O
@@ -45,6 +88,17 @@ namespace mazecore.elements.test {
 
         }
 
+        [Test]
+        public void test_orientation() {
+            Maze maze = TestCharacter.create_maze();
+            Tile tile = TestCharacter.create_tile(maze, 1, 2);
+            Character character = TestCharacter.create_character(maze, 1, 2);
+
+            Assert.AreEqual(Direction.North, character.get_orientation());
+            character.set_orientation(Direction.South);
+            Assert.AreEqual(Direction.South, character.get_orientation());
+
+        }
 
         [Test]
         public void test_init_registration(){

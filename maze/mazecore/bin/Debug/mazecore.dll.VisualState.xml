@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1132]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll</TopNode>
-  <SelectedNode>[0-1137]mazecore.control.test</SelectedNode>
+  <TopNode>[0-1139]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll</TopNode>
+  <SelectedNode>[0-1143]mazecore.control</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1132]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll" Expanded="true" />
-    <Node UniqueName="[0-1133]mazecore" Expanded="true" />
-    <Node UniqueName="[0-1136]mazecore.control" Expanded="true" />
-    <Node UniqueName="[0-1137]mazecore.control.test" Expanded="true" />
+    <Node UniqueName="[0-1139]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll" Expanded="true" />
+    <Node UniqueName="[0-1140]mazecore" Expanded="true" />
+    <Node UniqueName="[0-1143]mazecore.control" Expanded="true" />
+    <Node UniqueName="[0-1144]mazecore.control.test" Expanded="true" />
+    <Node UniqueName="[0-1134]mazecore.control.test.ExceptionTrap+TestEventManager&lt;T&gt;" Expanded="true" />
+    <Node UniqueName="[0-1135]mazecore.control.test.ExceptionTrap+TestEventManager&lt;Int32&gt;" Expanded="true" />
     <Node UniqueName="[0-1124]mazecore.control.test.TestSignalHandler" Expanded="true" />
-    <Node UniqueName="[0-1134]mazecore.elements" Expanded="true" />
-    <Node UniqueName="[0-1135]mazecore.elements.test" Expanded="true" />
+    <Node UniqueName="[0-1141]mazecore.elements" Expanded="true" />
+    <Node UniqueName="[0-1142]mazecore.elements.test" Expanded="true" />
     <Node UniqueName="[0-1000]mazecore.elements.test.TestCharacter" Expanded="true" />
     <Node UniqueName="[0-1001]mazecore.elements.test.TestCharacter.test_move" Expanded="true" />
     <Node UniqueName="[0-1008]mazecore.elements.test.TestNavigation" Expanded="true" />
