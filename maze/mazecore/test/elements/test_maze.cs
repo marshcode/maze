@@ -8,23 +8,23 @@ namespace mazecore.elements.test {
     [TestFixture]
     class TestDirectionControl {
 
-        [TestCase(1, Direction.North, 0)]
+        [TestCase(1, Direction.North, 2)]
         [TestCase(1, Direction.West, 0)]
         //non-sensical coordinate but ensure that we can produce it all the same
-        [TestCase(0, Direction.North, -1)] 
+        [TestCase(0, Direction.North, 1)] 
         [TestCase(0, Direction.West, -1)]
         
-        [TestCase(1, Direction.South, 2)]
+        [TestCase(1, Direction.South, 0)]
         [TestCase(1, Direction.East, 2)]
         public void test_adjust(int coord, Direction direction, int expected){
             Assert.AreEqual(DirectionControl.adjust(coord, direction, 1), expected);
         }
 
-        [TestCase(1, 1, Direction.North, 0, 1)]
-        [TestCase(1, 1, Direction.South, 2, 1)]
-        [TestCase(1, 1, Direction.East, 1, 2)]
-        [TestCase(1, 1, Direction.West, 1, 0)]
-        [TestCase(2, 3, Direction.West, 2, 2)]//symmetrical test vectors are, of course, the devil.  This will fix that.
+        [TestCase(1, 1, Direction.North, 1, 2)]
+        [TestCase(1, 1, Direction.South, 1, 0)]
+        [TestCase(1, 1, Direction.East, 2, 1)]
+        [TestCase(1, 1, Direction.West, 0, 1)]
+        [TestCase(3, 2, Direction.West, 2, 2)]//symmetrical test vectors are, of course, the devil.  This will fix that.
         public void test_move(int x, int y, Direction direction, int exp_x, int exp_y) {
             DirectionControl.move(ref x, ref y, direction, 1);
             Assert.AreEqual(x, exp_x);
@@ -83,11 +83,12 @@ namespace mazecore.elements.test {
             Maze maze = TestMaze.create_maze();
             Assert.Null(maze.get_wall(1, 1, Direction.North));
             Wall wall  = TestMaze.create_wall(maze, 1, 1, Direction.North);
-            maze.set_wall(wall, 1,1, Direction.North); //going to fail later
-
+            maze.set_wall(wall, 1,1, Direction.North);
+            //should I fail if there is no tile to set the wall on?
+            //it won't matter, I guess.  No tiles means nobody can see it.  
 
             Assert.AreEqual(wall, maze.get_wall(1, 1, Direction.North));
-            Assert.AreEqual(wall, maze.get_wall(0, 1, Direction.South));
+            Assert.AreEqual(wall, maze.get_wall(1, 2, Direction.South));
             maze.remove_wall(1, 1, Direction.North);
             Assert.Null(maze.get_wall(1, 1, Direction.North));
 
@@ -398,15 +399,15 @@ namespace mazecore.elements.test {
             SharedEdgeStorage<TestClass> wall_storage = TestSharedEdgeStorage.create_storage();
             TestClass test_class = TestSharedEdgeStorage.create_wall();
 
-            Assert.Null( wall_storage.get_item(1, 0, Direction.North) );
-            wall_storage.set_item(test_class, 1, 0, Direction.North);
+            Assert.Null( wall_storage.get_item(1, 1, Direction.North) );
+            wall_storage.set_item(test_class, 1, 1, Direction.North);
 
-            Assert.AreEqual(wall_storage.get_item(1, 0, Direction.North), test_class);
-            Assert.AreEqual(wall_storage.get_item(0, 0, Direction.South), test_class);
+            Assert.AreEqual(wall_storage.get_item(1, 2, Direction.South), test_class);
+            Assert.AreEqual(wall_storage.get_item(1, 1, Direction.North), test_class);
 
-            wall_storage.remove_item(1, 0, Direction.North);
-            Assert.Null(wall_storage.get_item(1, 0, Direction.North));
-            Assert.Null(wall_storage.get_item(0, 0, Direction.South));
+            wall_storage.remove_item(1, 1, Direction.North);
+            Assert.Null(wall_storage.get_item(2, 1, Direction.South));
+            Assert.Null(wall_storage.get_item(1, 1, Direction.North));
         }
 
         [Test]
@@ -415,15 +416,15 @@ namespace mazecore.elements.test {
             SharedEdgeStorage<TestClass> wall_storage = TestSharedEdgeStorage.create_storage();
             TestClass test_class = TestSharedEdgeStorage.create_wall();
 
-            Assert.Null(wall_storage.get_item(1, 0, Direction.East));
-            wall_storage.set_item(test_class, 1, 0, Direction.East);
+            Assert.Null(wall_storage.get_item(1, 1, Direction.East));
+            wall_storage.set_item(test_class, 1, 1, Direction.East);
 
-            Assert.AreEqual(wall_storage.get_item(1, 0, Direction.East), test_class);
-            Assert.AreEqual(wall_storage.get_item(1, 1, Direction.West), test_class);
+            Assert.AreEqual(wall_storage.get_item(1, 1, Direction.East), test_class);
+            Assert.AreEqual(wall_storage.get_item(2, 1, Direction.West), test_class);
 
-            wall_storage.remove_item(1, 0, Direction.East);
-            Assert.Null(wall_storage.get_item(1, 0, Direction.East));
-            Assert.Null(wall_storage.get_item(1, 1, Direction.West));
+            wall_storage.remove_item(1, 1, Direction.East);
+            Assert.Null(wall_storage.get_item(1, 1, Direction.East));
+            Assert.Null(wall_storage.get_item(2, 1, Direction.West));
         }
 
         [Test]

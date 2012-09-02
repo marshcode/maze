@@ -52,19 +52,21 @@ namespace mazecore.elements.test {
 
         [Test]
         public void get_neighbor_tile_good() {
-            int x = 2, y = 2;
-            int north_x = DirectionControl.adjust(x, Direction.North, 1);
-            int south_x = DirectionControl.adjust(x, Direction.South, 1);
-            int east_y  = DirectionControl.adjust(y, Direction.East, 1);
-            int west_y  = DirectionControl.adjust(y, Direction.West, 1);
+            int x = 2, y = 3;
+
+            int east_x = DirectionControl.adjust(x, Direction.East, 1);
+            int west_x = DirectionControl.adjust(x, Direction.West, 1);
+            int north_y = DirectionControl.adjust(y, Direction.North, 1);
+            int south_y = DirectionControl.adjust(y, Direction.South, 1);
+
 
 
             Maze maze = TestTile.create_maze();
             Tile center = TestTile.create_tile(maze, x, y);
-            Tile north_tile = TestTile.create_tile(maze, north_x, y);
-            Tile south_tile = TestTile.create_tile(maze, south_x, y);
-            Tile east_tile = TestTile.create_tile(maze, x, east_y);
-            Tile west_tile = TestTile.create_tile(maze, x, west_y);
+            Tile north_tile = TestTile.create_tile(maze, x, north_y);
+            Tile south_tile = TestTile.create_tile(maze, x, south_y);
+            Tile east_tile = TestTile.create_tile(maze, east_x, y);
+            Tile west_tile = TestTile.create_tile(maze, west_x, y);
 
 
             Assert.AreEqual(center.get_neighbor_tile(Direction.North), north_tile);
@@ -91,11 +93,11 @@ namespace mazecore.elements.test {
         [Test]
         public void get_wall_good() {
             int x = 2, y = 2;
-            int west_y = DirectionControl.adjust(y, Direction.West, 1);
+            int west_x = DirectionControl.adjust(x, Direction.West, 1);
 
             Maze maze = TestTile.create_maze();
             Tile a = TestTile.create_tile(maze, x, y);
-            Tile b = TestTile.create_tile(maze, x, west_y);
+            Tile b = TestTile.create_tile(maze, west_x, y);
             Wall north = TestTile.create_wall(maze, x, y, Direction.North);
             Wall south = TestTile.create_wall(maze, x, y, Direction.South);
             Wall east = TestTile.create_wall(maze, x, y, Direction.East);
