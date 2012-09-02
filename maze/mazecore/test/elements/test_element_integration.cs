@@ -11,13 +11,13 @@ namespace mazecore.elements.tests {
         /*
          * TestMaze that looks like this:
           
-           0 1 2345
-           _
-       0  |X|_
+         Y 0 1 2345
+       X   _
+       0  |*|_
        1  |  _|____
        2  |________| 
           
-         X marks the start location of the character 
+         * marks the start location of the character 
           
          */
 
