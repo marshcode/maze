@@ -1,8 +1,9 @@
-﻿using mazecore.elements;
-using mazecore.test;
-using NUnit.Framework;
-
-namespace mazecore.elements.test {
+﻿namespace mazecore.elements.test {
+    
+    using NUnit.Framework;
+    using mazecore.direction;
+    using mazecore.elements;
+    using mazecore.test;
 
     [TestFixture]
     class TestTile : TestBaseClass {

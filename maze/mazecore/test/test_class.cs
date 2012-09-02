@@ -1,6 +1,8 @@
-﻿using mazecore.elements;
+﻿
 
 namespace mazecore.test {
+    using mazecore.elements;
+    using mazecore.direction;
 
     class TestBaseClass {
 

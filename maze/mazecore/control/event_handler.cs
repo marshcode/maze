@@ -1,5 +1,6 @@
-﻿using System;
+﻿
 namespace mazecore.control {
+    using System;
 
     class EventManager<R> {
 

@@ -47,6 +47,7 @@
     <Compile Include="control\controller.cs" />
     <Compile Include="control\event_handler.cs" />
     <Compile Include="control\signal_handler.cs" />
+    <Compile Include="direction\direction.cs" />
     <Compile Include="elements\character.cs" />
     <Compile Include="elements\maze.cs" />
     <Compile Include="elements\tile.cs" />

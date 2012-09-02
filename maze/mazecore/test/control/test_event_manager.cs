@@ -1,8 +1,8 @@
-﻿using mazecore.control;
-using NUnit.Framework;
-using System;
+﻿namespace mazecore.control.test {
 
-namespace mazecore.control.test {
+    using mazecore.control;
+    using NUnit.Framework;
+    using System;
 
     class Trap<T> {
         public Trap() { }

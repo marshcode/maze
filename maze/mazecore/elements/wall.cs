@@ -1,4 +1,6 @@
 ﻿namespace mazecore.elements {
+    using mazecore.direction;
+
     public class Wall {
 
         Maze maze;
