@@ -1,7 +1,9 @@
-﻿using System;
+﻿
 namespace mazecore.elements
 {
-    
+    using System;
+    using mazecore.direction;
+
     public class Tile{
         
 

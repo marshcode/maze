@@ -1,8 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using mazecore.elements;
+﻿namespace mazecore.storage {
 
-namespace mazecore.storage {
+    using System;
+    using System.Collections.Generic;
+
+    using mazecore.elements;
+    using mazecore.direction;
 
     abstract class Storage<T> {
 

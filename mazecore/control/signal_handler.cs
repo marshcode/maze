@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace mazecore.control {
 
-namespace mazecore.control {
+    using System;
+    using System.Collections.Generic;
 
     class SignalHandler {
 

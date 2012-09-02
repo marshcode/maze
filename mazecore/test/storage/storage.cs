@@ -1,11 +1,11 @@
-﻿using System;
+﻿namespace mazecore.storage.test {
 
-using NUnit.Framework;
+    using System;
+    using NUnit.Framework;
 
-using mazecore.storage;
-using mazecore.elements;
-
-namespace mazecore.storage.test {
+    using mazecore.storage;
+    using mazecore.elements;
+    using mazecore.direction;
 
     [TestFixture]
     class TestGridStorage {

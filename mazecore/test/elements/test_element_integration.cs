@@ -1,10 +1,10 @@
-﻿using mazecore.elements;
-using mazecore.test;
-using NUnit.Framework;
-
-
-namespace mazecore.elements.tests {
-
+﻿namespace mazecore.elements.tests {
+    
+    using NUnit.Framework;
+    using mazecore.direction;
+    using mazecore.elements;
+    using mazecore.test;
+    
     [TestFixture]
     class TestElementIntegration : TestBaseClass{
 

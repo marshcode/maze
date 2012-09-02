@@ -1,8 +1,11 @@
-﻿using mazecore.test;
-using mazecore.elements;
-using NUnit.Framework;
-using System;
+﻿
 namespace mazecore.elements.test {
+
+    using System;
+    using NUnit.Framework;
+    using mazecore.test;
+    using mazecore.elements;
+    using mazecore.direction;
 
     [TestFixture]
     class TestCharacter : TestBaseClass {
