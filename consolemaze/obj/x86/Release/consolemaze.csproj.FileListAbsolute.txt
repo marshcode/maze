@@ -1,0 +1,7 @@
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\consolemaze\bin\Release\consolemaze.exe
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\consolemaze\bin\Release\consolemaze.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\consolemaze\bin\Release\mazecore.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\consolemaze\bin\Release\mazecore.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\consolemaze\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\consolemaze\obj\x86\Release\consolemaze.exe
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\consolemaze\obj\x86\Release\consolemaze.pdb
