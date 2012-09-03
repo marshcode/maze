@@ -15,8 +15,6 @@
 
             g.add_character(Blah.one, 'a');
             Assert.AreEqual(g.get_character(Blah.one), 'a');
-            
-
         }
 
         [TestCase]
