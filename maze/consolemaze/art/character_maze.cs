@@ -130,7 +130,7 @@
         public string render() {
             int char_x_range = (this.maze.get_x_range()*2) + 1;
             int char_y_range = (this.maze.get_y_range()*2) + 1;
-
+            //initialize
             char[][] char_map = new char[ char_x_range ][];
             for (int i = 0; i < char_map.Length; i++) {
                 char_map[i] = new char[char_y_range];
