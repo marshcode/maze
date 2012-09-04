@@ -1,6 +1,8 @@
 ﻿namespace consolemaze.art.test {
     using NUnit.Framework;
-    
+
+    using System;
+
     using consolemaze.art;
     using mazecore.elements;
     using mazecore.direction;
@@ -11,6 +13,11 @@
 
         protected bool render_compare(CharacterMaze character_maze, string expected) {
             string actual = character_maze.render();
+
+            Console.WriteLine("---");
+            Console.WriteLine(actual);
+            Console.WriteLine("---");
+
             return actual.Trim().Equals(expected.Trim());
         }
 
@@ -30,8 +37,8 @@
             Tile tile1 = new Tile(maze, 0, 0);
             Tile tile2 = new Tile(maze, 0, 1);
 
-            this.create_walls(tile1, new Direction[] { Direction.North, Direction.East, Direction.West });
             this.create_walls(tile1, new Direction[] { Direction.South, Direction.East, Direction.West });
+            this.create_walls(tile2, new Direction[] { Direction.North, Direction.East, Direction.West });
             CharacterMaze character_maze = new CharacterMaze(maze);
             string expected = @"
 ┌─┐
@@ -50,8 +57,8 @@
             Tile tile1 = new Tile(maze, 0, 0);
             Tile tile2 = new Tile(maze, 1, 0);
 
-            this.create_walls(tile1, new Direction[] { Direction.North, Direction.East, Direction.West });
-            this.create_walls(tile1, new Direction[] { Direction.South, Direction.East, Direction.West });
+            this.create_walls(tile1, new Direction[] { Direction.North, Direction.South, Direction.West });
+            this.create_walls(tile2, new Direction[] { Direction.North, Direction.South, Direction.East });
             CharacterMaze character_maze = new CharacterMaze(maze);
             string expected = @"
 ┌───┐
@@ -71,7 +78,7 @@
             CharacterMaze character_maze = new CharacterMaze(maze);
             string expected = @"
 ┌─┐
-│ |
+│ │
 └─┘
 ";
             Assert.True(this.render_compare(character_maze, expected));
@@ -95,22 +102,6 @@
 ";
             Assert.True(this.render_compare(character_maze, expected));          
         
-        }
-
-        [Test]
-        public void test_two_rooms_no_wall() {
-            //note that the removal of the wall changes the ticks above and below it
-            Maze maze = new Maze(10, 10);
-            Tile tile1 = new Tile(maze, 0, 0);
-            Tile tile2 = new Tile(maze, 1, 0);
-            CharacterMaze character_maze = new CharacterMaze(maze);
-            string expected = @"
-┌───┐
-│   │
-└───┘
-";
-            Assert.True(this.render_compare(character_maze, expected));
-
         }
 
         [Test]
