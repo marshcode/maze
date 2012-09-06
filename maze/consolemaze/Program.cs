@@ -102,8 +102,22 @@ namespace consolemaze {
 
             int x = 0, y = 2;
 
+            
+
+            bool block_style = false;
+            ASCIIMazeStyle maze_style;
+            if (block_style) {
+                Glyph<Direction> wall_glyph = new Glyph<Direction>('█');
+                Glyph<int> wall_joint_glyph = new Glyph<int>('█');
+                wall_joint_glyph.add_character(0, ' ');
+                maze_style = new ASCIIMazeStyle(null, wall_glyph, wall_joint_glyph);
+            }else {
+                maze_style = new ASCIIMazeStyle();
+            }
+
+
             Maze maze = CreateMaze(x, y);
-            ASCIIMaze ascii_maze = new ASCIIMaze(maze);
+            ASCIIMaze ascii_maze = new ASCIIMaze(maze, maze_style);
             Character character = maze.get_character(x, y);
             
             while (Running){

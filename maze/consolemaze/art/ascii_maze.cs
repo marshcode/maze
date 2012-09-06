@@ -33,48 +33,81 @@
      */
 
 
-    class ASCIIMaze {
+    class ASCIIMazeStyle {
+
+        //These are all class defaults.  They can be overridden with the style class. 
         //NOTE, all x and y's are reversed here.  
-        static protected Glyph<Direction> character_glyph;
-        static protected Glyph<Direction> wall_glyph;
-        
-        static protected Glyph<int> wall_joint_glyph;
+        static protected Glyph<Direction> default_character_glyph;
+        static protected Glyph<Direction> default_wall_glyph;
+
+        static protected Glyph<int> default_wall_joint_glyph;
         // I don't want to allow the real direction to be combined so I'm using a static mapping
+
+
+        static ASCIIMazeStyle() {
+            default_character_glyph = new Glyph<Direction>('?');
+            default_character_glyph.add_character(Direction.North, '▲');
+            default_character_glyph.add_character(Direction.South, '▼');
+            default_character_glyph.add_character(Direction.East,  '►');
+            default_character_glyph.add_character(Direction.West,  '◄');
+
+            default_wall_glyph = new Glyph<Direction>('?');
+            default_wall_glyph.add_character(Direction.North, '─');
+            default_wall_glyph.add_character(Direction.South, '─');
+            default_wall_glyph.add_character(Direction.East, '│');
+            default_wall_glyph.add_character(Direction.West, '│');
+
+            default_wall_joint_glyph = new Glyph<int>('?');
+            //                        0    1    2    3    4    5    6    7    8    9    10   11   12   13   14   15
+            char[] wall_joint_chr = {' ', '─', '│', '┐', '─', '─', '┌', '┬', '│', '┘', '│', '┤', '└', '┴', '├', '┼'};
+            for(int i=0;i<wall_joint_chr.Length;i++){
+               default_wall_joint_glyph.add_character(i, wall_joint_chr[i]);
+            }
+        }
+
+        public Glyph<Direction> character_glyph;
+        public Glyph<Direction> wall_glyph;
+        public Glyph<int> wall_joint_glyph;
+
+        public ASCIIMazeStyle():this(default_character_glyph, default_wall_glyph, default_wall_joint_glyph) {}
+
+        public ASCIIMazeStyle(Glyph<Direction> character_glyph, Glyph<Direction> wall_glyph, Glyph<int> wall_joint_glyph) {
+            this.character_glyph  =  character_glyph  == null ? default_character_glyph  : character_glyph;
+            this.wall_glyph       =  wall_glyph       == null ? default_wall_glyph       : wall_glyph;
+            this.wall_joint_glyph = wall_joint_glyph  == null ? default_wall_joint_glyph : wall_joint_glyph;
+
+        }
+
+    }
+
+
+    class ASCIIMaze {
+
         [Flags]
         enum WallJoint { North = 8, East = 4, South = 2, West = 1 };
         static Dictionary<Direction, WallJoint> joint_direction_map;
 
-
         static ASCIIMaze() {
-            character_glyph = new Glyph<Direction>('?');
-            character_glyph.add_character(Direction.North, '▲');
-            character_glyph.add_character(Direction.South, '▼');
-            character_glyph.add_character(Direction.East,  '►');
-            character_glyph.add_character(Direction.West,  '◄');
-
-            wall_glyph = new Glyph<Direction>('?');
-            wall_glyph.add_character(Direction.North, '─');
-            wall_glyph.add_character(Direction.South, '─');
-            wall_glyph.add_character(Direction.East, '│');
-            wall_glyph.add_character(Direction.West, '│');
-
-            wall_joint_glyph = new Glyph<int>('?');
-            //                        0    1    2    3    4    5    6    7    8    9    10   11   12   13   14   15
-            char[] wall_joint_chr = {' ', '─', '│', '┐', '─', '─', '┌', '┬', '│', '┘', '│', '┤', '└', '┴', '├', '┼'};
-            for(int i=0;i<wall_joint_chr.Length;i++){
-                wall_joint_glyph.add_character(i, wall_joint_chr[i]);
-            }
             joint_direction_map = new Dictionary<Direction, WallJoint>();
             joint_direction_map[Direction.North] = WallJoint.North;
             joint_direction_map[Direction.South] = WallJoint.South;
             joint_direction_map[Direction.East] = WallJoint.East;
             joint_direction_map[Direction.West] = WallJoint.West;
-
         }
 
+
         protected Maze maze;
-        public ASCIIMaze(Maze maze) {
+        protected ASCIIMazeStyle style;
+
+        public ASCIIMaze(Maze maze, ASCIIMazeStyle style=null) {
             this.maze = maze;
+
+            if (style == null) {
+                style = new ASCIIMazeStyle();
+            }
+
+            this.style = style;
+
         }
 
 
@@ -90,7 +123,7 @@
             if (tile.is_occupied()) {
                 //TODO: tile needs a 'get_character' method
                 Character character = tile.get_maze().get_character(tile.get_x(), tile.get_y());
-                char_map[chr_y_idx][chr_x_idx] = character_glyph.get_character(character.get_orientation());
+                char_map[chr_y_idx][chr_x_idx] = style.character_glyph.get_character(character.get_orientation());
             }
 
             //shouldn't have to worry about out of bounds
@@ -102,7 +135,7 @@
                 
                 tmp_x = chr_x_idx; tmp_y = chr_y_idx;
                 DirectionControl.move(ref tmp_x, ref tmp_y, dir, 1);
-                char_map[tmp_y][tmp_x] = wall_glyph.get_character(dir);
+                char_map[tmp_y][tmp_x] = style.wall_glyph.get_character(dir);
             }
         }
 
@@ -122,7 +155,7 @@
                             }
                         }catch (Exception) { continue; }  
                      }
-                    char_map[y][x] = wall_joint_glyph.get_character((int)wall_joint);
+                    char_map[y][x] = style.wall_joint_glyph.get_character((int)wall_joint);
                 }
             }
         }
