@@ -9,8 +9,18 @@
 
     using mazecore.elements.test;
 
+
     [TestFixture]
-    class TestCharacterMaze {
+    class TestASCIIMazeStyle {
+
+        [Test]
+        public void you_fail(){
+            Assert.True(false);
+        }
+    }
+
+    [TestFixture]
+    class TestASCIIMaze {
 
 
         protected bool render_compare(ASCIIMaze character_maze, string expected) {
@@ -209,6 +219,11 @@
             Assert.True(this.render_compare(character_maze, string.Format(expected, char_glyph)));
         }
 
+
+        [Test]
+        public void test_new_style() {
+            Assert.True(false);
+        }
 
     }
 
