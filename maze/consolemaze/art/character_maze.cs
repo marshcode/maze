@@ -127,7 +127,9 @@
             }
         }
 
-        public string render() {
+
+
+        public char[][] render_char_array() {
             int char_x_range = (this.maze.get_x_range()*2) + 1;
             int char_y_range = (this.maze.get_y_range()*2) + 1;
             //initialize
@@ -148,16 +150,24 @@
             //process walls
             this.process_walls(char_map);
 
+            return char_map;
+        }
+
+        public string[] render_string_array(){
+            char[][] char_map = this.render_char_array();
+
             //create string representation
             string[] maze_lines = new string[ char_map.Length ];
             for (int i = 0; i < char_map.Length; i++) {
                 maze_lines[i] = new string(char_map[i]);
             }
             Array.Reverse(maze_lines);
-            return string.Join("\n", maze_lines);
+            return maze_lines;
         }
 
-        
+        public string render_string() {
+            return string.Join("\n", this.render_string_array());
+        }
 
     }
 }

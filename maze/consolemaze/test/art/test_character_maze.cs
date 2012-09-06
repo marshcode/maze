@@ -14,7 +14,7 @@
 
 
         protected bool render_compare(CharacterMaze character_maze, string expected) {
-            string actual = character_maze.render();
+            string actual = character_maze.render_string();
 
             //Console.WriteLine("---");
             //Console.WriteLine(actual);
