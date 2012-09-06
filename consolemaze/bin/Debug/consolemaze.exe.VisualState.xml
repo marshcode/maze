@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
   <TopNode>[0-1023]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\consolemaze\bin\Debug\consolemaze.exe</TopNode>
-  <SelectedNode>[0-1014]consolemaze.art.test.TestCharacterMaze.test_two_rooms_horizontal</SelectedNode>
+  <SelectedNode>[0-1024]consolemaze</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
     <Node UniqueName="[0-1023]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\consolemaze\bin\Debug\consolemaze.exe" Expanded="true" />
     <Node UniqueName="[0-1024]consolemaze" Expanded="true" />
     <Node UniqueName="[0-1025]consolemaze.art" Expanded="true" />
     <Node UniqueName="[0-1026]consolemaze.art.test" Expanded="true" />
-    <Node UniqueName="[0-1011]consolemaze.art.test.TestCharacterMaze" Expanded="true" />
-    <Node UniqueName="[0-1018]consolemaze.art.test.TestCharacterMaze.test_character_direction" Expanded="true" />
-    <Node UniqueName="[0-1000]consolemaze.art.test.TestGlyph" Expanded="true" />
-    <Node UniqueName="[0-1009]consolemaze.art.test.TestGlyph.test_add_get_remove_glyph" Expanded="true" />
-    <Node UniqueName="[0-1003]consolemaze.art.test.TestGlyph.test_get_default" Expanded="true" />
-    <Node UniqueName="[0-1007]consolemaze.art.test.TestGlyph.test_overwrite" Expanded="true" />
-    <Node UniqueName="[0-1005]consolemaze.art.test.TestGlyph.test_remove_non_existent_entry" Expanded="true" />
-    <Node UniqueName="[0-1001]consolemaze.art.test.TestGlyph.test_with_enum" Expanded="true" />
+    <Node UniqueName="[0-1000]consolemaze.art.test.TestCharacterMaze" Expanded="true" />
+    <Node UniqueName="[0-1007]consolemaze.art.test.TestCharacterMaze.test_character_direction" Expanded="true" />
+    <Node UniqueName="[0-1012]consolemaze.art.test.TestGlyph" Expanded="true" />
+    <Node UniqueName="[0-1021]consolemaze.art.test.TestGlyph.test_add_get_remove_glyph" Expanded="true" />
+    <Node UniqueName="[0-1015]consolemaze.art.test.TestGlyph.test_get_default" Expanded="true" />
+    <Node UniqueName="[0-1019]consolemaze.art.test.TestGlyph.test_overwrite" Expanded="true" />
+    <Node UniqueName="[0-1017]consolemaze.art.test.TestGlyph.test_remove_non_existent_entry" Expanded="true" />
+    <Node UniqueName="[0-1013]consolemaze.art.test.TestGlyph.test_with_enum" Expanded="true" />
   </Nodes>
 </VisualState>
