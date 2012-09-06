@@ -16,9 +16,11 @@
         protected bool render_compare(CharacterMaze character_maze, string expected) {
             string actual = character_maze.render();
 
-            Console.WriteLine("---");
-            Console.WriteLine(actual);
-            Console.WriteLine("---");
+            //Console.WriteLine("---");
+            //Console.WriteLine(actual);
+            //Console.WriteLine("---");
+            //Console.WriteLine(expected);
+            //Console.WriteLine("---");
 
             return actual.Trim().Equals(expected.Trim());
         }
@@ -35,7 +37,7 @@
 
         [Test]
         public void test_complex() {
-            Maze maze = new Maze(10, 10);
+            Maze maze = new Maze(6, 3);
 
             Tile t = new Tile(maze, 0, 2);
             Wall w = new Wall(maze, 0, 2, Direction.North);
@@ -78,68 +80,73 @@
             w = new Wall(maze, 5, 0, Direction.North);
 
 
+            string expected = "┌─┐          \n" +
+                              "│▲│          \n" +
+                              "│ └─┐        \n" +
+                              "│   │        \n" +
+                              "│ ──┴───────┐\n" +
+                              "│           │\n" +
+                              "└───────────┘\n";
+
             CharacterMaze character_maze = new CharacterMaze(maze);
-            Assert.True( this.render_compare(character_maze, "blah"));
+            Assert.True(this.render_compare(character_maze, expected));
 
         }
 
 
         [Test]
         public void test_two_rooms_vertical() {
-            Maze maze = new Maze(10, 10);
+            Maze maze = new Maze(1, 2);
             Tile tile1 = new Tile(maze, 0, 0);
             Tile tile2 = new Tile(maze, 0, 1);
 
             this.create_walls(tile1, new Direction[] { Direction.South, Direction.East, Direction.West });
             this.create_walls(tile2, new Direction[] { Direction.North, Direction.East, Direction.West });
             CharacterMaze character_maze = new CharacterMaze(maze);
-            string expected = @"
-┌─┐
-│ │
-│ │
-│ │
-└─┘
-";
+            string expected = "┌─┐\n" +
+                              "│ │\n" +
+                              "│ │\n" +
+                              "│ │\n" +
+                              "└─┘\n";
+
             Assert.True(this.render_compare(character_maze, expected));
 
         }
 
         [Test]
         public void test_two_rooms_horizontal() {
-            Maze maze = new Maze(10, 10);
+            Maze maze = new Maze(2, 1);
             Tile tile1 = new Tile(maze, 0, 0);
             Tile tile2 = new Tile(maze, 1, 0);
 
             this.create_walls(tile1, new Direction[] { Direction.North, Direction.South, Direction.West });
             this.create_walls(tile2, new Direction[] { Direction.North, Direction.South, Direction.East });
             CharacterMaze character_maze = new CharacterMaze(maze);
-            string expected = @"
-┌───┐
-│   │
-└───┘
-";
+            string expected = "┌───┐\n" +
+                              "│   │\n" +
+                              "└───┘\n";
+
             Assert.True(this.render_compare(character_maze, expected));
 
         }
 
         [Test]
         public void test_one_room() {
-            Maze maze = new Maze(10, 10);
+            Maze maze = new Maze(1, 1);
             Tile tile = new Tile(maze, 0, 0);
             this.create_walls(tile, new Direction[]{Direction.North, Direction.East, Direction.South, Direction.West});
 
             CharacterMaze character_maze = new CharacterMaze(maze);
-            string expected = @"
-┌─┐
-│ │
-└─┘
-";
+            string expected = "┌─┐\n" +
+                              "│ │\n" +
+                              "└─┘\n";
+
             Assert.True(this.render_compare(character_maze, expected));
         }
 
         [Test]
         public void test_two_rooms() {
-            Maze maze = new Maze(10, 10);
+            Maze maze = new Maze(2, 1);
             Tile tile1 = new Tile(maze, 0, 0);
             this.create_walls(tile1, new Direction[] { Direction.North, Direction.East, Direction.South, Direction.West });
 
@@ -148,11 +155,10 @@
 
             
             CharacterMaze character_maze = new CharacterMaze(maze);
-            string expected = @"
-┌─┬─┐
-│ │ │
-└─┴─┘
-";
+            string expected = "┌─┬─┐\n" +
+                              "│ │ │\n" +
+                              "└─┴─┘\n";
+
             Assert.True(this.render_compare(character_maze, expected));          
         
         }
@@ -160,7 +166,7 @@
         [Test]
         public void test_four_tiles() {
 
-            Maze maze = new Maze(10, 10);
+            Maze maze = new Maze(2, 2);
             Tile tile1 = new Tile(maze, 0, 0);
             Tile tile2 = new Tile(maze, 0, 1);
             Tile tile3 = new Tile(maze, 1, 0);
@@ -172,13 +178,12 @@
             this.create_walls(tile3, four_walls);
             this.create_walls(tile4, four_walls);
 
-            string expected = @"
-┌─┬─┐
-│ │ │
-├─┼─┤
-│ │ │
-└─┴─┘
-";
+            string expected = "┌─┬─┐\n" +
+                              "│ │ │\n" +
+                              "├─┼─┤\n" +
+                              "│ │ │\n" +
+                              "└─┴─┘\n";
+
             CharacterMaze character_maze = new CharacterMaze(maze);
             Assert.True( this.render_compare(character_maze, expected) );
         }
@@ -189,7 +194,7 @@
         [TestCase(Direction.South, "▼")]
         [TestCase(Direction.West,  "◄")]
         public void test_character_direction(Direction orientation, string char_glyph) {
-            Maze maze = new Maze(10, 10);
+            Maze maze = new Maze(1, 1);
             Tile tile = new Tile(maze, 0, 0);
             this.create_walls(tile, new Direction[] { Direction.North, Direction.East, Direction.South, Direction.West });
 
@@ -197,11 +202,10 @@
             character.set_orientation(orientation);
 
             CharacterMaze character_maze = new CharacterMaze(maze);
-            string expected = @"
-┌─┐
-│{0}|
-└─┘
-";
+            string expected = "┌─┐\n" +
+                              "│{0}│\n" +
+                              "└─┘\n";
+
             Assert.True(this.render_compare(character_maze, string.Format(expected, char_glyph)));
         }
 
