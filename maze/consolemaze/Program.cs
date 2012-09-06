@@ -107,8 +107,8 @@ namespace consolemaze {
             Character character = maze.get_character(x, y);
             
             while (Running){
-                ProcessInput(character);
                 Draw(ascii_maze, 5, 5);
+                ProcessInput(character);
                 Thread.Sleep(20);
             }
 
