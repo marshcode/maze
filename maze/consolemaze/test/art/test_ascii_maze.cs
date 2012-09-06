@@ -13,7 +13,7 @@
     class TestCharacterMaze {
 
 
-        protected bool render_compare(CharacterMaze character_maze, string expected) {
+        protected bool render_compare(ASCIIMaze character_maze, string expected) {
             string actual = character_maze.render_string();
 
             //Console.WriteLine("---");
@@ -88,7 +88,7 @@
                               "│           │\n" +
                               "└───────────┘\n";
 
-            CharacterMaze character_maze = new CharacterMaze(maze);
+            ASCIIMaze character_maze = new ASCIIMaze(maze);
             Assert.True(this.render_compare(character_maze, expected));
 
         }
@@ -102,7 +102,7 @@
 
             this.create_walls(tile1, new Direction[] { Direction.South, Direction.East, Direction.West });
             this.create_walls(tile2, new Direction[] { Direction.North, Direction.East, Direction.West });
-            CharacterMaze character_maze = new CharacterMaze(maze);
+            ASCIIMaze character_maze = new ASCIIMaze(maze);
             string expected = "┌─┐\n" +
                               "│ │\n" +
                               "│ │\n" +
@@ -121,7 +121,7 @@
 
             this.create_walls(tile1, new Direction[] { Direction.North, Direction.South, Direction.West });
             this.create_walls(tile2, new Direction[] { Direction.North, Direction.South, Direction.East });
-            CharacterMaze character_maze = new CharacterMaze(maze);
+            ASCIIMaze character_maze = new ASCIIMaze(maze);
             string expected = "┌───┐\n" +
                               "│   │\n" +
                               "└───┘\n";
@@ -136,7 +136,7 @@
             Tile tile = new Tile(maze, 0, 0);
             this.create_walls(tile, new Direction[]{Direction.North, Direction.East, Direction.South, Direction.West});
 
-            CharacterMaze character_maze = new CharacterMaze(maze);
+            ASCIIMaze character_maze = new ASCIIMaze(maze);
             string expected = "┌─┐\n" +
                               "│ │\n" +
                               "└─┘\n";
@@ -154,7 +154,7 @@
             this.create_walls(tile2, new Direction[] { Direction.North, Direction.East, Direction.South, Direction.West });
 
             
-            CharacterMaze character_maze = new CharacterMaze(maze);
+            ASCIIMaze character_maze = new ASCIIMaze(maze);
             string expected = "┌─┬─┐\n" +
                               "│ │ │\n" +
                               "└─┴─┘\n";
@@ -184,7 +184,7 @@
                               "│ │ │\n" +
                               "└─┴─┘\n";
 
-            CharacterMaze character_maze = new CharacterMaze(maze);
+            ASCIIMaze character_maze = new ASCIIMaze(maze);
             Assert.True( this.render_compare(character_maze, expected) );
         }
 
@@ -201,7 +201,7 @@
             Character character = new Character(maze, 0, 0);
             character.set_orientation(orientation);
 
-            CharacterMaze character_maze = new CharacterMaze(maze);
+            ASCIIMaze character_maze = new ASCIIMaze(maze);
             string expected = "┌─┐\n" +
                               "│{0}│\n" +
                               "└─┘\n";

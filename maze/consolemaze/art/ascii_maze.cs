@@ -33,7 +33,7 @@
      */
 
 
-    class CharacterMaze {
+    class ASCIIMaze {
         //NOTE, all x and y's are reversed here.  
         static protected Glyph<Direction> character_glyph;
         static protected Glyph<Direction> wall_glyph;
@@ -45,7 +45,7 @@
         static Dictionary<Direction, WallJoint> joint_direction_map;
 
 
-        static CharacterMaze() {
+        static ASCIIMaze() {
             character_glyph = new Glyph<Direction>('?');
             character_glyph.add_character(Direction.North, '▲');
             character_glyph.add_character(Direction.South, '▼');
@@ -73,7 +73,7 @@
         }
 
         protected Maze maze;
-        public CharacterMaze(Maze maze) {
+        public ASCIIMaze(Maze maze) {
             this.maze = maze;
         }
 

@@ -56,7 +56,7 @@ namespace consolemaze {
             return maze;
         }
 
-        static void Draw(CharacterMaze character_maze, int left=0, int top=0) {
+        static void Draw(ASCIIMaze character_maze, int left=0, int top=0) {
 
             string[] maze_lines = character_maze.render_string_array();
 
@@ -71,7 +71,7 @@ namespace consolemaze {
 
 
             Maze maze = Program.CreateMaze();
-            CharacterMaze character_maze = new CharacterMaze(maze);
+            ASCIIMaze character_maze = new ASCIIMaze(maze);
             Program.Draw(character_maze, 5, 5);
             
             Console.ReadLine();
