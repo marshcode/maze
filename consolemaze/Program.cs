@@ -61,7 +61,7 @@ namespace consolemaze {
 
         static Maze CreateMaze2(int char_x, int char_y) {
             DepthFirstMazeGenerator dfmg = new DepthFirstMazeGenerator();
-            Maze maze = dfmg.generate(15, 10);
+            Maze maze = dfmg.generate(20, 15);
             Character character = new Character(maze, char_x, char_y);
             return maze;
         }
