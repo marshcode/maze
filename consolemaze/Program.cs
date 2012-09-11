@@ -5,6 +5,8 @@ using System.Threading;
 using mazecore.direction;
 using mazecore.elements;
 using consolemaze.art;
+using mazegen;
+
 
 namespace consolemaze {
     class Program {
@@ -54,6 +56,13 @@ namespace consolemaze {
             w = new Wall(maze, 5, 0, Direction.East);
             w = new Wall(maze, 5, 0, Direction.North);
 
+            return maze;
+        }
+
+        static Maze CreateMaze2(int char_x, int char_y) {
+            DepthFirstMazeGenerator dfmg = new DepthFirstMazeGenerator();
+            Maze maze = dfmg.generate(15, 10);
+            Character character = new Character(maze, char_x, char_y);
             return maze;
         }
 
@@ -116,7 +125,7 @@ namespace consolemaze {
             }
 
 
-            Maze maze = CreateMaze(x, y);
+            Maze maze = CreateMaze2(x, y);
             ASCIIMaze ascii_maze = new ASCIIMaze(maze, maze_style);
             Character character = maze.get_character(x, y);
             

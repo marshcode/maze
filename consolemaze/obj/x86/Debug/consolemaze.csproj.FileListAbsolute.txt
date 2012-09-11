@@ -6,3 +6,5 @@ C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\consolemaze\bin\Debug\m
 C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\consolemaze\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\consolemaze\obj\x86\Debug\consolemaze.exe
 C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\consolemaze\obj\x86\Debug\consolemaze.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\consolemaze\bin\Debug\mazegen.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\consolemaze\bin\Debug\mazegen.pdb
