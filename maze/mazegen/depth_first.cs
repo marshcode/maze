@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace mazegen {
     //http://en.wikipedia.org/wiki/Maze_generation_algorithm#Depth-first_search
-    class DepthFirstMazeGenerator : MazeGenerator {
+    public class DepthFirstMazeGenerator : MazeGenerator {
 
         protected class CellInfo {
             
@@ -61,7 +61,7 @@ namespace mazegen {
 
             //choose a random tile to start with
             Random rng = new Random();
-            x = rng.Next(0, x_range); y = rng.Next(0, y_range);
+            x = rng.Next(1, x_range-1); y = rng.Next(1, y_range-1);//reduce the starting range
             CellInfo current_cell = new CellInfo(maze.get_tile(x, y));
             visited[x, y] = true;
 
@@ -69,8 +69,12 @@ namespace mazegen {
             Tile next_cell;
             Direction? next_direction;
             while ( !visited.Cast<bool>().ToList().TrueForAll(v => v) ) {
-                next_direction = current_cell.consume_direction();
-                next_cell = next_direction.HasValue ? current_cell.tile.get_neighbor_tile(next_direction.Value) : null;
+                bool keep_searching;
+                do {
+                    next_direction = current_cell.consume_direction();
+                    next_cell = next_direction.HasValue ? current_cell.tile.get_neighbor_tile(next_direction.Value) : null;
+                    keep_searching =  next_cell != null ? visited[next_cell.get_x(), next_cell.get_y()] == true : false;
+                } while (keep_searching);
 
                 if (next_cell != null) {//current cell has cells which have not been visited
                     stack.Push(current_cell);
@@ -82,6 +86,12 @@ namespace mazegen {
                 }
 
 
+            }
+
+
+            for (int i = 0; i < (int)x_range*y_range * 0.1; i++) {
+                x = rng.Next(1, x_range-1);y=rng.Next(1, y_range-1);
+                maze.remove_wall(x, y, Direction.North);
             }
 
             return maze;

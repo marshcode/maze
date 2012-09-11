@@ -5,7 +5,7 @@ using mazecore.elements;
 
 namespace mazegen {
 
-    abstract class MazeGenerator{
+    public abstract class MazeGenerator{
 
         protected void encircle_tile(Tile t) {
             Maze maze = t.get_maze();

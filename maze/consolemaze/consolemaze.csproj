@@ -61,6 +61,10 @@
       <Project>{57D74725-1FCF-485C-B9BF-B7EA6437998B}</Project>
       <Name>mazecore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\mazegen\mazegen.csproj">
+      <Project>{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}</Project>
+      <Name>mazegen</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
