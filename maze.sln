@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mazecore", "mazecore\mazeco
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "consolemaze", "consolemaze\consolemaze.csproj", "{D63BAB76-9B4C-4D74-BF7B-D328C4BBB6F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mazegen", "mazegen\mazegen.csproj", "{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{D63BAB76-9B4C-4D74-BF7B-D328C4BBB6F3}.Release|Mixed Platforms.Build.0 = Release|x86
 		{D63BAB76-9B4C-4D74-BF7B-D328C4BBB6F3}.Release|x86.ActiveCfg = Release|x86
 		{D63BAB76-9B4C-4D74-BF7B-D328C4BBB6F3}.Release|x86.Build.0 = Release|x86
+		{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

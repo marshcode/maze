@@ -1,0 +1,8 @@
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\bin\Debug\mazegen.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\bin\Debug\mazegen.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\bin\Debug\mazecore.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\bin\Debug\nunit.framework.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\bin\Debug\mazecore.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\obj\Debug\mazegen.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\obj\Debug\mazegen.pdb
