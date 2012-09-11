@@ -1,4 +1,6 @@
-﻿using mazecore.direction;
+﻿using System;
+
+using mazecore.direction;
 using mazecore.elements;
 
 namespace mazegen {
@@ -14,6 +16,9 @@ namespace mazegen {
             Wall east_wall = new Wall(maze, x, y, Direction.East);
             Wall west_wall = new Wall(maze, x, y, Direction.West);
         }
+
+
+        public abstract Maze generate(int x_range, int y_range);
 
     }
 
