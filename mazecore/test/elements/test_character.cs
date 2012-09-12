@@ -171,12 +171,21 @@ namespace mazecore.elements.test {
         }
 
         [Test]
+        public void test_block_can_stand() {
+            Maze maze = TestNavigation.create_maze();
+            Block b = new Block(maze, 1, 1);
+            Assert.False(b.can_stand());
+        }
+
+        [Test]
         public void test_cannot_move_cannot_stand() {
             int x = 2, y = 3;
             Maze maze = TestNavigation.create_maze();
             Tile tile = TestNavigation.create_tile(maze, x, y);
             TestNavigation.create_tile_neighbors(maze, tile);
-            tile.get_neighbor_tile(Direction.North).set_can_stand(false);
+            
+            Tile north_tile = tile.get_neighbor_tile(Direction.North);
+            Block b = new Block(maze, north_tile.get_x(), north_tile.get_y());
 
             
             Character character = TestNavigation.create_character(maze, x, y);

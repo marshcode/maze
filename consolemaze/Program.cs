@@ -66,7 +66,7 @@ namespace consolemaze {
             return maze;
         }
 
-        static void Draw(ASCIIMaze character_maze, int left=0, int top=0) {
+        static void Draw(ASCIIWallMaze character_maze, int left=0, int top=0) {
 
             string[] maze_lines = character_maze.render_string_array();
 
@@ -126,7 +126,7 @@ namespace consolemaze {
 
 
             Maze maze = CreateMaze2(x, y);
-            ASCIIMaze ascii_maze = new ASCIIMaze(maze, maze_style);
+            ASCIIWallMaze ascii_maze = new ASCIIWallMaze(maze, maze_style);
             Character character = maze.get_character(x, y);
             
             while (Running){

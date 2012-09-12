@@ -87,26 +87,12 @@
 
     }
 
-
-    class ASCIIMaze {
-
-        [Flags]
-        enum WallJoint { North = 8, East = 4, South = 2, West = 1 };
-        static Dictionary<Direction, WallJoint> joint_direction_map;
-
-        static ASCIIMaze() {
-            joint_direction_map = new Dictionary<Direction, WallJoint>();
-            joint_direction_map[Direction.North] = WallJoint.North;
-            joint_direction_map[Direction.South] = WallJoint.South;
-            joint_direction_map[Direction.East] = WallJoint.East;
-            joint_direction_map[Direction.West] = WallJoint.West;
-        }
-
+    abstract class ASCIIRenderer{
 
         protected Maze maze;
         protected ASCIIMazeStyle style;
 
-        public ASCIIMaze(Maze maze, ASCIIMazeStyle style=null) {
+        public ASCIIRenderer(Maze maze, ASCIIMazeStyle style = null) {
             this.maze = maze;
 
             if (style == null) {
@@ -117,6 +103,42 @@
 
         }
 
+        abstract public char[][] render_char_array();
+
+        public string[] render_string_array() {
+            char[][] char_map = this.render_char_array();
+
+            //create string representation
+            string[] maze_lines = new string[char_map.Length];
+            for (int i = 0; i < char_map.Length; i++) {
+                maze_lines[i] = new string(char_map[i]);
+            }
+            Array.Reverse(maze_lines);
+            return maze_lines;
+        }
+
+        public string render_string() {
+            return string.Join("\n", this.render_string_array());
+        }
+    
+    
+    }
+
+    class ASCIIWallMaze : ASCIIRenderer {
+
+        public ASCIIWallMaze(Maze maze, ASCIIMazeStyle style = null) : base(maze, style) { }
+
+        [Flags]
+        enum WallJoint { North = 8, East = 4, South = 2, West = 1 };
+        static Dictionary<Direction, WallJoint> joint_direction_map;
+
+        static ASCIIWallMaze() {
+            joint_direction_map = new Dictionary<Direction, WallJoint>();
+            joint_direction_map[Direction.North] = WallJoint.North;
+            joint_direction_map[Direction.South] = WallJoint.South;
+            joint_direction_map[Direction.East] = WallJoint.East;
+            joint_direction_map[Direction.West] = WallJoint.West;
+        }
 
         protected void process_tile(Tile tile, char[][] char_map) {
             if (tile == null) {
@@ -127,11 +149,14 @@
             int chr_y_idx = (tile.get_y() * 2) + 1;
 
             //character
+            char tile_char = this.style.tile_glyph.get_character( tile.GetType() );
             if (tile.is_occupied()) {
                 //TODO: tile needs a 'get_character' method
                 Character character = tile.get_maze().get_character(tile.get_x(), tile.get_y());
-                char_map[chr_y_idx][chr_x_idx] = style.character_glyph.get_character(character.get_orientation());
+                tile_char = style.character_glyph.get_character(character.get_orientation());  
             }
+            char_map[chr_y_idx][chr_x_idx] = tile_char;
+
 
             //shouldn't have to worry about out of bounds
             int tmp_x, tmp_y;
@@ -169,7 +194,7 @@
 
 
 
-        public char[][] render_char_array() {
+        public override char[][] render_char_array() {
             int char_x_range = (this.maze.get_x_range()*2) + 1;
             int char_y_range = (this.maze.get_y_range()*2) + 1;
             //initialize
@@ -177,7 +202,7 @@
             for (int i = 0; i < char_map.Length; i++) {
                 char_map[i] = new char[char_x_range];
                 for (int j = 0; j < char_map[i].Length;j++ ) {
-                    char_map[i][j] = this.style.tile_glyph.get_default();//why does this NEED to happen?
+                    char_map[i][j] = ' ';//why does this NEED to happen?
                 }
             }
 
@@ -192,22 +217,15 @@
 
             return char_map;
         }
-
-        public string[] render_string_array(){
-            char[][] char_map = this.render_char_array();
-
-            //create string representation
-            string[] maze_lines = new string[ char_map.Length ];
-            for (int i = 0; i < char_map.Length; i++) {
-                maze_lines[i] = new string(char_map[i]);
-            }
-            Array.Reverse(maze_lines);
-            return maze_lines;
-        }
-
-        public string render_string() {
-            return string.Join("\n", this.render_string_array());
-        }
-
     }
+
+    class AsciiBlockMaze : ASCIIRenderer {
+
+        public AsciiBlockMaze(Maze maze, ASCIIMazeStyle style = null) : base(maze, style) { }
+
+        public override char[][] render_char_array() {
+            return null;
+        }
+    }
+
 }
