@@ -11,7 +11,9 @@ namespace mazegen {
     public class DepthFirstMazeGenerator : MazeGenerator {
 
         protected class CellInfo {
-            
+
+            protected static Random rng = new Random();
+
             public Tile tile;
             private List<Direction> direction_list;
 
@@ -21,7 +23,6 @@ namespace mazegen {
 
 
                 Direction tmp_d;
-                Random rng = new Random();
                 int k;
                 for (int n = this.direction_list.Count-1; n > 1; n--) {
                     k = rng.Next(n + 1);
@@ -71,9 +72,11 @@ namespace mazegen {
             while ( !visited.Cast<bool>().ToList().TrueForAll(v => v) ) {
                 bool keep_searching;
                 do {
-                    next_direction = current_cell.consume_direction();
-                    next_cell = next_direction.HasValue ? current_cell.tile.get_neighbor_tile(next_direction.Value) : null;
-                    keep_searching =  next_cell != null ? visited[next_cell.get_x(), next_cell.get_y()] == true : false;
+                    next_direction = current_cell.consume_direction(); next_cell = null;
+                    if (!next_direction.HasValue)
+                        break;
+                    next_cell = current_cell.tile.get_neighbor_tile(next_direction.Value);
+                    keep_searching =  next_cell != null ? visited[next_cell.get_x(), next_cell.get_y()] == true : true;
                 } while (keep_searching);
 
                 if (next_cell != null) {//current cell has cells which have not been visited
@@ -81,11 +84,11 @@ namespace mazegen {
                     maze.remove_wall(current_cell.tile.get_x(), current_cell.tile.get_y(), next_direction.Value); 
                     current_cell = new CellInfo(next_cell);
                     visited[current_cell.tile.get_x(), current_cell.tile.get_y()] = true;
-                }else {
+                }else if (stack.Count > 0) {
                     current_cell = stack.Pop();
+                }else {
+                    break;
                 }
-
-
             }
 
 
