@@ -9,12 +9,15 @@ namespace mazecore.elements
 
         int x, y;
         Maze maze;
+        bool standable;
 
         public Tile(Maze maze, int x, int y) {
 
             this.x = x;
             this.y = y;
             this.maze = maze;
+            this.standable = true;
+            
             maze.set_tile(this, x, y);
 
         }
@@ -24,7 +27,9 @@ namespace mazecore.elements
         public Maze get_maze() { return this.maze; }
 
         public bool is_occupied() { return this.maze.get_character(this.x, this.y) != null; }
-        public bool can_stand() { return true; }
+        public bool can_stand() { return this.standable; }
+        public void set_can_stand(bool standable) { this.standable = standable; }
+
 
         public Tile get_neighbor_tile(Direction direction) {
 
