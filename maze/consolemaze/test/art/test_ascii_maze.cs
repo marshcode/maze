@@ -22,7 +22,7 @@
 
     class ASCIIMazeTest {
 
-        protected bool render_compare(ASCIIWallMaze character_maze, string expected) {
+        protected bool render_compare(ASCIIRenderer character_maze, string expected) {
             string actual = character_maze.render_string();
 
             //Console.WriteLine("---");
@@ -252,8 +252,39 @@
         [Test]
         public void test_four_rooms() {
 
+            Maze maze = new Maze(2, 2);
+            Tile tile_ll = new Tile(maze, 0, 0);
+            Tile tile_ur = new Tile(maze, 1, 1);
+
+            Tile block_lr = new Block(maze, 1, 0);
+            Tile block_ul = new Block(maze, 0, 1);
+
             string expected = "█ \n" +
                               " █";
+
+            ASCIIBlockMaze maze_render = new ASCIIBlockMaze(maze);
+            Assert.True(this.render_compare(maze_render, expected));
+
+        }
+
+
+        [Test]
+        public void with_character() {
+
+            Maze maze = new Maze(2, 2);
+            Tile tile_ll = new Tile(maze, 0, 0);
+            Tile tile_ur = new Tile(maze, 1, 1);
+
+            Tile block_lr = new Block(maze, 1, 0);
+            Tile block_ul = new Block(maze, 0, 1);
+
+            Character character = new Character(maze, 0, 0);
+
+            string expected = "█ \n" +
+                              "▲█";
+
+            ASCIIBlockMaze maze_render = new ASCIIBlockMaze(maze);
+            Assert.True(this.render_compare(maze_render, expected));
 
         }
 
