@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1149]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll</TopNode>
-  <SelectedNode>[0-1092]mazecore.direction.test.TestDirectionControl.test_static_offsets</SelectedNode>
+  <TopNode>[0-1150]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll</TopNode>
+  <SelectedNode>[0-1150]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1149]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll" Expanded="true" />
-    <Node UniqueName="[0-1150]mazecore" Expanded="true" />
-    <Node UniqueName="[0-1158]mazecore.control" Expanded="true" />
-    <Node UniqueName="[0-1159]mazecore.control.test" Expanded="true" />
-    <Node UniqueName="[0-1144]mazecore.control.test.ExceptionTrap+TestEventManager&lt;T&gt;" Expanded="true" />
-    <Node UniqueName="[0-1156]mazecore.direction" Expanded="true" />
-    <Node UniqueName="[0-1157]mazecore.direction.test" Expanded="true" />
-    <Node UniqueName="[0-1091]mazecore.direction.test.TestDirectionControl" Expanded="true" />
-    <Node UniqueName="[0-1153]mazecore.elements" Expanded="true" />
-    <Node UniqueName="[0-1154]mazecore.elements.test" Expanded="true" />
-    <Node UniqueName="[0-1155]mazecore.elements.tests" Expanded="true" />
-    <Node UniqueName="[0-1151]mazecore.storage" Expanded="true" />
-    <Node UniqueName="[0-1152]mazecore.storage.test" Expanded="true" />
+    <Node UniqueName="[0-1150]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll" Expanded="true" />
+    <Node UniqueName="[0-1151]mazecore" Expanded="true" />
+    <Node UniqueName="[0-1159]mazecore.control" Expanded="true" />
+    <Node UniqueName="[0-1160]mazecore.control.test" Expanded="true" />
+    <Node UniqueName="[0-1145]mazecore.control.test.ExceptionTrap+TestEventManager&lt;T&gt;" Expanded="true" />
+    <Node UniqueName="[0-1157]mazecore.direction" Expanded="true" />
+    <Node UniqueName="[0-1158]mazecore.direction.test" Expanded="true" />
+    <Node UniqueName="[0-1154]mazecore.elements" Expanded="true" />
+    <Node UniqueName="[0-1155]mazecore.elements.test" Expanded="true" />
+    <Node UniqueName="[0-1156]mazecore.elements.tests" Expanded="true" />
+    <Node UniqueName="[0-1152]mazecore.storage" Expanded="true" />
+    <Node UniqueName="[0-1153]mazecore.storage.test" Expanded="true" />
   </Nodes>
 </VisualState>

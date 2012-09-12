@@ -40,6 +40,8 @@
         static protected Glyph<Direction> default_character_glyph;
         static protected Glyph<Direction> default_wall_glyph;
 
+        static protected Glyph<Type> default_tile_glyph;
+
         static protected Glyph<int> default_wall_joint_glyph;
         // I don't want to allow the real direction to be combined so I'm using a static mapping
 
@@ -57,6 +59,8 @@
             default_wall_glyph.add_character(Direction.East, '│');
             default_wall_glyph.add_character(Direction.West, '│');
 
+            default_tile_glyph = new Glyph<Type>(' ');
+
             default_wall_joint_glyph = new Glyph<int>('?');
             //                        0    1    2    3    4    5    6    7    8    9    10   11   12   13   14   15
             char[] wall_joint_chr = {' ', '─', '│', '┐', '─', '─', '┌', '┬', '│', '┘', '│', '┤', '└', '┴', '├', '┼'};
@@ -68,13 +72,16 @@
         public Glyph<Direction> character_glyph;
         public Glyph<Direction> wall_glyph;
         public Glyph<int> wall_joint_glyph;
+        public Glyph<Type> tile_glyph;
 
-        public ASCIIMazeStyle():this(default_character_glyph, default_wall_glyph, default_wall_joint_glyph) {}
+        public ASCIIMazeStyle():this(default_character_glyph, default_wall_glyph, default_wall_joint_glyph, default_tile_glyph) {}
 
-        public ASCIIMazeStyle(Glyph<Direction> character_glyph, Glyph<Direction> wall_glyph, Glyph<int> wall_joint_glyph) {
+        public ASCIIMazeStyle(Glyph<Direction> character_glyph = null, Glyph<Direction> wall_glyph = null, 
+                              Glyph<int> wall_joint_glyph = null, Glyph<Type> tile_glyph=null) {
             this.character_glyph  =  character_glyph  == null ? default_character_glyph  : character_glyph;
             this.wall_glyph       =  wall_glyph       == null ? default_wall_glyph       : wall_glyph;
             this.wall_joint_glyph = wall_joint_glyph  == null ? default_wall_joint_glyph : wall_joint_glyph;
+            this.tile_glyph       = tile_glyph        == null ? default_tile_glyph       : tile_glyph;
 
         }
 
@@ -150,7 +157,7 @@
                         tmp_x = x; tmp_y = y;
                         DirectionControl.move(ref tmp_x, ref tmp_y, dir, 1);
                         try {
-                            if (char_map[tmp_y][tmp_x] != ' ') {
+                            if (char_map[tmp_y][tmp_x] != style.wall_joint_glyph.get_character(0)) {
                                 wall_joint = wall_joint | joint_direction_map[dir];
                             }
                         }catch (Exception) { continue; }  
@@ -170,7 +177,7 @@
             for (int i = 0; i < char_map.Length; i++) {
                 char_map[i] = new char[char_x_range];
                 for (int j = 0; j < char_map[i].Length;j++ ) {
-                    char_map[i][j] = ' ';//why does this NEED to happen?
+                    char_map[i][j] = this.style.tile_glyph.get_default();//why does this NEED to happen?
                 }
             }
 
