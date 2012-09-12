@@ -59,7 +59,10 @@
             default_wall_glyph.add_character(Direction.East, '│');
             default_wall_glyph.add_character(Direction.West, '│');
 
-            default_tile_glyph = new Glyph<Type>(' ');
+            default_tile_glyph = new Glyph<Type>('?');
+            default_tile_glyph.add_character(typeof(Tile), ' ');
+            default_tile_glyph.add_character(typeof(Block), '█');
+
 
             default_wall_joint_glyph = new Glyph<int>('?');
             //                        0    1    2    3    4    5    6    7    8    9    10   11   12   13   14   15
@@ -219,12 +222,32 @@
         }
     }
 
-    class AsciiBlockMaze : ASCIIRenderer {
+    class ASCIIBlockMaze : ASCIIRenderer {
 
-        public AsciiBlockMaze(Maze maze, ASCIIMazeStyle style = null) : base(maze, style) { }
+        public ASCIIBlockMaze(Maze maze, ASCIIMazeStyle style = null) : base(maze, style) { }
 
         public override char[][] render_char_array() {
-            return null;
+
+            char[][] char_map = new char[maze.get_y_range()][];
+            
+            Tile tile;
+            char tile_char;
+            Character character;
+
+            for (int y = 0; y < maze.get_y_range(); y++) {
+                char_map[y] = new char[maze.get_x_range()];
+                for (int x = 0; x < maze.get_x_range(); x++) {
+
+                    tile = maze.get_tile(x, y);
+                    tile_char = style.tile_glyph.get_character(tile.GetType());
+                    if (tile.is_occupied()) {
+                        character = maze.get_character(tile.get_x(), tile.get_y());
+                        tile_char = style.character_glyph.get_character(character.get_orientation()); 
+                    }
+                    char_map[y][x] = tile_char;
+                }
+            }
+            return char_map;
         }
     }
 
