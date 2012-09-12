@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="core.cs" />
     <Compile Include="depth_first.cs" />
-    <Compile Include="kruskal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="test\*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
