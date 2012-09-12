@@ -19,11 +19,10 @@
         }
     }
 
-    [TestFixture]
-    class TestASCIIMaze {
 
+    class ASCIIMazeTest {
 
-        protected bool render_compare(ASCIIMaze character_maze, string expected) {
+        protected bool render_compare(ASCIIWallMaze character_maze, string expected) {
             string actual = character_maze.render_string();
 
             //Console.WriteLine("---");
@@ -34,6 +33,11 @@
 
             return actual.Trim().Equals(expected.Trim());
         }
+
+    }
+
+    [TestFixture]
+    class TestASCIIWallMaze : ASCIIMazeTest {
 
         protected void create_walls(Tile tile, Direction[] directions) {
 
@@ -98,7 +102,7 @@
                               "│           │\n" +
                               "└───────────┘\n";
 
-            ASCIIMaze character_maze = new ASCIIMaze(maze);
+            ASCIIWallMaze character_maze = new ASCIIWallMaze(maze);
             Assert.True(this.render_compare(character_maze, expected));
 
         }
@@ -112,7 +116,7 @@
 
             this.create_walls(tile1, new Direction[] { Direction.South, Direction.East, Direction.West });
             this.create_walls(tile2, new Direction[] { Direction.North, Direction.East, Direction.West });
-            ASCIIMaze character_maze = new ASCIIMaze(maze);
+            ASCIIWallMaze character_maze = new ASCIIWallMaze(maze);
             string expected = "┌─┐\n" +
                               "│ │\n" +
                               "│ │\n" +
@@ -131,7 +135,7 @@
 
             this.create_walls(tile1, new Direction[] { Direction.North, Direction.South, Direction.West });
             this.create_walls(tile2, new Direction[] { Direction.North, Direction.South, Direction.East });
-            ASCIIMaze character_maze = new ASCIIMaze(maze);
+            ASCIIWallMaze character_maze = new ASCIIWallMaze(maze);
             string expected = "┌───┐\n" +
                               "│   │\n" +
                               "└───┘\n";
@@ -140,13 +144,15 @@
 
         }
 
+        
+
         [Test]
         public void test_one_room() {
             Maze maze = new Maze(1, 1);
             Tile tile = new Tile(maze, 0, 0);
             this.create_walls(tile, new Direction[]{Direction.North, Direction.East, Direction.South, Direction.West});
 
-            ASCIIMaze character_maze = new ASCIIMaze(maze);
+            ASCIIWallMaze character_maze = new ASCIIWallMaze(maze);
             string expected = "┌─┐\n" +
                               "│ │\n" +
                               "└─┘\n";
@@ -164,7 +170,7 @@
             this.create_walls(tile2, new Direction[] { Direction.North, Direction.East, Direction.South, Direction.West });
 
             
-            ASCIIMaze character_maze = new ASCIIMaze(maze);
+            ASCIIWallMaze character_maze = new ASCIIWallMaze(maze);
             string expected = "┌─┬─┐\n" +
                               "│ │ │\n" +
                               "└─┴─┘\n";
@@ -194,7 +200,7 @@
                               "│ │ │\n" +
                               "└─┴─┘\n";
 
-            ASCIIMaze character_maze = new ASCIIMaze(maze);
+            ASCIIWallMaze character_maze = new ASCIIWallMaze(maze);
             Assert.True( this.render_compare(character_maze, expected) );
         }
 
@@ -211,7 +217,7 @@
             Character character = new Character(maze, 0, 0);
             character.set_orientation(orientation);
 
-            ASCIIMaze character_maze = new ASCIIMaze(maze);
+            ASCIIWallMaze character_maze = new ASCIIWallMaze(maze);
             string expected = "┌─┐\n" +
                               "│{0}│\n" +
                               "└─┘\n";
@@ -222,7 +228,33 @@
 
         [Test]
         public void test_new_style() {
-            Assert.True(false);
+
+            Maze maze = new Maze(1, 1);
+            Tile tile = new Tile(maze, 0, 0);
+            this.create_walls(tile, new Direction[] { Direction.North, Direction.East, Direction.South, Direction.West });
+
+            Glyph<Type> tile_glyph = new Glyph<Type>('#');
+            ASCIIMazeStyle style = new ASCIIMazeStyle(tile_glyph: tile_glyph);
+            ASCIIWallMaze character_maze = new ASCIIWallMaze(maze, style);
+            string expected = "┌─┐\n" +
+                              "│#│\n" +
+                              "└─┘\n";
+
+            Assert.True(this.render_compare(character_maze, expected));
+
+        }
+
+    }
+
+    [TestFixture]
+    class TestASCIIBlockMaze : ASCIIMazeTest {
+
+        [Test]
+        public void test_four_rooms() {
+
+            string expected = "█ \n" +
+                              " █";
+
         }
 
     }

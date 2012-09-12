@@ -36,8 +36,6 @@
             Maze maze = TestTile.create_maze();
             Tile tile = TestTile.create_tile(maze, 1, 1);
             Assert.True(tile.can_stand());
-            tile.set_can_stand(false);
-            Assert.False(tile.can_stand());
         }
 
         [Test]
