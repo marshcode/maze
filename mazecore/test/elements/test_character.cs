@@ -170,6 +170,21 @@ namespace mazecore.elements.test {
             Assert.False(navigation.can_move(direction));
         }
 
+        [Test]
+        public void test_cannot_move_cannot_stand() {
+            int x = 2, y = 3;
+            Maze maze = TestNavigation.create_maze();
+            Tile tile = TestNavigation.create_tile(maze, x, y);
+            TestNavigation.create_tile_neighbors(maze, tile);
+            tile.get_neighbor_tile(Direction.North).set_can_stand(false);
+
+            
+            Character character = TestNavigation.create_character(maze, x, y);
+            Navigation navigation = TestNavigation.create_navigation(character);
+
+            Assert.False(navigation.can_move(Direction.North));
+        }
+
 
         [TestCase(Direction.North)]
         [TestCase(Direction.East)]
