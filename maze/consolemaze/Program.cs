@@ -119,7 +119,7 @@ namespace consolemaze {
                 Glyph<Direction> wall_glyph = new Glyph<Direction>('█');
                 Glyph<int> wall_joint_glyph = new Glyph<int>('█');
                 wall_joint_glyph.add_character(0, ' ');
-                maze_style = new ASCIIMazeStyle(null, wall_glyph, wall_joint_glyph);
+                maze_style = new ASCIIMazeStyle(wall_glyph: wall_glyph, wall_joint_glyph:wall_joint_glyph);
             }else {
                 maze_style = new ASCIIMazeStyle();
             }
