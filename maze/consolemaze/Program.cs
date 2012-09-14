@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 
-
 using mazecore.direction;
 using mazecore.elements;
 using consolemaze.art;
@@ -66,7 +65,13 @@ namespace consolemaze {
             return maze;
         }
 
-        static void Draw(ASCIIWallMaze character_maze, int left=0, int top=0) {
+        static Maze CreateMaze3(int char_x, int char_y) {
+            CellulartMazeGenerator cmg = new CellulartMazeGenerator();
+            Maze maze = cmg.generate(30, 30);
+            return maze;
+        }
+
+        static void Draw(ASCIIRenderer character_maze, int left=0, int top=0) {
 
             string[] maze_lines = character_maze.render_string_array();
 
@@ -113,25 +118,19 @@ namespace consolemaze {
 
             
 
-            bool block_style = false;
-            ASCIIMazeStyle maze_style;
-            if (block_style) {
-                Glyph<Direction> wall_glyph = new Glyph<Direction>('█');
-                Glyph<int> wall_joint_glyph = new Glyph<int>('█');
-                wall_joint_glyph.add_character(0, ' ');
-                maze_style = new ASCIIMazeStyle(wall_glyph: wall_glyph, wall_joint_glyph:wall_joint_glyph);
-            }else {
-                maze_style = new ASCIIMazeStyle();
+            ASCIIMazeStyle maze_style= new ASCIIMazeStyle();
+            Maze maze = CreateMaze3(x, y);
+            ASCIIRenderer ascii_maze;
+            if(false){
+                ascii_maze = new ASCIIWallMaze(maze, maze_style);
+            }else{
+                ascii_maze = new ASCIIBlockMaze(maze, maze_style);
             }
-
-
-            Maze maze = CreateMaze2(x, y);
-            ASCIIWallMaze ascii_maze = new ASCIIWallMaze(maze, maze_style);
-            Character character = maze.get_character(x, y);
+            //Character character = maze.get_character(x, y);
             
             while (Running){
                 Draw(ascii_maze, 5, 5);
-                ProcessInput(character);
+                //ProcessInput(character);
                 Thread.Sleep(20);
             }
 
