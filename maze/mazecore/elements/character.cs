@@ -11,7 +11,6 @@ namespace mazecore.elements {
         protected Direction orientation;
 
         public Character(Maze maze, int x, int y) {
-            maze.set_character(this, x, y);
             this.x = x;
             this.y = y;
             this.orientation = Direction.North;
@@ -19,6 +18,10 @@ namespace mazecore.elements {
             this.maze = maze;
             this.navigation = new Navigation(this);
 
+            if (!this.navigation.can_stand_on(this.get_tile())) {
+                throw new MazeException(string.Format("Character cannot stand on tile {0}, {1}", this.x, this.y));
+            }
+            maze.set_character(this, x, y);
         }
 
         public Direction get_orientation(){
@@ -75,11 +78,11 @@ namespace mazecore.elements {
         }
 
         public bool can_stand_on(Tile tile) {
-            return tile == null || !tile.can_stand() || tile.is_occupied();
+            return tile != null && tile.can_stand() && !tile.is_occupied();
         }
 
         public bool can_pass_through(Wall wall) {
-            return wall != null && !wall.can_pass();
+            return wall == null || wall.can_pass();
         }
 
 
@@ -90,12 +93,12 @@ namespace mazecore.elements {
             tile = tile.get_neighbor_tile(direction); //potential tile            
 
             //we tried to move through a wall and it said no
-            if (this.can_pass_through(wall)) { 
+            if (!this.can_pass_through(wall)) { 
                 return false;
             }
 
             //there is no tile for us to stand on or there is but we can't or it is occupied.
-            if ( this.can_stand_on(tile) ) { 
+            if ( !this.can_stand_on(tile) ) { 
                 return false;
             }
             return true;
