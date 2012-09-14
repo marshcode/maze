@@ -59,7 +59,7 @@ namespace consolemaze {
 
         static Maze CreateMaze2() {
             DepthFirstMazeGenerator dfmg = new DepthFirstMazeGenerator();
-            Maze maze = dfmg.generate(15, 8);
+            Maze maze = dfmg.generate(40, 30);
             return maze;
         }
 
@@ -113,11 +113,15 @@ namespace consolemaze {
         static void Main(string[] args) {            
             //maze configuration
             ASCIIMazeStyle maze_style= new ASCIIMazeStyle();
-            Maze maze = CreateMaze3();
+            Maze maze;
             ASCIIRenderer ascii_maze;
-            if(false){
+
+            bool wall_type = true;
+            if(wall_type){
+                maze = CreateMaze2();
                 ascii_maze = new ASCIIWallMaze(maze, maze_style);
             }else{
+                maze = CreateMaze3();
                 ascii_maze = new ASCIIBlockMaze(maze, maze_style);
             }
 
