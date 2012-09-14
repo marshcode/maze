@@ -12,14 +12,13 @@ namespace consolemaze {
 
         static bool Running = true;
 
-        static Maze CreateMaze(int char_x, int char_y) {
+        static Maze CreateMaze() {
             Maze maze = new Maze(6, 3);
 
             Tile t = new Tile(maze, 0, 2);
             Wall w = new Wall(maze, 0, 2, Direction.North);
             w = new Wall(maze, 0, 2, Direction.West);
             w = new Wall(maze, 0, 2, Direction.East);
-            Character character = new Character(maze, char_x, char_y);
 
             t = new Tile(maze, 0, 1);
             w = new Wall(maze, 0, 1, Direction.West);
@@ -58,16 +57,15 @@ namespace consolemaze {
             return maze;
         }
 
-        static Maze CreateMaze2(int char_x, int char_y) {
+        static Maze CreateMaze2() {
             DepthFirstMazeGenerator dfmg = new DepthFirstMazeGenerator();
             Maze maze = dfmg.generate(15, 8);
-            Character character = new Character(maze, char_x, char_y);
             return maze;
         }
 
-        static Maze CreateMaze3(int char_x, int char_y) {
+        static Maze CreateMaze3() {
             CellulartMazeGenerator cmg = new CellulartMazeGenerator();
-            Maze maze = cmg.generate(30, 30);
+            Maze maze = cmg.generate(80, 60);
             return maze;
         }
 
@@ -112,25 +110,33 @@ namespace consolemaze {
         }
 
 
-        static void Main(string[] args) {
-
-            int x = 0, y = 2;
-
-            
-
+        static void Main(string[] args) {            
+            //maze configuration
             ASCIIMazeStyle maze_style= new ASCIIMazeStyle();
-            Maze maze = CreateMaze3(x, y);
+            Maze maze = CreateMaze3();
             ASCIIRenderer ascii_maze;
             if(false){
                 ascii_maze = new ASCIIWallMaze(maze, maze_style);
             }else{
                 ascii_maze = new ASCIIBlockMaze(maze, maze_style);
             }
+
+            //somewhat random character placement
+            Character character = null;
+            for (int x = 0; x < maze.get_x_range() && character == null; x++) {
+                for (int y = 0; y < maze.get_y_range() && character == null; y++) {
+                    try {
+                        character = new Character(maze, x, y);
+                    }catch(MazeException){
+                    }
+                 }
+            }
+
             //Character character = maze.get_character(x, y);
             
             while (Running){
                 Draw(ascii_maze, 5, 5);
-                //ProcessInput(character);
+                ProcessInput(character);
                 Thread.Sleep(20);
             }
 
