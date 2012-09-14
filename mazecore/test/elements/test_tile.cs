@@ -9,6 +9,13 @@
     class TestTile : TestBaseClass {
 
         [Test]
+        public void test_block_can_stand() {
+            Maze maze = TestNavigation.create_maze();
+            Block b = new Block(maze, 1, 1);
+            Assert.False(b.can_stand());
+        }
+
+        [Test]
         public void test_init_registration() {
 
             Maze maze = TestTile.create_maze();

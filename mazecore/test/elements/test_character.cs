@@ -30,6 +30,31 @@ namespace mazecore.elements.test {
         }
 
         [Test]
+        public void test_init_tile_occupied() {
+
+            Maze maze = TestCharacter.create_maze();
+            Tile tile = TestCharacter.create_tile(maze, 1, 1);
+            TestCharacter.create_character(maze, 1, 1);
+
+            Assert.Throws<MazeException>(
+                delegate { TestCharacter.create_character(maze, 1, 1); });
+        
+        }
+
+
+        [Test]
+        public void test_init_tile_unoccupiable() {
+
+            Maze maze = TestCharacter.create_maze();
+            Block block = new Block(maze, 1, 1);
+
+            Assert.Throws<MazeException>(
+                delegate { TestCharacter.create_character(maze, 1, 1); });
+
+        }
+
+
+        [Test]
         public void test_get_facing_wall() {
 
             Maze maze = TestCharacter.create_maze();
@@ -168,13 +193,7 @@ namespace mazecore.elements.test {
             Navigation navigation = TestNavigation.create_navigation(character);
 
             Assert.False(navigation.can_move(direction));
-        }
 
-        [Test]
-        public void test_block_can_stand() {
-            Maze maze = TestNavigation.create_maze();
-            Block b = new Block(maze, 1, 1);
-            Assert.False(b.can_stand());
         }
 
         [Test]
