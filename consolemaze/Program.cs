@@ -82,7 +82,7 @@ namespace consolemaze {
 
         static void ProcessInput(Character character) {
 
-            if(Console.KeyAvailable){
+            if(!Console.KeyAvailable){
                 return;
             }
 
@@ -116,7 +116,7 @@ namespace consolemaze {
             Maze maze;
             ASCIIRenderer ascii_maze;
 
-            bool wall_type = true;
+            bool wall_type = false;
             if(wall_type){
                 maze = CreateMaze2();
                 ascii_maze = new ASCIIWallMaze(maze, maze_style);
