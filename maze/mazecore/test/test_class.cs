@@ -4,7 +4,7 @@ namespace mazecore.test {
     using mazecore.elements;
     using mazecore.direction;
 
-    class TestBaseClass {
+    public class TestBaseClass {
 
         public static Maze create_maze() {
             return new Maze(10, 15);
