@@ -1,8 +1,8 @@
-﻿namespace consolemaze.art {
+﻿namespace textmaze.art {
 
     using System.Collections.Generic;
 
-    class Glyph<T>{
+    public class Glyph<T>{
 
         protected Dictionary<T, char> mapping;
         protected char default_value;

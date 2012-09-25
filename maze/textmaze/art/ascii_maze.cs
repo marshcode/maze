@@ -1,4 +1,4 @@
-﻿namespace consolemaze.art {
+﻿namespace textmaze.art {
 
     using mazecore.elements;
     using mazecore.direction;
@@ -33,7 +33,7 @@
      */
 
 
-    class ASCIIMazeStyle {
+    public class ASCIIMazeStyle {
 
         //These are all class defaults.  They can be overridden with the style class. 
         //NOTE, all x and y's are reversed here.  
@@ -90,7 +90,7 @@
 
     }
 
-    abstract class ASCIIRenderer{
+    public abstract class ASCIIRenderer{
 
         protected Maze maze;
         protected ASCIIMazeStyle style;
@@ -127,7 +127,7 @@
     
     }
 
-    class ASCIIWallMaze : ASCIIRenderer {
+    public class ASCIIWallMaze : ASCIIRenderer {
 
         public ASCIIWallMaze(Maze maze, ASCIIMazeStyle style = null) : base(maze, style) { }
 
@@ -222,7 +222,7 @@
         }
     }
 
-    class ASCIIBlockMaze : ASCIIRenderer {
+    public class ASCIIBlockMaze : ASCIIRenderer {
 
         public ASCIIBlockMaze(Maze maze, ASCIIMazeStyle style = null) : base(maze, style) { }
 

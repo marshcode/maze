@@ -3,7 +3,7 @@ using System.Threading;
 
 using mazecore.direction;
 using mazecore.elements;
-using consolemaze.art;
+using textmaze.art;
 using mazegen;
 
 
@@ -59,13 +59,13 @@ namespace consolemaze {
 
         static Maze CreateMaze2() {
             DepthFirstMazeGenerator dfmg = new DepthFirstMazeGenerator();
-            Maze maze = dfmg.generate(40, 30);
+            Maze maze = dfmg.generate(20, 15);
             return maze;
         }
 
         static Maze CreateMaze3() {
             CellulartMazeGenerator cmg = new CellulartMazeGenerator();
-            Maze maze = cmg.generate(80, 60);
+            Maze maze = cmg.generate(40, 30);
             return maze;
         }
 

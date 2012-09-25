@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0CE4A95F-DA8A-4694-B7BB-FCF39355494D}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{D63BAB76-9B4C-4D74-BF7B-D328C4BBB6F3}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>consolemaze</RootNamespace>
-    <AssemblyName>consolemaze</AssemblyName>
+    <RootNamespace>textmaze</RootNamespace>
+    <AssemblyName>textmaze</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -33,7 +33,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" Condition="'$(Configuration)' == 'Debug'">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\nunit\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,8 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="art\ascii_maze.cs" />
+    <Compile Include="art\glyph.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="test\*\*.cs" Condition=" '$(Configuration)' == 'Debug' " />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\mazecore\mazecore.csproj">
@@ -54,10 +64,6 @@
     <ProjectReference Include="..\mazegen\mazegen.csproj">
       <Project>{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}</Project>
       <Name>mazegen</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\textmaze\textmaze.csproj">
-      <Project>{D63BAB76-9B4C-4D74-BF7B-D328C4BBB6F3}</Project>
-      <Name>textmaze</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

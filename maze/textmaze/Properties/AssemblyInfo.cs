@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("consolemaze")]
+[assembly: AssemblyTitle("textmaze")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("United Technologies Corporation")]
-[assembly: AssemblyProduct("consolemaze")]
-[assembly: AssemblyCopyright("Copyright © United Technologies Corporation 2012")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("textmaze")]
+[assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("acd31113-c1f4-46ce-a45a-c5ec7e2195ba")]
+[assembly: Guid("4742e2f7-9c75-4e55-a410-aaa1e386662d")]
 
 // Version information for an assembly consists of the following four values:
 //
