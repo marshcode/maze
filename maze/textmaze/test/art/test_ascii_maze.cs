@@ -234,7 +234,7 @@
             this.create_walls(tile, new Direction[] { Direction.North, Direction.East, Direction.South, Direction.West });
 
             Glyph<Type> tile_glyph = new Glyph<Type>('#');
-            ASCIIMazeStyle style = new ASCIIMazeStyle(tile_glyph: tile_glyph);
+            IASCIIMazeStyle style = new ASCIIMazeGlyphStyle(tile_glyph: tile_glyph);
             ASCIIWallMaze character_maze = new ASCIIWallMaze(maze, style);
             string expected = "┌─┐\n" +
                               "│#│\n" +

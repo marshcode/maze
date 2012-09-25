@@ -112,7 +112,7 @@ namespace consolemaze {
 
         static void Main(string[] args) {            
             //maze configuration
-            ASCIIMazeStyle maze_style= new ASCIIMazeStyle();
+            IASCIIMazeStyle maze_style= new ASCIIMazeGlyphStyle();
             Maze maze;
             ASCIIRenderer ascii_maze;
 

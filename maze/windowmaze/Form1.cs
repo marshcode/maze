@@ -61,7 +61,7 @@ namespace windowmaze
         {
             CellulartMazeGenerator cmg = new CellulartMazeGenerator();
             Maze maze = cmg.generate(40, 30);
-            ASCIIMazeStyle style = new ASCIIMazeStyle();
+            IASCIIMazeStyle style = new ASCIIMazeGlyphStyle();
             ASCIIBlockMaze maze_renderer = new ASCIIBlockMaze(maze, style);
 
             this.initialize_maze(maze, maze_renderer);
@@ -72,7 +72,7 @@ namespace windowmaze
         {
             DepthFirstMazeGenerator dfmg = new DepthFirstMazeGenerator();
             Maze maze = dfmg.generate(20, 15);
-            ASCIIMazeStyle style = new ASCIIMazeStyle();
+            IASCIIMazeStyle style = new ASCIIMazeGlyphStyle();
             ASCIIWallMaze maze_renderer = new ASCIIWallMaze(maze, style);
 
             this.initialize_maze(maze, maze_renderer);
