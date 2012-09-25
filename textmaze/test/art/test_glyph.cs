@@ -1,7 +1,7 @@
-﻿namespace consolemaze.art.test {
+﻿namespace textmaze.art.test {
 
     using NUnit.Framework;
-    using consolemaze.art;
+    using textmaze.art;
 
     [TestFixture]
     class TestGlyph {

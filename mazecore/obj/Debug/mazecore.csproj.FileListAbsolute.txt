@@ -4,3 +4,9 @@ C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\nuni
 C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\obj\Debug\mazecore.dll
 C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\obj\Debug\mazecore.pdb
+D:\visual studio projects\maze\maze\mazecore\bin\Debug\mazecore.dll
+D:\visual studio projects\maze\maze\mazecore\bin\Debug\mazecore.pdb
+D:\visual studio projects\maze\maze\mazecore\bin\Debug\nunit.framework.dll
+D:\visual studio projects\maze\maze\mazecore\obj\Debug\ResolveAssemblyReference.cache
+D:\visual studio projects\maze\maze\mazecore\obj\Debug\mazecore.dll
+D:\visual studio projects\maze\maze\mazecore\obj\Debug\mazecore.pdb
