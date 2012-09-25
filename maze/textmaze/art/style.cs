@@ -48,7 +48,6 @@ namespace textmaze.art
     {
 
         //These are all class defaults.  They can be overridden with the style class. 
-        //NOTE, all x and y's are reversed here.  
         static protected Glyph<Direction> default_character_glyph;
         static protected Glyph<Direction> default_wall_glyph;
 
@@ -78,7 +77,7 @@ namespace textmaze.art
 
 
             default_wall_joint_glyph = new Glyph<int>('?');
-            //                        0    1    2    3    4    5    6    7    8    9    10   11   12   13   14   15
+            //                         0    1    2    3    4    5    6    7    8    9    10   11   12   13   14   15
             char[] wall_joint_chr = { ' ', '─', '│', '┐', '─', '─', '┌', '┬', '│', '┘', '│', '┤', '└', '┴', '├', '┼' };
             for (int i = 0; i < wall_joint_chr.Length; i++)
             {

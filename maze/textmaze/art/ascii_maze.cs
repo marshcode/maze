@@ -7,7 +7,7 @@
     using System.Collections.Generic;
 
     public abstract class ASCIIRenderer{
-
+        //NOTE, all x and y's are reversed here.  
         protected Maze maze;
         protected IASCIIMazeStyle style;
 
