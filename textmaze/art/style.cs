@@ -95,6 +95,7 @@ namespace textmaze.art
         public ASCIIMazeGlyphStyle(Glyph<Direction> character_glyph = null, Glyph<Direction> wall_glyph = null,
                               Glyph<int> wall_joint_glyph = null, Glyph<Type> tile_glyph = null)
         {
+            Console.WriteLine(character_glyph == null);
             this.character_glyph = character_glyph == null ? default_character_glyph : character_glyph;
             this.wall_glyph = wall_glyph == null ? default_wall_glyph : wall_glyph;
             this.wall_joint_glyph = wall_joint_glyph == null ? default_wall_joint_glyph : wall_joint_glyph;

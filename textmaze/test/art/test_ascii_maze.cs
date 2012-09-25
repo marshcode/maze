@@ -9,17 +9,6 @@
 
     using mazecore.elements.test;
 
-
-    [TestFixture]
-    class TestASCIIMazeStyle {
-
-        [Test]
-        public void you_fail(){
-            Assert.True(false);
-        }
-    }
-
-
     class ASCIIMazeTest {
 
         protected bool render_compare(ASCIIRenderer character_maze, string expected) {
