@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
   <TopNode>[0-1083]D:\visual studio projects\maze\maze\textmaze\bin\Debug\textmaze.dll</TopNode>
-  <SelectedNode>[0-1086]textmaze.art.test</SelectedNode>
+  <SelectedNode>[0-1085]textmaze.art</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
     <Node UniqueName="[0-1083]D:\visual studio projects\maze\maze\textmaze\bin\Debug\textmaze.dll" Expanded="true" />
