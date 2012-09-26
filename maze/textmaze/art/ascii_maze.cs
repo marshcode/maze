@@ -8,20 +8,6 @@
 
     public abstract class ASCIIRenderer{
         //NOTE, all x and y's are reversed here.  
-        protected Maze maze;
-        protected IASCIIMazeStyle style;
-
-        public ASCIIRenderer(Maze maze, IASCIIMazeStyle style = null)
-        {
-            this.maze = maze;
-
-            if (style == null) {
-                style = new ASCIIMazeGlyphStyle();
-            }
-
-            this.style = style;
-
-        }
 
         abstract public char[][] render_char_array();
 
@@ -43,8 +29,25 @@
     
     
     }
+    //inbetween abstract class that takes a maze as part of the constructor.
+    public abstract class ASCIIMazeRenderer : ASCIIRenderer{
 
-    public class ASCIIWallMaze : ASCIIRenderer {
+        protected Maze maze;
+        protected IASCIIMazeStyle style;
+
+        public ASCIIMazeRenderer(Maze maze, IASCIIMazeStyle style = null){
+            this.maze = maze;
+            if (style == null)
+            {
+                style = new ASCIIMazeGlyphStyle();
+            }
+
+            this.style = style;
+
+        }
+    }
+
+    public class ASCIIWallMaze : ASCIIMazeRenderer{
 
         public ASCIIWallMaze(Maze maze, IASCIIMazeStyle style = null) : base(maze, style) { }
 
@@ -139,7 +142,8 @@
         }
     }
 
-    public class ASCIIBlockMaze : ASCIIRenderer {
+    public class ASCIIBlockMaze : ASCIIMazeRenderer
+    {
 
         public ASCIIBlockMaze(Maze maze, IASCIIMazeStyle style = null) : base(maze, style) { }
 
