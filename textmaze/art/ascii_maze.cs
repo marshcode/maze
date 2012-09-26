@@ -19,7 +19,6 @@
             for (int i = 0; i < char_map.Length; i++) {
                 maze_lines[i] = new string(char_map[i]);
             }
-            Array.Reverse(maze_lines);
             return maze_lines;
         }
 
@@ -37,14 +36,20 @@
 
         public ASCIIMazeRenderer(Maze maze, IASCIIMazeStyle style = null){
             this.maze = maze;
-            if (style == null)
-            {
+            if (style == null){
                 style = new ASCIIMazeGlyphStyle();
             }
-
             this.style = style;
-
         }
+        public override char[][] render_char_array()
+        {
+            char[][] char_map = this.do_render_char_array();
+            Array.Reverse(char_map);
+            return char_map;
+        }
+        //mazes are build upside down because that makes more sense
+        abstract protected char[][] do_render_char_array();
+    
     }
 
     public class ASCIIWallMaze : ASCIIMazeRenderer{
@@ -117,7 +122,8 @@
 
 
 
-        public override char[][] render_char_array() {
+        protected override char[][] do_render_char_array()
+        {
             int char_x_range = (this.maze.get_x_range()*2) + 1;
             int char_y_range = (this.maze.get_y_range()*2) + 1;
             //initialize
@@ -147,7 +153,8 @@
 
         public ASCIIBlockMaze(Maze maze, IASCIIMazeStyle style = null) : base(maze, style) { }
 
-        public override char[][] render_char_array() {
+        protected override char[][] do_render_char_array()
+        {
 
             char[][] char_map = new char[maze.get_y_range()][];
             

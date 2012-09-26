@@ -30,11 +30,11 @@
         public override char[][] render_char_array(){
 
             char[][] char_map = new char[5][];
-            char_map[4] = new char[] { 'a', 'b', 'c', 'd', 'e' };
-            char_map[3] = new char[] { 'f', 'g', 'h', 'i', 'j' };
+            char_map[0] = new char[] { 'a', 'b', 'c', 'd', 'e' };
+            char_map[1] = new char[] { 'f', 'g', 'h', 'i', 'j' };
             char_map[2] = new char[] { 'k', 'l', 'm', 'n', 'o', };
-            char_map[1] = new char[] { 'p', 'q', 'r', 's', 't' };
-            char_map[0] = new char[] { 'u', 'v', 'w', 'x', 'y' };
+            char_map[3] = new char[] { 'p', 'q', 'r', 's', 't' };
+            char_map[4] = new char[] { 'u', 'v', 'w', 'x', 'y' };
 
             return char_map;
         }
