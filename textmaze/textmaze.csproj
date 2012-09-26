@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="art\ascii_camera.cs" />
     <Compile Include="art\ascii_maze.cs" />
     <Compile Include="art\glyph.cs" />
     <Compile Include="art\style.cs" />

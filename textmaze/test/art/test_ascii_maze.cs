@@ -14,11 +14,11 @@
         protected bool render_compare(ASCIIRenderer character_maze, string expected) {
             string actual = character_maze.render_string();
 
-            //Console.WriteLine("---");
-            //Console.WriteLine(actual);
-            //Console.WriteLine("---");
-            //Console.WriteLine(expected);
-            //Console.WriteLine("---");
+            Console.WriteLine("---");
+            Console.WriteLine(actual);
+            Console.WriteLine("---");
+            Console.WriteLine(expected);
+            Console.WriteLine("---");
 
             return actual.Trim().Equals(expected.Trim());
         }
