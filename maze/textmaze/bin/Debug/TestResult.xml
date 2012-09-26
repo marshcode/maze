@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="D:\visual studio projects\maze\maze\textmaze\bin\Debug\textmaze.dll" total="67" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-09-26" time="14:43:15">
+<test-results name="D:\visual studio projects\maze\maze\textmaze\bin\Debug\textmaze.dll" total="67" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-09-26" time="15:00:09">
   <environment nunit-version="2.6.1.12217" clr-version="2.0.50727.5456" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Program Files\NUnit 2.6.1\bin" machine-name="AE359053" user="M308027" user-domain="PWUS" />
   <culture-info current-culture="en-US" current-uiculture="en-US" />
-  <test-suite type="Assembly" name="D:\visual studio projects\maze\maze\textmaze\bin\Debug\textmaze.dll" executed="True" result="Success" success="True" time="1.045" asserts="0">
+  <test-suite type="Assembly" name="D:\visual studio projects\maze\maze\textmaze\bin\Debug\textmaze.dll" executed="True" result="Success" success="True" time="0.250" asserts="0">
     <results>
-      <test-suite type="Namespace" name="textmaze" executed="True" result="Success" success="True" time="1.045" asserts="0">
+      <test-suite type="Namespace" name="textmaze" executed="True" result="Success" success="True" time="0.234" asserts="0">
         <results>
-          <test-suite type="Namespace" name="art" executed="True" result="Success" success="True" time="1.045" asserts="0">
+          <test-suite type="Namespace" name="art" executed="True" result="Success" success="True" time="0.234" asserts="0">
             <results>
-              <test-suite type="Namespace" name="test" executed="True" result="Success" success="True" time="1.045" asserts="0">
+              <test-suite type="Namespace" name="test" executed="True" result="Success" success="True" time="0.234" asserts="0">
                 <results>
-                  <test-suite type="TestFixture" name="TestASCIIBlockMaze" executed="True" result="Success" success="True" time="0.218" asserts="0">
+                  <test-suite type="TestFixture" name="TestASCIIBlockMaze" executed="True" result="Success" success="True" time="0.031" asserts="0">
                     <results>
-                      <test-case name="textmaze.art.test.TestASCIIBlockMaze.test_four_rooms" executed="True" result="Success" success="True" time="0.078" asserts="1" />
+                      <test-case name="textmaze.art.test.TestASCIIBlockMaze.test_four_rooms" executed="True" result="Success" success="True" time="0.031" asserts="1" />
                       <test-case name="textmaze.art.test.TestASCIIBlockMaze.with_character" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                     </results>
                   </test-suite>
-                  <test-suite type="TestFixture" name="TestASCIIMazeGlyphStyle" executed="True" result="Success" success="True" time="0.109" asserts="0">
+                  <test-suite type="TestFixture" name="TestASCIIMazeGlyphStyle" executed="True" result="Success" success="True" time="0.062" asserts="0">
                     <results>
-                      <test-suite type="ParameterizedTest" name="test_character_value" executed="True" result="Success" success="True" time="0.031" asserts="0">
+                      <test-suite type="ParameterizedTest" name="test_character_value" executed="True" result="Success" success="True" time="0.016" asserts="0">
                         <results>
-                          <test-case name="textmaze.art.test.TestASCIIMazeGlyphStyle.test_character_value(West,'!',character)" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                          <test-case name="textmaze.art.test.TestASCIIMazeGlyphStyle.test_character_value(West,'!',character)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="textmaze.art.test.TestASCIIMazeGlyphStyle.test_character_value(East,'&gt;',character)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="textmaze.art.test.TestASCIIMazeGlyphStyle.test_character_value(North,'\x25B2',default_)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="textmaze.art.test.TestASCIIMazeGlyphStyle.test_character_value(East,'\x25BA',default_)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -31,7 +31,7 @@
                           <test-case name="textmaze.art.test.TestASCIIMazeGlyphStyle.test_character_value(South,'!',character)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                         </results>
                       </test-suite>
-                      <test-suite type="ParameterizedTest" name="test_tile_value" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                      <test-suite type="ParameterizedTest" name="test_tile_value" executed="True" result="Success" success="True" time="0.000" asserts="0">
                         <results>
                           <test-case name="textmaze.art.test.TestASCIIMazeGlyphStyle.test_tile_value('$','?',tile)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                           <test-case name="textmaze.art.test.TestASCIIMazeGlyphStyle.test_tile_value(' ','\x2588',default_)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
@@ -75,11 +75,11 @@
                       </test-suite>
                     </results>
                   </test-suite>
-                  <test-suite type="TestFixture" name="TestASCIIRendererCamera" executed="True" result="Success" success="True" time="0.468" asserts="0">
+                  <test-suite type="TestFixture" name="TestASCIIRendererCamera" executed="True" result="Success" success="True" time="0.047" asserts="0">
                     <results>
-                      <test-suite type="ParameterizedTest" name="test_bad_center_point" executed="True" result="Success" success="True" time="0.062" asserts="0">
+                      <test-suite type="ParameterizedTest" name="test_bad_center_point" executed="True" result="Success" success="True" time="0.000" asserts="0">
                         <results>
-                          <test-case name="textmaze.art.test.TestASCIIRendererCamera.test_bad_center_point(2,-1)" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                          <test-case name="textmaze.art.test.TestASCIIRendererCamera.test_bad_center_point(2,-1)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="textmaze.art.test.TestASCIIRendererCamera.test_bad_center_point(2,10)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="textmaze.art.test.TestASCIIRendererCamera.test_bad_center_point(-1,2)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="textmaze.art.test.TestASCIIRendererCamera.test_bad_center_point(10,10)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -94,11 +94,11 @@
                       <test-case name="textmaze.art.test.TestASCIIRendererCamera.test_render_corner" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                     </results>
                   </test-suite>
-                  <test-suite type="TestFixture" name="TestASCIIWallMaze" executed="True" result="Success" success="True" time="0.109" asserts="0">
+                  <test-suite type="TestFixture" name="TestASCIIWallMaze" executed="True" result="Success" success="True" time="0.062" asserts="0">
                     <results>
-                      <test-suite type="ParameterizedTest" name="test_character_direction" executed="True" result="Success" success="True" time="0.062" asserts="0">
+                      <test-suite type="ParameterizedTest" name="test_character_direction" executed="True" result="Success" success="True" time="0.031" asserts="0">
                         <results>
-                          <test-case name="textmaze.art.test.TestASCIIWallMaze.test_character_direction(South,&quot;\x25BC&quot;)" executed="True" result="Success" success="True" time="0.047" asserts="1" />
+                          <test-case name="textmaze.art.test.TestASCIIWallMaze.test_character_direction(South,&quot;\x25BC&quot;)" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                           <test-case name="textmaze.art.test.TestASCIIWallMaze.test_character_direction(East,&quot;\x25BA&quot;)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="textmaze.art.test.TestASCIIWallMaze.test_character_direction(North,&quot;\x25B2&quot;)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="textmaze.art.test.TestASCIIWallMaze.test_character_direction(West,&quot;\x25C4&quot;)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -108,8 +108,8 @@
                       <test-case name="textmaze.art.test.TestASCIIWallMaze.test_four_tiles" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                       <test-case name="textmaze.art.test.TestASCIIWallMaze.test_new_style" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                       <test-case name="textmaze.art.test.TestASCIIWallMaze.test_one_room" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                      <test-case name="textmaze.art.test.TestASCIIWallMaze.test_two_rooms" executed="True" result="Success" success="True" time="0.016" asserts="1" />
-                      <test-case name="textmaze.art.test.TestASCIIWallMaze.test_two_rooms_horizontal" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                      <test-case name="textmaze.art.test.TestASCIIWallMaze.test_two_rooms" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                      <test-case name="textmaze.art.test.TestASCIIWallMaze.test_two_rooms_horizontal" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                       <test-case name="textmaze.art.test.TestASCIIWallMaze.test_two_rooms_vertical" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                     </results>
                   </test-suite>
