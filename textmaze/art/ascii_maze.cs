@@ -10,6 +10,7 @@
         //NOTE, all x and y's are reversed here.  
 
         abstract public char[][] render_char_array();
+        abstract public Tuple<int, int> maze_to_render_coords(Maze maze, int p_x, int p_y);
 
         public string[] render_string_array() {
             char[][] char_map = this.render_char_array();
@@ -68,11 +69,18 @@
             joint_direction_map[Direction.West] = WallJoint.West;
         }
 
+        public override Tuple<int, int> maze_to_render_coords(Maze maze, int p_x, int p_y) {
+            
+            int converted_y  = (p_y * 2) + 1;
+            int maze_ceiling = (maze.get_y_range() * 2) + 1;
+
+            return new Tuple<int, int>((p_x * 2) + 1, maze_ceiling - converted_y);
+        }
+
         protected void process_tile(Tile tile, char[][] char_map) {
             if (tile == null) {
                 return;
             }
-            
             int chr_x_idx = (tile.get_x() * 2) + 1;
             int chr_y_idx = (tile.get_y() * 2) + 1;
 
@@ -152,6 +160,10 @@
     {
 
         public ASCIIBlockMaze(Maze maze, IASCIIMazeStyle style = null) : base(maze, style) { }
+
+        public override Tuple<int, int> maze_to_render_coords(Maze maze, int p_x, int p_y) {
+            return new Tuple<int, int>(p_x, maze.get_y_range() - p_y);
+        }
 
         protected override char[][] do_render_char_array()
         {
