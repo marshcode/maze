@@ -36,9 +36,11 @@
             this.mnuMain_File_New_Block = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMain_File_New_Wall = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMain_File_Quit = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuMain_Style = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuMain_Style_Size = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuMain_Style_Size_Value = new System.Windows.Forms.ToolStripComboBox();
+            this.mnuMain_View = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMain_View_Size = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMain_View_Size_Value = new System.Windows.Forms.ToolStripComboBox();
+            this.mnuMain_View_Camera = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMain_View_Camera_Value = new System.Windows.Forms.ToolStripComboBox();
             this.update_timer = new System.Windows.Forms.Timer(this.components);
             this.mnuMain.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +61,7 @@
             // 
             this.mnuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuMain_File,
-            this.mnuMain_Style});
+            this.mnuMain_View});
             this.mnuMain.Location = new System.Drawing.Point(0, 0);
             this.mnuMain.Name = "mnuMain";
             this.mnuMain.Size = new System.Drawing.Size(309, 24);
@@ -72,7 +74,7 @@
             this.mnuMain_File_New,
             this.mnuMain_File_Quit});
             this.mnuMain_File.Name = "mnuMain_File";
-            this.mnuMain_File.Size = new System.Drawing.Size(35, 20);
+            this.mnuMain_File.Size = new System.Drawing.Size(37, 20);
             this.mnuMain_File.Text = "&File";
             // 
             // mnuMain_File_New
@@ -81,49 +83,50 @@
             this.mnuMain_File_New_Block,
             this.mnuMain_File_New_Wall});
             this.mnuMain_File_New.Name = "mnuMain_File_New";
-            this.mnuMain_File_New.Size = new System.Drawing.Size(95, 22);
+            this.mnuMain_File_New.Size = new System.Drawing.Size(98, 22);
             this.mnuMain_File_New.Text = "&New";
             // 
             // mnuMain_File_New_Block
             // 
             this.mnuMain_File_New_Block.Name = "mnuMain_File_New_Block";
-            this.mnuMain_File_New_Block.Size = new System.Drawing.Size(126, 22);
+            this.mnuMain_File_New_Block.Size = new System.Drawing.Size(134, 22);
             this.mnuMain_File_New_Block.Text = "Block Maze";
             this.mnuMain_File_New_Block.Click += new System.EventHandler(this.menu_new_block_maze);
             // 
             // mnuMain_File_New_Wall
             // 
             this.mnuMain_File_New_Wall.Name = "mnuMain_File_New_Wall";
-            this.mnuMain_File_New_Wall.Size = new System.Drawing.Size(126, 22);
+            this.mnuMain_File_New_Wall.Size = new System.Drawing.Size(134, 22);
             this.mnuMain_File_New_Wall.Text = "Wall Maze";
             this.mnuMain_File_New_Wall.Click += new System.EventHandler(this.menu_new_wall_maze);
             // 
             // mnuMain_File_Quit
             // 
             this.mnuMain_File_Quit.Name = "mnuMain_File_Quit";
-            this.mnuMain_File_Quit.Size = new System.Drawing.Size(95, 22);
+            this.mnuMain_File_Quit.Size = new System.Drawing.Size(98, 22);
             this.mnuMain_File_Quit.Text = "&Quit";
             this.mnuMain_File_Quit.Click += new System.EventHandler(this.menu_application_quit);
             // 
-            // mnuMain_Style
+            // mnuMain_View
             // 
-            this.mnuMain_Style.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuMain_Style_Size});
-            this.mnuMain_Style.Name = "mnuMain_Style";
-            this.mnuMain_Style.Size = new System.Drawing.Size(43, 20);
-            this.mnuMain_Style.Text = "Style";
+            this.mnuMain_View.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuMain_View_Size,
+            this.mnuMain_View_Camera});
+            this.mnuMain_View.Name = "mnuMain_View";
+            this.mnuMain_View.Size = new System.Drawing.Size(44, 20);
+            this.mnuMain_View.Text = "&View";
             // 
-            // mnuMain_Style_Size
+            // mnuMain_View_Size
             // 
-            this.mnuMain_Style_Size.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuMain_Style_Size_Value});
-            this.mnuMain_Style_Size.Name = "mnuMain_Style_Size";
-            this.mnuMain_Style_Size.Size = new System.Drawing.Size(152, 22);
-            this.mnuMain_Style_Size.Text = "Text Size";
+            this.mnuMain_View_Size.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuMain_View_Size_Value});
+            this.mnuMain_View_Size.Name = "mnuMain_View_Size";
+            this.mnuMain_View_Size.Size = new System.Drawing.Size(152, 22);
+            this.mnuMain_View_Size.Text = "Text Size";
             // 
-            // mnuMain_Style_Size_Value
+            // mnuMain_View_Size_Value
             // 
-            this.mnuMain_Style_Size_Value.AutoCompleteCustomSource.AddRange(new string[] {
+            this.mnuMain_View_Size_Value.AutoCompleteCustomSource.AddRange(new string[] {
             "8",
             "10",
             "12",
@@ -136,8 +139,8 @@
             "26",
             "28",
             "30"});
-            this.mnuMain_Style_Size_Value.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.mnuMain_Style_Size_Value.Items.AddRange(new object[] {
+            this.mnuMain_View_Size_Value.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mnuMain_View_Size_Value.Items.AddRange(new object[] {
             "8",
             "10",
             "12",
@@ -150,9 +153,35 @@
             "26",
             "28",
             "30"});
-            this.mnuMain_Style_Size_Value.Name = "mnuMain_Style_Size_Value";
-            this.mnuMain_Style_Size_Value.Size = new System.Drawing.Size(152, 21);
-            this.mnuMain_Style_Size_Value.SelectedIndexChanged += new System.EventHandler(this.menu_change_font_size);
+            this.mnuMain_View_Size_Value.Name = "mnuMain_View_Size_Value";
+            this.mnuMain_View_Size_Value.Size = new System.Drawing.Size(152, 23);
+            this.mnuMain_View_Size_Value.SelectedIndexChanged += new System.EventHandler(this.menu_change_font_size);
+            // 
+            // mnuMain_View_Camera
+            // 
+            this.mnuMain_View_Camera.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuMain_View_Camera_Value});
+            this.mnuMain_View_Camera.Name = "mnuMain_View_Camera";
+            this.mnuMain_View_Camera.Size = new System.Drawing.Size(152, 22);
+            this.mnuMain_View_Camera.Text = "Camera";
+            // 
+            // mnuMain_View_Camera_Value
+            // 
+            this.mnuMain_View_Camera_Value.Items.AddRange(new object[] {
+            "Reset",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.mnuMain_View_Camera_Value.Name = "mnuMain_View_Camera_Value";
+            this.mnuMain_View_Camera_Value.Size = new System.Drawing.Size(121, 23);
+            this.mnuMain_View_Camera_Value.SelectedIndexChanged += new System.EventHandler(this.menu_change_camera_size);
             // 
             // update_timer
             // 
@@ -186,10 +215,12 @@
         private System.Windows.Forms.ToolStripMenuItem mnuMain_File_New;
         private System.Windows.Forms.ToolStripMenuItem mnuMain_File_New_Block;
         private System.Windows.Forms.ToolStripMenuItem mnuMain_File_New_Wall;
-        private System.Windows.Forms.ToolStripMenuItem mnuMain_Style;
-        private System.Windows.Forms.ToolStripMenuItem mnuMain_Style_Size;
-        private System.Windows.Forms.ToolStripComboBox mnuMain_Style_Size_Value;
+        private System.Windows.Forms.ToolStripMenuItem mnuMain_View;
+        private System.Windows.Forms.ToolStripMenuItem mnuMain_View_Size;
+        private System.Windows.Forms.ToolStripComboBox mnuMain_View_Size_Value;
         private System.Windows.Forms.Timer update_timer;
+        private System.Windows.Forms.ToolStripMenuItem mnuMain_View_Camera;
+        private System.Windows.Forms.ToolStripComboBox mnuMain_View_Camera_Value;
     }
 }
 

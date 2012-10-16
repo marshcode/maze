@@ -1,22 +1,29 @@
 ﻿namespace textmaze.art{
 
     using System;
+    using mazecore.elements;
 
-    public abstract class ASCIIRendererCamera : ASCIIRenderer{
+    public class ASCIIRendererCamera : ASCIIRenderer{
 
         protected int x_range;
         protected int y_range;
 
         protected ASCIIRenderer renderer;
-        
-        public ASCIIRendererCamera(ASCIIRenderer renderer){
-            this.x_range = -1;
-            this.y_range = -1;
-            this.renderer = renderer;
-        }
-        public override char[][] render_char_array() {
 
-            Tuple<int, int> center_point = this.get_center_point();
+        protected Func<ASCIIRendererCamera, Tuple<int, int>> get_center_point;
+
+        public ASCIIRendererCamera(ASCIIRenderer renderer, Func< ASCIIRendererCamera, Tuple<int, int>> get_center_point){
+            this.renderer = renderer;
+            this.get_center_point = get_center_point;
+            this.reset_range();
+        }
+
+        public override Tuple<int, int> maze_to_render_coords(Maze maze, int p_x, int p_y) {
+            return this.renderer.maze_to_render_coords(maze, p_x, p_y);
+        }
+
+        public override char[][] render_char_array() {
+            Tuple<int, int> center_point = this.get_center_point(this);
             char[][] full_char_map = renderer.render_char_array();
             char[][] clipped_char_map;
 
@@ -57,7 +64,10 @@
             if (y_range >= 0) this.y_range = y_range;
         }
 
-        protected abstract Tuple<int, int> get_center_point();
+        public void reset_range() {
+            this.x_range = -1;
+            this.y_range = -1;
+        }
 
     }
 

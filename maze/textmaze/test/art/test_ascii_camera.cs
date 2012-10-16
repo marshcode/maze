@@ -7,10 +7,11 @@
 
     using mazecore.elements;
 
-    class MyAsciiRendererCamera : ASCIIRendererCamera
+    class PointStorage
     {
-        int center_x, center_y;
-        public MyAsciiRendererCamera(ASCIIRenderer ascii_renderer, int center_x, int center_y) : base(ascii_renderer){
+
+        public int center_x, center_y;
+        public PointStorage(int center_x, int center_y) {
             this.set_center(center_x, center_y);
         }
 
@@ -20,13 +21,17 @@
             this.center_y = center_y;
         }
 
-        protected override Tuple<int, int> get_center_point(){
+        public Tuple<int, int> get_center_point(ASCIIRendererCamera camera){
             return new Tuple<int, int>(this.center_x, this.center_y);
         }
 
     }
 
     class MyAsciiRenderer : ASCIIRenderer{
+        public override Tuple<int, int> maze_to_render_coords(Maze maze, int p_x, int p_y) {
+            return new Tuple<int, int>(p_x, p_y);
+        }
+
         public override char[][] render_char_array(){
 
             char[][] char_map = new char[5][];
@@ -43,12 +48,17 @@
     [TestFixture]
     class TestASCIIRendererCamera : ASCIIMazeTest
     {
+        public static ASCIIRendererCamera create_camera(ASCIIRenderer renderer, int center_x, int center_y) {
+            PointStorage ps = new PointStorage(center_x, center_y);
+            ASCIIRendererCamera camera = new ASCIIRendererCamera(renderer, ps.get_center_point);
+            return camera;
+        }
 
         [Test]
         public void test_render_corner()
         {
             MyAsciiRenderer mar = new MyAsciiRenderer();
-            ASCIIRendererCamera arc = new MyAsciiRendererCamera(mar, 0, 0);
+            ASCIIRendererCamera arc = create_camera(mar, 0, 0);
             arc.set_range(2, 2);
 
             string expected = "abc\n" +
@@ -61,7 +71,7 @@
         [Test]
         public void test_range_full() {
             MyAsciiRenderer mar = new MyAsciiRenderer();
-            ASCIIRendererCamera arc = new MyAsciiRendererCamera(mar, 2, 2);
+            ASCIIRendererCamera arc = create_camera(mar, 2, 2);
             //NOTE: not setting render range should capture the entire rendered scene
 
             string expected = "abcde\n" +
@@ -81,7 +91,7 @@
         public void test_bad_center_point(int center_x, int center_y)
         {
             MyAsciiRenderer mar = new MyAsciiRenderer();
-            ASCIIRendererCamera arc = new MyAsciiRendererCamera(mar, center_x, center_y);
+            ASCIIRendererCamera arc = create_camera(mar, center_x, center_y);
 
             Assert.Throws<MazeException>(
                     delegate { arc.render_string(); });
@@ -92,7 +102,7 @@
         public void test_range_too_big()
         {
             MyAsciiRenderer mar = new MyAsciiRenderer();
-            ASCIIRendererCamera arc = new MyAsciiRendererCamera(mar, 2, 2);
+            ASCIIRendererCamera arc = create_camera(mar, 2, 2);
             arc.set_range(10, 10);
 
             string expected = "abcde\n" +
@@ -108,7 +118,7 @@
         public void test_range_negative()
         {
             MyAsciiRenderer mar = new MyAsciiRenderer();
-            ASCIIRendererCamera arc = new MyAsciiRendererCamera(mar, 2, 2);
+            ASCIIRendererCamera arc = create_camera(mar, 2, 2);
             
 
             string expected = "ghi\n" +
@@ -125,7 +135,7 @@
         [Test]
         public void test_range_one() {
             MyAsciiRenderer mar = new MyAsciiRenderer();
-            ASCIIRendererCamera arc = new MyAsciiRendererCamera(mar, 2, 2);
+            ASCIIRendererCamera arc = create_camera(mar, 2, 2);
             arc.set_range(1, 1);
 
             string expected = "ghi\n" +
@@ -138,7 +148,7 @@
         [Test]
         public void test_range_zero() {
             MyAsciiRenderer mar = new MyAsciiRenderer();
-            ASCIIRendererCamera arc = new MyAsciiRendererCamera(mar, 2, 2);
+            ASCIIRendererCamera arc = create_camera(mar, 2, 2);
             arc.set_range(0, 0);
 
             string expected = "m";

@@ -37,15 +37,19 @@ namespace windowmaze
          *******************************/
 
         Maze maze;
-        ASCIIRenderer maze_renderer;
+        ASCIIRenderer the_renderer;
+        ASCIIRendererCamera camera;
+        ASCIIRenderer the_maze;
+
         Character character;
 
         public Form1()
         {
             InitializeComponent();
-            this.maze = null;
-            this.character = null;
-            this.maze_renderer = null;
+            this.maze         = null;
+            this.character    = null;
+            this.the_maze     = null;
+            this.the_renderer = null;
 
         }
 
@@ -81,20 +85,41 @@ namespace windowmaze
         private void menu_change_font_size(object sender, EventArgs e)
         {
 
-            String item = (string)this.mnuMain_Style_Size_Value.Items[this.mnuMain_Style_Size_Value.SelectedIndex];
+            String item = (string)this.mnuMain_View_Size_Value.Items[this.mnuMain_View_Size_Value.SelectedIndex];
             int new_size = int.Parse( item );
             this.set_font_size( new_size );
+        }
+
+        private void menu_change_camera_size(object sender, EventArgs e) {
+            String item = (string)this.mnuMain_View_Camera_Value.Items[ this.mnuMain_View_Camera_Value.SelectedIndex ];
+
+            //TODO: allow the camera to be reset by negative numbers
+            if(item.ToLower().Equals("reset")){
+                this.camera.reset_range();
+            }else{
+                this.set_camera_view( int.Parse(item));
+            }
         }
 
 
         /********************************
          * maze functions
          ********************************/
+        public Tuple<int, int> get_char_position(ASCIIRendererCamera camera) {
 
+            return camera.maze_to_render_coords( this.maze,
+                                          this.character.get_x(),
+                                          this.character.get_y());
+        }
         private void initialize_maze(Maze maze, ASCIIRenderer maze_renderer){
             this.maze = maze;
-            this.maze_renderer = maze_renderer;
+
             this.character = PlaceCharacter(this.maze);
+
+            ASCIIRendererCamera camera = new ASCIIRendererCamera(maze_renderer, this.get_char_position);
+            this.the_maze = maze_renderer;
+            this.camera = camera;
+            this.the_renderer = camera;
 
             this.draw_maze();
             this.maze_resized();
@@ -105,7 +130,7 @@ namespace windowmaze
         private void draw_maze(){
             if(maze == null){return;}
 
-            this.maze_label.Text = this.maze_renderer.render_string();
+            this.maze_label.Text = this.the_renderer.render_string();
         }
 
 
@@ -150,12 +175,16 @@ namespace windowmaze
          *****************************/
         private void maze_resized(object sender=null, EventArgs e=null)
         {
-            double height_padding_offset = 1.10;
-            double width_padding_offset = 1.05;
+            double height_padding_gain = 1.0;
+            double width_padding_gain = 1.0;
+
+            int height_padding_offset = 50 + this.mnuMain.Size.Height,
+                width_padding_offset = 20;
 
 
-            this.Size = new Size((int)(this.maze_label.Size.Width * width_padding_offset),
-                                 (int)(this.maze_label.Size.Height * height_padding_offset) + this.mnuMain.Size.Height);
+
+            this.Size = new Size((int)(this.maze_label.Size.Width * width_padding_gain) + width_padding_offset,
+                                 (int)(this.maze_label.Size.Height * height_padding_gain) + height_padding_offset);
         }
 
         private void set_font_size(int new_size)
@@ -163,5 +192,10 @@ namespace windowmaze
             this.maze_label.Font = new Font(this.maze_label.Font.FontFamily, new_size);
         }
 
+        private void set_camera_view(int new_view) {
+            this.camera.set_range(new_view, new_view);
+            this.draw_maze();
+            this.maze_resized();
+        }
     }
 }
