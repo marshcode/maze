@@ -51,6 +51,8 @@ namespace windowmaze
             this.the_maze     = null;
             this.the_renderer = null;
 
+            this.menu_new_wall_maze(null, null);
+            this.set_font_size(10); //any smaller and it doesn't look right.
         }
 
         /*******************************
@@ -60,7 +62,7 @@ namespace windowmaze
         {
             Application.Exit();
         }
-
+        //the front end should have a few utility methods that encapsulate this.
         private void menu_new_block_maze(object sender, EventArgs e)
         {
             CellulartMazeGenerator cmg = new CellulartMazeGenerator();
@@ -105,6 +107,8 @@ namespace windowmaze
         /********************************
          * maze functions
          ********************************/
+        //this should also be put into some kind of controller class.  It still belongs in Window maze
+        //because this is the top level controller
         public Tuple<int, int> get_char_position(ASCIIRendererCamera camera) {
 
             return camera.maze_to_render_coords( this.maze,
@@ -197,5 +201,6 @@ namespace windowmaze
             this.draw_maze();
             this.maze_resized();
         }
+
     }
 }

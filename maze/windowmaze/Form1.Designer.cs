@@ -121,7 +121,7 @@
             this.mnuMain_View_Size.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuMain_View_Size_Value});
             this.mnuMain_View_Size.Name = "mnuMain_View_Size";
-            this.mnuMain_View_Size.Size = new System.Drawing.Size(152, 22);
+            this.mnuMain_View_Size.Size = new System.Drawing.Size(119, 22);
             this.mnuMain_View_Size.Text = "Text Size";
             // 
             // mnuMain_View_Size_Value
@@ -162,7 +162,7 @@
             this.mnuMain_View_Camera.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuMain_View_Camera_Value});
             this.mnuMain_View_Camera.Name = "mnuMain_View_Camera";
-            this.mnuMain_View_Camera.Size = new System.Drawing.Size(152, 22);
+            this.mnuMain_View_Camera.Size = new System.Drawing.Size(119, 22);
             this.mnuMain_View_Camera.Text = "Camera";
             // 
             // mnuMain_View_Camera_Value
