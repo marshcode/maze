@@ -10,27 +10,27 @@
 
         protected ASCIIRenderer renderer;
 
-        protected Func<ASCIIRendererCamera, Tuple<int, int>> get_center_point;
+        protected Func<ASCIIRendererCamera, Position> get_center_point;
 
-        public ASCIIRendererCamera(ASCIIRenderer renderer, Func< ASCIIRendererCamera, Tuple<int, int>> get_center_point){
+        public ASCIIRendererCamera(ASCIIRenderer renderer, Func< ASCIIRendererCamera, Position> get_center_point){
             this.renderer = renderer;
             this.get_center_point = get_center_point;
             this.reset_range();
         }
 
-        public override Tuple<int, int> maze_to_render_coords(Maze maze, Position p) {
+        public override Position maze_to_render_coords(Maze maze, Position p) {
             return this.renderer.maze_to_render_coords(maze, p);
         }
 
         public override char[][] render_char_array() {
-            Tuple<int, int> center_point = this.get_center_point(this);
+            Position center_point = this.get_center_point(this);
             char[][] full_char_map = renderer.render_char_array();
             char[][] clipped_char_map;
 
             int max_x_idx = full_char_map[0].Length - 1;
             int max_y_idx = full_char_map.Length - 1;
-            int center_x = center_point.Item1;
-            int center_y = center_point.Item2;
+            int center_x = center_point.x;
+            int center_y = center_point.y;
 
             int x_range = this.x_range >= 0 ? this.x_range : full_char_map[0].Length;
             int y_range = this.y_range >= 0 ? this.y_range : full_char_map.Length;
