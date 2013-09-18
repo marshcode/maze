@@ -67,9 +67,9 @@
                 for (int y = 0; y < y_shape; y++) {
 
                     if(block_map[x,y]){
-                        new Block(maze, x, y);
+                        new Block(maze, new Position(x, y));
                     }else{
-                        new Tile(maze, x, y);
+                        new Tile(maze, new Position(x, y));
                     }                
                 }
 

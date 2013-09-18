@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "textmaze", "textmaze\textma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mazegen", "mazegen\mazegen.csproj", "{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "consolemaze", "consolemaze\consolemaze.csproj", "{0CE4A95F-DA8A-4694-B7BB-FCF39355494D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "windowmaze", "windowmaze\windowmaze.csproj", "{6552DE49-B118-4140-9415-0FE7F87AF819}"
 EndProject
 Global
@@ -51,16 +49,6 @@ Global
 		{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}.Release|x86.ActiveCfg = Release|Any CPU
-		{0CE4A95F-DA8A-4694-B7BB-FCF39355494D}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{0CE4A95F-DA8A-4694-B7BB-FCF39355494D}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{0CE4A95F-DA8A-4694-B7BB-FCF39355494D}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{0CE4A95F-DA8A-4694-B7BB-FCF39355494D}.Debug|x86.ActiveCfg = Debug|x86
-		{0CE4A95F-DA8A-4694-B7BB-FCF39355494D}.Debug|x86.Build.0 = Debug|x86
-		{0CE4A95F-DA8A-4694-B7BB-FCF39355494D}.Release|Any CPU.ActiveCfg = Release|x86
-		{0CE4A95F-DA8A-4694-B7BB-FCF39355494D}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{0CE4A95F-DA8A-4694-B7BB-FCF39355494D}.Release|Mixed Platforms.Build.0 = Release|x86
-		{0CE4A95F-DA8A-4694-B7BB-FCF39355494D}.Release|x86.ActiveCfg = Release|x86
-		{0CE4A95F-DA8A-4694-B7BB-FCF39355494D}.Release|x86.Build.0 = Release|x86
 		{6552DE49-B118-4140-9415-0FE7F87AF819}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{6552DE49-B118-4140-9415-0FE7F87AF819}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{6552DE49-B118-4140-9415-0FE7F87AF819}.Debug|Mixed Platforms.Build.0 = Debug|x86

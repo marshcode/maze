@@ -5,23 +5,22 @@ namespace mazecore.elements {
     using mazecore.direction;
 
     public class Character {
-        protected int x, y;
+        protected Position position;
         protected Maze maze;
         protected Navigation navigation;
         protected Direction orientation;
 
-        public Character(Maze maze, int x, int y) {
-            this.x = x;
-            this.y = y;
+        public Character(Maze maze, Position p) {
+            this.position = p;
             this.orientation = Direction.North;
 
             this.maze = maze;
             this.navigation = new Navigation(this);
 
             if (!this.navigation.can_stand_on(this.get_tile())) {
-                throw new MazeException(string.Format("Character cannot stand on tile {0}, {1}", this.x, this.y));
+                throw new MazeException(string.Format("Character cannot stand on tile {0}, {1}", this.position.x, this.position.y));
             }
-            maze.set_character(this, x, y);
+            maze.set_character(this, this.position);
         }
 
         public Direction get_orientation(){
@@ -31,10 +30,10 @@ namespace mazecore.elements {
         }
         
         public Wall get_facing_wall() {
-            return this.get_maze().get_wall(this.get_x(), this.get_y(), this.get_orientation());
+            return this.get_maze().get_wall(this.position, this.get_orientation());
         }
         public Tile get_tile() {
-            return this.get_maze().get_tile(this.get_x(), this.get_y());
+            return this.get_maze().get_tile(this.position);
         }
 
 
@@ -47,8 +46,9 @@ namespace mazecore.elements {
                 return false;
             }
 
-            DirectionControl.move(ref this.x, ref this.y, direction, 1);
-            this.maze.set_character(this, this.x, this.y);
+            this.position = DirectionControl.move(this.position, direction, 1);
+            this.maze.set_character(this, this.position);
+            
 
             return true;
 
@@ -56,10 +56,8 @@ namespace mazecore.elements {
 
         public Maze get_maze() {
             return this.maze;
-        }public int get_x() {
-            return this.x;
-        }public int get_y() {
-            return this.y;
+        }public Position get_position() {
+            return this.position;
         }
 
     }
@@ -88,7 +86,7 @@ namespace mazecore.elements {
 
         public bool can_move(Direction direction){
             Maze maze = this.character.get_maze();
-            Tile tile = maze.get_tile( this.character.get_x(), this.character.get_y() );
+            Tile tile = maze.get_tile( this.character.get_position() );
             Wall wall = tile.get_wall(direction);              //potential wall
             tile = tile.get_neighbor_tile(direction); //potential tile            
 
@@ -98,7 +96,7 @@ namespace mazecore.elements {
             }
 
             //there is no tile for us to stand on or there is but we can't or it is occupied.
-            if ( !this.can_stand_on(tile) ) { 
+            if ( !this.can_stand_on(tile) ) {
                 return false;
             }
             return true;

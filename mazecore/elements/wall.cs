@@ -5,8 +5,8 @@
 
         Maze maze;
 
-        public Wall(Maze maze, int x, int y, Direction direction) {
-            maze.set_wall(this, x, y, direction);
+        public Wall(Maze maze, Position p, Direction direction) {
+            maze.set_wall(this, p, direction);
             this.maze = maze;
         }
 

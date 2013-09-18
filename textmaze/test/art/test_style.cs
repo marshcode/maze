@@ -56,9 +56,11 @@ namespace textmaze.art.test
 
         public void test_character_value(Direction direction, char expected, MazeStyles style_enum)
         {
+            Position p = new Position(0, 0);
+
             Maze maze = TestBaseClass.create_maze();
-            TestBaseClass.create_tile(maze, 0, 0);
-            Character character = TestBaseClass.create_character(maze, 0, 0);
+            TestBaseClass.create_tile(maze, p);
+            Character character = TestBaseClass.create_character(maze, p);
             IASCIIMazeStyle style = style_dictionary[style_enum];
 
             character.set_orientation(direction);
@@ -80,8 +82,10 @@ namespace textmaze.art.test
         public void test_wall_value(Direction direction, char expected, MazeStyles style_enum){
             Maze maze = TestBaseClass.create_maze();
             IASCIIMazeStyle style = style_dictionary[style_enum];
-            TestBaseClass.create_wall(maze, 0, 0, direction);
-            Tile tile = maze.get_tile(0, 0);
+
+            Position p = new Position(0, 0);
+            TestBaseClass.create_wall(maze, p, direction);
+            Tile tile = maze.get_tile(p);
 
 
             Assert.AreEqual(style.get_wall_char(tile, direction), expected);
@@ -95,8 +99,8 @@ namespace textmaze.art.test
             Maze maze = TestBaseClass.create_maze();
             IASCIIMazeStyle style = style_dictionary[style_enum];
 
-            Tile tile = TestBaseClass.create_tile(maze, 0, 0);
-            Tile block = new Block(maze, 0, 1);
+            Tile tile = TestBaseClass.create_tile(maze, new Position(0, 0));
+            Tile block = new Block(maze, new Position(0, 1));
 
 
             Assert.AreEqual(style.get_tile_char(tile), tile_char);

@@ -1,0 +1,15 @@
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\windowmaze\bin\Release\windowmaze.exe
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\windowmaze\bin\Release\windowmaze.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\windowmaze\bin\Release\mazecore.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\windowmaze\bin\Release\mazegen.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\windowmaze\bin\Release\textmaze.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\windowmaze\bin\Release\mazecore.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\windowmaze\bin\Release\mazegen.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\windowmaze\bin\Release\textmaze.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\windowmaze\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\windowmaze\obj\x86\Release\windowmaze.Form1.resources
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\windowmaze\obj\x86\Release\windowmaze.Properties.Resources.resources
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\windowmaze\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\windowmaze\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\windowmaze\obj\x86\Release\windowmaze.exe
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\windowmaze\obj\x86\Release\windowmaze.pdb

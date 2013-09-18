@@ -19,7 +19,7 @@ namespace mazegen.test {
 
             for (int x = 0; x < x_range; x++) {
                 for (int y = 0; y < y_range; y++) {
-                    Assert.NotNull(maze.get_tile(x, y));
+                    Assert.NotNull(maze.get_tile(new Position(x, y)));
                 }
             }
 

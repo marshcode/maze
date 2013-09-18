@@ -21,62 +21,73 @@
         }
         [Test]
         public void test_tile() {
-            Maze maze = TestMaze.create_maze();
-            Assert.Null(maze.get_tile(1, 1));
-            Tile tile = TestMaze.create_tile(maze, 1, 1);
 
-            
-            maze.set_tile(tile, 1, 1);
-            Assert.AreEqual(tile, maze.get_tile(1,1));
-            maze.remove_tile(1, 1);
-            Assert.Null(maze.get_tile(1,1));
+            Position p = new Position(1, 1);
+
+            Maze maze = TestMaze.create_maze();
+            Assert.Null(maze.get_tile(p));
+            Tile tile = TestMaze.create_tile(maze, p);
+
+
+            maze.set_tile(tile, p);
+            Assert.AreEqual(tile, maze.get_tile(p));
+            maze.remove_tile(p);
+            Assert.Null(maze.get_tile(p));
         }
 
         [TestCase(-1, -1)]
         public void test_tile_out_of_bounds(int x, int y) {
+
+            Position p = new Position(x, y);
+
             Maze maze = TestMaze.create_maze();
-            Tile tile = TestMaze.create_tile(maze, 1, 1);
+            Tile tile = TestMaze.create_tile(maze, new Position(1, 1));
 
             Assert.Throws<ArgumentOutOfRangeException>(
-                    delegate { maze.get_tile(x, y); });
+                    delegate { maze.get_tile(p); });
 
             Assert.Throws<ArgumentOutOfRangeException>(
-                    delegate { maze.remove_tile(x, y); });
+                    delegate { maze.remove_tile(p); });
 
             Assert.Throws<ArgumentOutOfRangeException>(
-                    delegate { maze.set_tile(tile, x, y); }); //not usually supported
+                    delegate { maze.set_tile(tile, p); }); //not usually supported
 
 
         }
 
         [Test]
         public void test_wall() {
+
+            Position p = new Position(1, 1);
+            Position p2 = new Position(1, 2);
+
             Maze maze = TestMaze.create_maze();
-            Assert.Null(maze.get_wall(1, 1, Direction.North));
-            Wall wall  = TestMaze.create_wall(maze, 1, 1, Direction.North);
-            maze.set_wall(wall, 1,1, Direction.North);
+            Assert.Null(maze.get_wall(p, Direction.North));
+            Wall wall = TestMaze.create_wall(maze, p, Direction.North);
+            maze.set_wall(wall, p, Direction.North);
             //should I fail if there is no tile to set the wall on?
             //it won't matter, I guess.  No tiles means nobody can see it.  
 
-            Assert.AreEqual(wall, maze.get_wall(1, 1, Direction.North));
-            Assert.AreEqual(wall, maze.get_wall(1, 2, Direction.South));
-            maze.remove_wall(1, 1, Direction.North);
-            Assert.Null(maze.get_wall(1, 1, Direction.North));
+            Assert.AreEqual(wall, maze.get_wall(p, Direction.North));
+            Assert.AreEqual(wall, maze.get_wall(p2, Direction.South));
+            maze.remove_wall(p, Direction.North);
+            Assert.Null(maze.get_wall(p, Direction.North));
 
         }
 
         [TestCase(-1, -1)]
         public void test_wall_out_of_bounds(int x, int y) {
             Maze maze = TestMaze.create_maze();
+            Position p = new Position(x, y);
 
             Assert.Throws<ArgumentOutOfRangeException>(
-                    delegate { maze.get_wall(x, y, Direction.North); });
+                    delegate { maze.get_wall(p, Direction.North); });
 
             Assert.Throws<ArgumentOutOfRangeException>(
-                    delegate { maze.remove_wall(x, y, Direction.North); });
+                    delegate { maze.remove_wall(p, Direction.North); });
 
             Assert.Throws<ArgumentOutOfRangeException>(
-                    delegate { TestMaze.create_wall(maze, x, y, Direction.North); });
+                    delegate { TestMaze.create_wall(maze, p, Direction.North); });
 
 
         }
@@ -86,20 +97,23 @@
         public void test_character() {
 
             Maze maze = TestMaze.create_maze();
-            
-            Tile tile = TestMaze.create_tile(maze, 1, 1);
-            Tile tile2 = TestMaze.create_tile(maze, 2, 3);
 
-            Assert.Null(maze.get_character(1,1));
-            Character character = TestMaze.create_character(maze, 1, 1);
-            Assert.AreEqual(character, maze.get_character(1, 1));
+            Position p1 = new Position(1, 1);
+            Position p2 = new Position(2, 3);
 
-            maze.set_character(character, 2, 3);
-            Assert.AreEqual(character, maze.get_character(2, 3));
-            Assert.Null(maze.get_character(1, 1));
+            Tile tile = TestMaze.create_tile(maze, p1);
+            Tile tile2 = TestMaze.create_tile(maze, p2);
 
-            maze.remove_character(1, 1);
-            Assert.Null(maze.get_character(1, 1));
+            Assert.Null(maze.get_character(p1));
+            Character character = TestMaze.create_character(maze, p1);
+            Assert.AreEqual(character, maze.get_character(p1));
+
+            maze.set_character(character, p2);
+            Assert.AreEqual(character, maze.get_character(p2));
+            Assert.Null(maze.get_character(p1));
+
+            maze.remove_character(p1);
+            Assert.Null(maze.get_character(p1));
 
 
         }
@@ -109,24 +123,28 @@
 
             Maze maze = TestMaze.create_maze();
             Character c1;
-            Tile tile = TestMaze.create_tile(maze, 1, 1);
 
-            Assert.Null(maze.get_character(1, 1));
+            Position p1 = new Position(1, 1);
+            Tile tile = TestMaze.create_tile(maze, p1);
 
-            c1 = TestMaze.create_character(maze, 1, 1);
-            Assert.AreEqual(maze.get_character(1, 1), c1);
+            Assert.Null(maze.get_character(p1));
+
+            c1 = TestMaze.create_character(maze, p1);
+            Assert.AreEqual(maze.get_character(p1), c1);
 
             Assert.Throws<MazeException>(
-                    delegate {TestMaze.create_character(maze, 1, 1); });
-            Assert.AreEqual(maze.get_character(1, 1), c1);
+                    delegate { TestMaze.create_character(maze, p1); });
+            Assert.AreEqual(maze.get_character(p1), c1);
 
         }
 
         [Test]
         public void test_character_set_null_tile() {
             Maze maze = TestMaze.create_maze();
+            Position p1 = new Position(1, 1);
+
             Assert.Throws<MazeException>(
-                      delegate { TestMaze.create_character(maze, 1, 1); });
+                      delegate { TestMaze.create_character(maze, p1); });
             
 
         }
@@ -135,15 +153,16 @@
         [TestCase(-1, -1)]
         public void test_character_out_of_bounds(int x, int y) {
             Maze maze = TestMaze.create_maze();
+            Position p1 = new Position(x, y);
 
             Assert.Throws<ArgumentOutOfRangeException>(
-                    delegate { maze.get_character(x, y); });
+                    delegate { maze.get_character(p1); });
 
             Assert.Throws<ArgumentOutOfRangeException>(
-                    delegate { maze.remove_character(x, y); });
+                    delegate { maze.remove_character(p1); });
 
             Assert.Throws<ArgumentOutOfRangeException>(
-                    delegate { TestMaze.create_character(maze, x, y); });
+                    delegate { TestMaze.create_character(maze, p1); });
         }
     }
 }

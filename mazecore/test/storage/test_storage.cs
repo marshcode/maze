@@ -65,21 +65,20 @@
         public void test_get_position_good(int x, int y) {
             GridStorage<TestClass> grid_storage = TestGridStorage.create_storage();
             TestClass test_class = TestGridStorage.create_tile();
-            grid_storage.set_item(test_class, x, y);
+            grid_storage.set_item(test_class, new Position(x, y));
 
 
-            int[] position = grid_storage.get_position(test_class);
+            Position position = grid_storage.get_position(test_class);
             Assert.NotNull(position);
-            Assert.AreEqual(position.Length, 2);
-            Assert.AreEqual(position[0], x);
-            Assert.AreEqual(position[1], y);
+            Assert.AreEqual(position.x, x);
+            Assert.AreEqual(position.y, y);
         }
 
         [Test]
         public void test_get_position_bad() {
             GridStorage<TestClass> grid_storage = TestGridStorage.create_storage();
             TestClass test_class = TestGridStorage.create_tile();
-            int[] position = grid_storage.get_position(test_class);
+            Position position = grid_storage.get_position(test_class);
             Assert.Null(position);
         }
 
@@ -88,10 +87,10 @@
             GridStorage<TestClass> grid_storage = TestGridStorage.create_storage();
             TestClass test_class = TestGridStorage.create_tile();
             TestClass test_class_2 = TestGridStorage.create_tile();
-            grid_storage.set_item(test_class, 1, 1);
+            grid_storage.set_item(test_class, new Position(1, 1));
 
 
-            int[] position = grid_storage.get_position(test_class_2);
+            Position position = grid_storage.get_position(test_class_2);
             Assert.Null(position);
         }
 
@@ -100,12 +99,12 @@
             GridStorage<TestClass> grid_storage = TestGridStorage.create_storage();
             TestClass test_class = TestGridStorage.create_tile();
 
-            grid_storage.move(test_class, 1, 1);
-            Assert.AreEqual(grid_storage.get_item(1, 1), test_class);
-            Assert.Null(grid_storage.get_item(1, 2));
-            grid_storage.move(test_class, 1, 2);
-            Assert.AreEqual(grid_storage.get_item(1, 2), test_class);
-            Assert.Null(grid_storage.get_item(1, 1));
+            grid_storage.move(test_class, new Position(1, 1));
+            Assert.AreEqual(grid_storage.get_item(new Position(1, 1)), test_class);
+            Assert.Null(grid_storage.get_item(new Position(1, 2)));
+            grid_storage.move(test_class, new Position(1, 2));
+            Assert.AreEqual(grid_storage.get_item(new Position(1, 2)), test_class);
+            Assert.Null(grid_storage.get_item(new Position(1, 1)));
 
         }
 
@@ -116,11 +115,13 @@
             GridStorage<TestClass> tile_storage = TestGridStorage.create_storage();
             TestClass test_class = TestGridStorage.create_tile();
 
-            Assert.Null(tile_storage.get_item(1, 1));
-            tile_storage.set_item(test_class, 1, 1);
-            Assert.AreEqual(test_class, tile_storage.get_item(1, 1));
-            tile_storage.remove_item(1, 1);
-            Assert.Null(tile_storage.get_item(1, 1));
+            Position p = new Position(1, 1);
+
+            Assert.Null(tile_storage.get_item(p));
+            tile_storage.set_item(test_class, p);
+            Assert.AreEqual(test_class, tile_storage.get_item(p));
+            tile_storage.remove_item(p);
+            Assert.Null(tile_storage.get_item(p));
 
         }
 
@@ -128,12 +129,14 @@
         public void test_tile_override() {
             GridStorage<TestClass> tile_storage = TestGridStorage.create_storage();
             TestClass tc1, tc2;
+            Position p = new Position(1, 1);
+
             tc1 = TestGridStorage.create_tile();
             tc2 = TestGridStorage.create_tile();
-            tile_storage.set_item(tc1, 1, 1);
-            Assert.AreEqual(tc1, tile_storage.get_item(1, 1));
-            tile_storage.set_item(tc2, 1, 1);
-            Assert.AreEqual(tc2, tile_storage.get_item(1, 1));
+            tile_storage.set_item(tc1, p);
+            Assert.AreEqual(tc1, tile_storage.get_item(p));
+            tile_storage.set_item(tc2, p);
+            Assert.AreEqual(tc2, tile_storage.get_item(p));
 
 
         }
@@ -150,7 +153,7 @@
             GridStorage<TestClass> tile_storage = TestGridStorage.create_storage();
             TestClass test_class = TestGridStorage.create_tile();
             Assert.Throws<ArgumentOutOfRangeException>(
-                    delegate { tile_storage.set_item(test_class, x, y); });
+                    delegate { tile_storage.set_item(test_class, new Position(x, y)); });
         }
 
         [TestCase(-1, -1)]
@@ -161,7 +164,7 @@
         [TestCase(11, 0)]
         public void test_get_tile_out_of_range(int x, int y) {
             Assert.Throws<ArgumentOutOfRangeException>(
-                    delegate { TestGridStorage.create_storage().get_item(x, y); });
+                    delegate { TestGridStorage.create_storage().get_item(new Position(x, y)); });
         }
 
         [TestCase(-1, -1)]
@@ -172,7 +175,7 @@
         [TestCase(11, 0)]
         public void test_remove_tile_out_of_range(int x, int y) {
             Assert.Throws<ArgumentOutOfRangeException>(
-                    delegate { TestGridStorage.create_storage().get_item(x, y); });
+                    delegate { TestGridStorage.create_storage().get_item(new Position(x, y)); });
         }
 
 
@@ -222,21 +225,36 @@
             Assert.Throws<ArgumentOutOfRangeException>(
                     delegate { new SharedEdgeStorage<TestClass>(x_range, y_range); });
         }
+
+        [TestCase(0, 0, Direction.West),
+         TestCase(0, 0, Direction.South)]
+        public void test_border_tiles(int x, int y, Direction direction) {
+            Position p1 = new Position(x, y);
+            SharedEdgeStorage<TestClass> wall_storage = TestSharedEdgeStorage.create_storage();
+            Assert.Null(wall_storage.get_item(p1, direction));
+        }
+
         [Test]
         public void test_get_set_remove_wall_north_south() {
 
             SharedEdgeStorage<TestClass> wall_storage = TestSharedEdgeStorage.create_storage();
             TestClass test_class = TestSharedEdgeStorage.create_wall();
 
-            Assert.Null(wall_storage.get_item(1, 1, Direction.North));
-            wall_storage.set_item(test_class, 1, 1, Direction.North);
+            Position p1 = new Position(1, 1);
+            Position p2 = new Position(1, 2);
 
-            Assert.AreEqual(wall_storage.get_item(1, 2, Direction.South), test_class);
-            Assert.AreEqual(wall_storage.get_item(1, 1, Direction.North), test_class);
 
-            wall_storage.remove_item(1, 1, Direction.North);
-            Assert.Null(wall_storage.get_item(2, 1, Direction.South));
-            Assert.Null(wall_storage.get_item(1, 1, Direction.North));
+            Assert.Null(wall_storage.get_item(p1, Direction.North));
+            Assert.Null(wall_storage.get_item(p2, Direction.South));
+
+            wall_storage.set_item(test_class, p1, Direction.North);
+
+            Assert.AreEqual(wall_storage.get_item(p2, Direction.South), test_class);
+            Assert.AreEqual(wall_storage.get_item(p1, Direction.North), test_class);
+
+            wall_storage.remove_item(p1, Direction.North);
+            Assert.Null(wall_storage.get_item(p2, Direction.South));
+            Assert.Null(wall_storage.get_item(p1, Direction.North));
         }
 
         [Test]
@@ -245,15 +263,18 @@
             SharedEdgeStorage<TestClass> wall_storage = TestSharedEdgeStorage.create_storage();
             TestClass test_class = TestSharedEdgeStorage.create_wall();
 
-            Assert.Null(wall_storage.get_item(1, 1, Direction.East));
-            wall_storage.set_item(test_class, 1, 1, Direction.East);
+            Position p1 = new Position(1, 1);
+            Position p2 = new Position(2, 1);
 
-            Assert.AreEqual(wall_storage.get_item(1, 1, Direction.East), test_class);
-            Assert.AreEqual(wall_storage.get_item(2, 1, Direction.West), test_class);
+            Assert.Null(wall_storage.get_item(p1, Direction.East));
+            wall_storage.set_item(test_class, p1, Direction.East);
 
-            wall_storage.remove_item(1, 1, Direction.East);
-            Assert.Null(wall_storage.get_item(1, 1, Direction.East));
-            Assert.Null(wall_storage.get_item(2, 1, Direction.West));
+            Assert.AreEqual(wall_storage.get_item(p1, Direction.East), test_class);
+            Assert.AreEqual(wall_storage.get_item(p2, Direction.West), test_class);
+
+            wall_storage.remove_item(p1, Direction.East);
+            Assert.Null(wall_storage.get_item(p1, Direction.East));
+            Assert.Null(wall_storage.get_item(p2, Direction.West));
         }
 
         [Test]
@@ -262,10 +283,13 @@
             TestClass tc1, tc2;
             tc1 = TestSharedEdgeStorage.create_wall();
             tc2 = TestSharedEdgeStorage.create_wall();
-            shared_edge_storage.set_item(tc1, 1, 1, Direction.North);
-            Assert.AreEqual(tc1, shared_edge_storage.get_item(1, 1, Direction.North));
-            shared_edge_storage.set_item(tc2, 1, 1, Direction.North);
-            Assert.AreEqual(tc2, shared_edge_storage.get_item(1, 1, Direction.North));
+
+            Position p1 = new Position(1, 1);
+
+            shared_edge_storage.set_item(tc1, p1, Direction.North);
+            Assert.AreEqual(tc1, shared_edge_storage.get_item(p1, Direction.North));
+            shared_edge_storage.set_item(tc2, p1, Direction.North);
+            Assert.AreEqual(tc2, shared_edge_storage.get_item(p1, Direction.North));
 
 
         }

@@ -11,47 +11,52 @@
         [Test]
         public void test_block_can_stand() {
             Maze maze = TestNavigation.create_maze();
-            Block b = new Block(maze, 1, 1);
+            Block b = new Block(maze, new Position(1, 1));
             Assert.False(b.can_stand());
         }
 
         [Test]
         public void test_init_registration() {
 
+            Position p = new Position(2, 3);
             Maze maze = TestTile.create_maze();
-            Tile tile = TestTile.create_tile(maze, 2, 3);
+            Tile tile = TestTile.create_tile(maze, p);
 
-            Assert.AreEqual(maze.get_tile(2, 3), tile);
+            Assert.AreEqual(maze.get_tile(p), tile);
             Assert.AreEqual(maze, tile.get_maze());
 
         }
 
         [Test]
         public void test_get_positions(){
+            Position p = new Position(2, 3);
             Maze maze = TestTile.create_maze();
-            Tile tile = TestTile.create_tile(maze, 2, 3);
+            Tile tile = TestTile.create_tile(maze, p);
             
-            Assert.AreEqual(tile.get_x(), 2);
-            Assert.AreEqual(tile.get_y(), 3);
-            Assert.AreEqual(maze.get_tile(2, 3), tile);  
+            Assert.AreEqual(tile.get_position().x, p.x);
+            Assert.AreEqual(tile.get_position().y, p.y);
+            Assert.AreEqual(maze.get_tile(p), tile);  
 
         }
 
         [Test]
         public void test_can_stand() {
-
+            Position p = new Position(1, 1);
             Maze maze = TestTile.create_maze();
-            Tile tile = TestTile.create_tile(maze, 1, 1);
+            Tile tile = TestTile.create_tile(maze, p);
             Assert.True(tile.can_stand());
         }
 
         [Test]
         public void test_is_occupied() {
 
+            Position p1 = new Position(1, 1);
+            Position p2 = new Position(1, 2);
+
             Maze maze = TestTile.create_maze();
-            Tile tile_occupied = TestTile.create_tile(maze, 1, 1);
-            Tile tile_not_occupied = TestTile.create_tile(maze, 1, 2);
-            Character character = TestTile.create_character(maze, 1, 1);
+            Tile tile_occupied = TestTile.create_tile(maze, p1);
+            Tile tile_not_occupied = TestTile.create_tile(maze, p2);
+            Character character = TestTile.create_character(maze, p1);
 
             Assert.True(tile_occupied.is_occupied());
             Assert.False(tile_not_occupied.is_occupied());
@@ -60,21 +65,20 @@
 
         [Test]
         public void get_neighbor_tile_good() {
-            int x = 2, y = 3;
+            Position p = new Position(2, 3);
 
-            int east_x = DirectionControl.adjust(x, Direction.East, 1);
-            int west_x = DirectionControl.adjust(x, Direction.West, 1);
-            int north_y = DirectionControl.adjust(y, Direction.North, 1);
-            int south_y = DirectionControl.adjust(y, Direction.South, 1);
-
+            Position east_p = DirectionControl.move(p, Direction.East, 1);
+            Position west_p = DirectionControl.move(p, Direction.West, 1);
+            Position north_p = DirectionControl.move(p, Direction.North, 1);
+            Position south_p = DirectionControl.move(p, Direction.South, 1);
 
 
             Maze maze = TestTile.create_maze();
-            Tile center = TestTile.create_tile(maze, x, y);
-            Tile north_tile = TestTile.create_tile(maze, x, north_y);
-            Tile south_tile = TestTile.create_tile(maze, x, south_y);
-            Tile east_tile = TestTile.create_tile(maze, east_x, y);
-            Tile west_tile = TestTile.create_tile(maze, west_x, y);
+            Tile center = TestTile.create_tile(maze, p);
+            Tile north_tile = TestTile.create_tile(maze, north_p);
+            Tile south_tile = TestTile.create_tile(maze, south_p);
+            Tile east_tile = TestTile.create_tile(maze, east_p);
+            Tile west_tile = TestTile.create_tile(maze, west_p);
 
 
             Assert.AreEqual(center.get_neighbor_tile(Direction.North), north_tile);
@@ -90,8 +94,10 @@
         [TestCase(9, 14)]
         public void get_neighbor_tile_bad(int x, int y) {
 
+            Position p = new Position(x, y);
+
             Maze maze = TestTile.create_maze();
-            Tile center = TestTile.create_tile(maze, x, y);
+            Tile center = TestTile.create_tile(maze, p);
             Assert.Null(center.get_neighbor_tile(Direction.North), null);
             Assert.Null(center.get_neighbor_tile(Direction.South), null);
             Assert.Null(center.get_neighbor_tile(Direction.East), null);
@@ -100,16 +106,16 @@
         }
         [Test]
         public void get_wall_good() {
-            int x = 2, y = 2;
-            int west_x = DirectionControl.adjust(x, Direction.West, 1);
+            Position p = new Position(2, 2);
+            Position west_p = DirectionControl.move(p, Direction.West, 1);
 
             Maze maze = TestTile.create_maze();
-            Tile a = TestTile.create_tile(maze, x, y);
-            Tile b = TestTile.create_tile(maze, west_x, y);
-            Wall north = TestTile.create_wall(maze, x, y, Direction.North);
-            Wall south = TestTile.create_wall(maze, x, y, Direction.South);
-            Wall east = TestTile.create_wall(maze, x, y, Direction.East);
-            Wall west = TestTile.create_wall(maze, x, y, Direction.West);
+            Tile a = TestTile.create_tile(maze, p);
+            Tile b = TestTile.create_tile(maze, west_p);
+            Wall north = TestTile.create_wall(maze, p, Direction.North);
+            Wall south = TestTile.create_wall(maze, p, Direction.South);
+            Wall east = TestTile.create_wall(maze, p, Direction.East);
+            Wall west = TestTile.create_wall(maze, p, Direction.West);
 
 
             Assert.AreEqual(a.get_wall(Direction.North), north);
@@ -123,9 +129,10 @@
 
         [Test]
         public void get_wall_null() {
-            int x = 2, y = 2;
+            Position p = new Position(2, 2);
+
             Maze maze = TestTile.create_maze();
-            Tile tile = TestTile.create_tile(maze, x, y);
+            Tile tile = TestTile.create_tile(maze, p);
 
             Assert.Null(tile.get_wall(Direction.North));
             Assert.Null(tile.get_wall(Direction.South));

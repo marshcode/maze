@@ -12,15 +12,16 @@ namespace mazecore.elements.test {
 
         [Test]
         public void test_get_tile() {
-            int x = 1, y = 1;
+            Position p = new Position(1, 1);
+
 
             Maze maze = TestCharacter.create_maze();
-            Tile tile = TestCharacter.create_tile(maze, x, y);
-            Character character = TestCharacter.create_character(maze, x, y);
+            Tile tile = TestCharacter.create_tile(maze, p);
+            Character character = TestCharacter.create_character(maze, p);
 
 
-            DirectionControl.move(ref x, ref y, Direction.South, 1);
-            Tile tile_south = TestCharacter.create_tile(maze, x, y);
+            p = DirectionControl.move(p, Direction.South, 1);
+            Tile tile_south = TestCharacter.create_tile(maze, p);
 
             Assert.AreEqual(character.get_tile(), tile);
             character.move(Direction.South);
@@ -31,40 +32,40 @@ namespace mazecore.elements.test {
 
         [Test]
         public void test_init_tile_occupied() {
-
+            Position p = new Position(1, 1);
             Maze maze = TestCharacter.create_maze();
-            Tile tile = TestCharacter.create_tile(maze, 1, 1);
-            TestCharacter.create_character(maze, 1, 1);
+            Tile tile = TestCharacter.create_tile(maze, p);
+            TestCharacter.create_character(maze, p);
 
             Assert.Throws<MazeException>(
-                delegate { TestCharacter.create_character(maze, 1, 1); });
+                delegate { TestCharacter.create_character(maze, p); });
         
         }
 
 
         [Test]
         public void test_init_tile_unoccupiable() {
-
+            Position p = new Position(1, 1);
             Maze maze = TestCharacter.create_maze();
-            Block block = new Block(maze, 1, 1);
+            Block block = new Block(maze, p);
 
             Assert.Throws<MazeException>(
-                delegate { TestCharacter.create_character(maze, 1, 1); });
+                delegate { TestCharacter.create_character(maze, p); });
 
         }
 
 
         [Test]
         public void test_get_facing_wall() {
-
+            Position p = new Position(1, 1);
             Maze maze = TestCharacter.create_maze();
-            Tile tile = TestCharacter.create_tile(maze, 1, 1);
+            Tile tile = TestCharacter.create_tile(maze, p);
 
-            Wall wall_north = TestCharacter.create_wall(maze, 1, 1, Direction.North);
-            Wall wall_south = TestCharacter.create_wall(maze, 1, 1, Direction.South);
+            Wall wall_north = TestCharacter.create_wall(maze, p, Direction.North);
+            Wall wall_south = TestCharacter.create_wall(maze, p, Direction.South);
 
 
-            Character character = TestCharacter.create_character(maze, 1, 1);
+            Character character = TestCharacter.create_character(maze, p);
 
             Assert.AreEqual(character.get_facing_wall(), wall_north);
 
@@ -91,36 +92,36 @@ namespace mazecore.elements.test {
              
              Start in the center.  Available tile to the north, wall to the west.  Null tiles to the east and occupied to the south
              */
-            int x = 1, y = 2;
-            int t_x, t_y;
+            Position p = new Position(1, 2);
+            Position p_t = null;
 
             Maze maze = TestCharacter.create_maze();
-            Tile tile = TestCharacter.create_tile(maze, x, y);
+            Tile tile = TestCharacter.create_tile(maze, p);
 
-            t_x = x; t_y = y;
-            DirectionControl.move(ref t_x, ref t_y, Direction.North, 1);
-            Tile tile_north = TestCharacter.create_tile(maze, t_x, t_y);
+            p_t = DirectionControl.move(p, Direction.North, 1);
+            Tile tile_north = TestCharacter.create_tile(maze, p_t);
 
-            t_x = x; t_y = y;
-            DirectionControl.move(ref t_x, ref t_y, Direction.South, 1);
-            Tile tile_south = TestCharacter.create_tile(maze, t_x, t_y);
-            Character character_south = TestCharacter.create_character(maze, t_x, t_y);
+            p_t = DirectionControl.move(p, Direction.South, 1);
+            Tile tile_south = TestCharacter.create_tile(maze, p_t);
+            Character character_south = TestCharacter.create_character(maze, p_t);
 
-            Wall west_wall = TestCharacter.create_wall(maze, x, y, Direction.West);
-            Character character_main = TestCharacter.create_character(maze, x, y);
+            Wall west_wall = TestCharacter.create_wall(maze, p, Direction.West);
+            Character character_main = TestCharacter.create_character(maze, p);
 
             Assert.AreEqual(character_main.move(direction), expected_result);
-            Assert.AreEqual(character_main.get_x(), exp_x);
-            Assert.AreEqual(character_main.get_y(), exp_y);
+            Assert.AreEqual(character_main.get_position().x, exp_x);
+            Assert.AreEqual(character_main.get_position().y, exp_y);
 
+            Assert.AreEqual(maze.get_character(character_main.get_position()), character_main);
 
         }
 
         [Test]
         public void test_orientation() {
+            Position p = new Position(1, 2);
             Maze maze = TestCharacter.create_maze();
-            Tile tile = TestCharacter.create_tile(maze, 1, 2);
-            Character character = TestCharacter.create_character(maze, 1, 2);
+            Tile tile = TestCharacter.create_tile(maze, p);
+            Character character = TestCharacter.create_character(maze, p);
 
             Assert.AreEqual(Direction.North, character.get_orientation());
             character.set_orientation(Direction.South);
@@ -130,20 +131,22 @@ namespace mazecore.elements.test {
 
         [Test]
         public void test_init_registration(){
+            Position p = new Position(1, 2);
             Maze maze = TestCharacter.create_maze();
-            Tile tile = TestCharacter.create_tile(maze, 1, 2);
-            Character character = TestCharacter.create_character(maze, 1, 2);
+            Tile tile = TestCharacter.create_tile(maze, p);
+            Character character = TestCharacter.create_character(maze, p);
 
             Assert.AreEqual(maze, character.get_maze());
         }
         [Test]
         public void test_get_x_get_y() {
+            Position p = new Position(1, 2);
             Maze maze = TestCharacter.create_maze();
-            Tile tile = TestCharacter.create_tile(maze, 1, 2);
-            Character character = TestCharacter.create_character(maze, 1, 2);
+            Tile tile = TestCharacter.create_tile(maze, p);
+            Character character = TestCharacter.create_character(maze, p);
 
-            Assert.AreEqual(character.get_x(), 1);
-            Assert.AreEqual(character.get_y(), 2);
+            Assert.AreEqual(character.get_position().x, 1);
+            Assert.AreEqual(character.get_position().y, 2);
 
         }
 
@@ -160,13 +163,12 @@ namespace mazecore.elements.test {
         }
         //not safe for boundaries
         public static Tile[] create_tile_neighbors(Maze maze, Tile t) {
-            int x = t.get_x();
-            int y = t.get_y();
+            Position p = t.get_position();
 
-            Tile tile_north = TestNavigation.create_tile(maze, DirectionControl.adjust(x, Direction.North, 1), y);
-            Tile tile_east = TestNavigation.create_tile(maze, x, DirectionControl.adjust(y, Direction.East, 1));
-            Tile tile_south = TestNavigation.create_tile(maze, DirectionControl.adjust(x, Direction.South, 1), y);
-            Tile tile_west = TestNavigation.create_tile(maze, x, DirectionControl.adjust(y, Direction.West, 1));
+            Tile tile_north = TestNavigation.create_tile(maze, DirectionControl.move(p, Direction.North, 1));
+            Tile tile_east = TestNavigation.create_tile(maze, DirectionControl.move(p, Direction.East, 1));
+            Tile tile_south = TestNavigation.create_tile(maze, DirectionControl.move(p, Direction.South, 1));
+            Tile tile_west = TestNavigation.create_tile(maze, DirectionControl.move(p, Direction.West, 1));
 
 
             return new Tile[] { tile_north, tile_east, tile_south, tile_west };
@@ -179,15 +181,15 @@ namespace mazecore.elements.test {
         [TestCase(Direction.South)]
         [TestCase(Direction.West)]
         public void test_cannot_move_tiles_occupied(Direction direction) {
-            int x = 2, y = 3;
+            Position p = new Position(2, 3);
 
             Maze maze = TestNavigation.create_maze();
-            Tile tile = TestNavigation.create_tile(maze, x, y);
+            Tile tile = TestNavigation.create_tile(maze, p);
             Tile[] neighbor_tiles = TestNavigation.create_tile_neighbors(maze, tile);
-            Character character = TestNavigation.create_character(maze, x, y);
+            Character character = TestNavigation.create_character(maze, p);
 
             foreach (Tile t in neighbor_tiles) {
-                TestNavigation.create_character(maze, t.get_x(), t.get_y());
+                TestNavigation.create_character(maze, t.get_position());
             }
 
             Navigation navigation = TestNavigation.create_navigation(character);
@@ -198,16 +200,16 @@ namespace mazecore.elements.test {
 
         [Test]
         public void test_cannot_move_cannot_stand() {
-            int x = 2, y = 3;
+            Position p = new Position(2, 3);
             Maze maze = TestNavigation.create_maze();
-            Tile tile = TestNavigation.create_tile(maze, x, y);
+            Tile tile = TestNavigation.create_tile(maze, p);
             TestNavigation.create_tile_neighbors(maze, tile);
             
             Tile north_tile = tile.get_neighbor_tile(Direction.North);
-            Block b = new Block(maze, north_tile.get_x(), north_tile.get_y());
+            Block b = new Block(maze, north_tile.get_position());
 
-            
-            Character character = TestNavigation.create_character(maze, x, y);
+
+            Character character = TestNavigation.create_character(maze, p);
             Navigation navigation = TestNavigation.create_navigation(character);
 
             Assert.False(navigation.can_move(Direction.North));
@@ -219,12 +221,12 @@ namespace mazecore.elements.test {
         [TestCase(Direction.South)]
         [TestCase(Direction.West)]
         public void test_can_move_uninhibited(Direction direction) {
-            int x = 2, y = 3;
+            Position p = new Position(2, 3);
 
             Maze maze = TestNavigation.create_maze();
-            Tile tile = TestNavigation.create_tile(maze, x, y);
+            Tile tile = TestNavigation.create_tile(maze, p);
             TestNavigation.create_tile_neighbors(maze, tile);
-            Character character = TestNavigation.create_character(maze, x, y);
+            Character character = TestNavigation.create_character(maze, p);
 
             Navigation navigation = TestNavigation.create_navigation(character);
 
@@ -237,10 +239,10 @@ namespace mazecore.elements.test {
         [TestCase(Direction.South)]
         [TestCase(Direction.West)]
         public void test_cannot_move_null_tiles(Direction direction) {
-            int x = 2, y = 3;
+            Position p = new Position(2, 3);
             Maze maze = TestNavigation.create_maze();
-            Tile tile = TestNavigation.create_tile(maze, x, y);
-            Character character = TestNavigation.create_character(maze, x, y);
+            Tile tile = TestNavigation.create_tile(maze, p);
+            Character character = TestNavigation.create_character(maze, p);
             Navigation navigation = TestNavigation.create_navigation(character);
 
             Assert.False(navigation.can_move(direction));
@@ -252,15 +254,15 @@ namespace mazecore.elements.test {
         [TestCase(Direction.South)]
         [TestCase(Direction.West)]
         public void test_cannot_move_at_all_walled_in(Direction direction) {
-            int x = 2, y = 3;
+            Position p = new Position(2, 3);
             Maze maze = TestNavigation.create_maze();
-            Tile tile = TestNavigation.create_tile(maze, x, y);
-            TestNavigation.create_wall(maze, x, y, Direction.North);
-            TestNavigation.create_wall(maze, x, y, Direction.South);
-            TestNavigation.create_wall(maze, x, y, Direction.East);
-            TestNavigation.create_wall(maze, x, y, Direction.West);
+            Tile tile = TestNavigation.create_tile(maze, p);
+            TestNavigation.create_wall(maze, p, Direction.North);
+            TestNavigation.create_wall(maze, p, Direction.South);
+            TestNavigation.create_wall(maze, p, Direction.East);
+            TestNavigation.create_wall(maze, p, Direction.West);
 
-            Character character = TestNavigation.create_character(maze, x, y);
+            Character character = TestNavigation.create_character(maze, p);
             Navigation navigation = TestNavigation.create_navigation(character);
 
             Assert.False(navigation.can_move(direction));

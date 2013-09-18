@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1000]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\maze.sln</TopNode>
+  <SelectedNode>[0-1000]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\maze.sln</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1000]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\maze.sln" Expanded="true" />
+    <Node UniqueName="[0-1163]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll" Expanded="true" />
+    <Node UniqueName="[0-1164]mazecore" Expanded="true" />
+    <Node UniqueName="[0-1172]mazecore.control" Expanded="true" />
+    <Node UniqueName="[0-1173]mazecore.control.test" Expanded="true" />
+    <Node UniqueName="[0-1158]mazecore.control.test.ExceptionTrap+TestEventManager&lt;T&gt;" Expanded="true" />
+    <Node UniqueName="[0-1170]mazecore.direction" Expanded="true" />
+    <Node UniqueName="[0-1171]mazecore.direction.test" Expanded="true" />
+    <Node UniqueName="[0-1167]mazecore.elements" Expanded="true" />
+    <Node UniqueName="[0-1168]mazecore.elements.test" Expanded="true" />
+    <Node UniqueName="[0-1169]mazecore.elements.tests" Expanded="true" />
+    <Node UniqueName="[0-1165]mazecore.storage" Expanded="true" />
+    <Node UniqueName="[0-1166]mazecore.storage.test" Expanded="true" />
+    <Node UniqueName="[0-1257]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\bin\Debug\textmaze.dll" Expanded="true" />
+    <Node UniqueName="[0-1258]textmaze" Expanded="true" />
+    <Node UniqueName="[0-1259]textmaze.art" Expanded="true" />
+    <Node UniqueName="[0-1260]textmaze.art.test" Expanded="true" />
+    <Node UniqueName="[0-1265]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\bin\Debug\mazegen.dll" Expanded="true" />
+    <Node UniqueName="[0-1266]mazegen" Expanded="true" />
+    <Node UniqueName="[0-1267]mazegen.test" Expanded="true" />
+  </Nodes>
+</VisualState>

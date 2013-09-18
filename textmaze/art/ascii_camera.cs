@@ -18,8 +18,8 @@
             this.reset_range();
         }
 
-        public override Tuple<int, int> maze_to_render_coords(Maze maze, int p_x, int p_y) {
-            return this.renderer.maze_to_render_coords(maze, p_x, p_y);
+        public override Tuple<int, int> maze_to_render_coords(Maze maze, Position p) {
+            return this.renderer.maze_to_render_coords(maze, p);
         }
 
         public override char[][] render_char_array() {
