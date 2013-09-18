@@ -51,7 +51,7 @@ namespace mazegen {
             Tile t;
             for (x = 0; x < x_range; x++) {
                 for (y = 0; y < y_range; y++) {
-                    t = new Tile(maze, x, y);
+                    t = new Tile(maze, new Position(x, y));
                     this.encircle_tile(t);
                 }
             }
@@ -63,7 +63,7 @@ namespace mazegen {
             //choose a random tile to start with
             Random rng = new Random();
             x = rng.Next(1, x_range-1); y = rng.Next(1, y_range-1);//reduce the starting range
-            CellInfo current_cell = new CellInfo(maze.get_tile(x, y));
+            CellInfo current_cell = new CellInfo(maze.get_tile(new Position(x, y)));
             visited[x, y] = true;
 
             //while there are unvisited cells
@@ -76,14 +76,14 @@ namespace mazegen {
                     if (!next_direction.HasValue)
                         break;
                     next_cell = current_cell.tile.get_neighbor_tile(next_direction.Value);
-                    keep_searching =  next_cell != null ? visited[next_cell.get_x(), next_cell.get_y()] == true : true;
+                    keep_searching = next_cell != null ? visited[next_cell.get_position().x, next_cell.get_position().y] == true : true;
                 } while (keep_searching);
 
                 if (next_cell != null) {//current cell has cells which have not been visited
                     stack.Push(current_cell);
-                    maze.remove_wall(current_cell.tile.get_x(), current_cell.tile.get_y(), next_direction.Value); 
+                    maze.remove_wall(current_cell.tile.get_position(), next_direction.Value); 
                     current_cell = new CellInfo(next_cell);
-                    visited[current_cell.tile.get_x(), current_cell.tile.get_y()] = true;
+                    visited[current_cell.tile.get_position().x, current_cell.tile.get_position().y] = true;
                 }else if (stack.Count > 0) {
                     current_cell = stack.Pop();
                 }else {
@@ -94,7 +94,7 @@ namespace mazegen {
 
             for (int i = 0; i < (int)x_range*y_range * 0.1; i++) {
                 x = rng.Next(1, x_range-1);y=rng.Next(1, y_range-1);
-                maze.remove_wall(x, y, Direction.North);
+                maze.remove_wall(new Position(x, y), Direction.North);
             }
 
             return maze;

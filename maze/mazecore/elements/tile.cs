@@ -6,41 +6,37 @@ namespace mazecore.elements
 
     public class Block : Tile {
 
-        public Block(Maze maze, int x, int y) : base(maze, x, y) { }
+        public Block(Maze maze, Position p) : base(maze, p) { }
         public override bool can_stand(){return false;}
     }
 
     public class Tile{
-        
 
-        int x, y;
+
+        Position position;
         Maze maze;
 
-        public Tile(Maze maze, int x, int y) {
+        public Tile(Maze maze, Position p) {
 
-            this.x = x;
-            this.y = y;
+            this.position = p;
             this.maze = maze;
             
-            maze.set_tile(this, x, y);
+            maze.set_tile(this, p);
 
         }
 
-        public int get_x() { return this.x; }
-        public int get_y() { return this.y; }
+        public Position get_position() { return this.position; }
         public Maze get_maze() { return this.maze; }
 
-        public bool is_occupied() { return this.maze.get_character(this.x, this.y) != null; }
+        public bool is_occupied() { return this.maze.get_character(this.get_position()) != null; }
         public virtual bool can_stand() { return true; }
 
 
         public Tile get_neighbor_tile(Direction direction) {
 
-            int x = this.x, y = this.y;
-
-            DirectionControl.move(ref x, ref y, direction, 1);
+            Position p = DirectionControl.move(this.get_position(), direction, 1);
             try{
-                return this.maze.get_tile(x, y);
+                return this.maze.get_tile(p);
             }catch(ArgumentOutOfRangeException){
                 return null;
             }
@@ -48,7 +44,7 @@ namespace mazecore.elements
         }
         public Wall get_wall(Direction direction) {
             try {
-                return this.maze.get_wall(this.x, this.y, direction);
+                return this.maze.get_wall(this.get_position(), direction);
             }catch (ArgumentOutOfRangeException) {
                 return null;
             }

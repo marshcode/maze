@@ -1,0 +1,7 @@
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\bin\Release\mazegen.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\bin\Release\mazegen.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\bin\Release\mazecore.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\bin\Release\mazecore.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\obj\Release\ResolveAssemblyReference.cache
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\obj\Release\mazegen.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\obj\Release\mazegen.pdb

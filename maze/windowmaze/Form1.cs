@@ -24,7 +24,7 @@ namespace windowmaze
             for (int x = 0; x < maze.get_x_range() && character == null; x++) {
                 for (int y = 0; y < maze.get_y_range() && character == null; y++) {
                     try {
-                        character = new Character(maze, x, y);
+                        character = new Character(maze, new Position(x, y));
                     }catch(MazeException){
                     }
                  }
@@ -111,9 +111,7 @@ namespace windowmaze
         //because this is the top level controller
         public Tuple<int, int> get_char_position(ASCIIRendererCamera camera) {
 
-            return camera.maze_to_render_coords( this.maze,
-                                          this.character.get_x(),
-                                          this.character.get_y());
+            return camera.maze_to_render_coords( this.maze, this.character.get_position());
         }
         private void initialize_maze(Maze maze, ASCIIRenderer maze_renderer){
             this.maze = maze;

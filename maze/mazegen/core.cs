@@ -9,12 +9,12 @@ namespace mazegen {
 
         protected void encircle_tile(Tile t) {
             Maze maze = t.get_maze();
-            int x = t.get_x(), y = t.get_y();
+            Position p = t.get_position();
 
-            Wall north_wall = new Wall(maze, x, y, Direction.North);
-            Wall south_wall = new Wall(maze, x, y, Direction.South);
-            Wall east_wall = new Wall(maze, x, y, Direction.East);
-            Wall west_wall = new Wall(maze, x, y, Direction.West);
+            Wall north_wall = new Wall(maze, p, Direction.North);
+            Wall south_wall = new Wall(maze, p, Direction.South);
+            Wall east_wall = new Wall(maze, p, Direction.East);
+            Wall west_wall = new Wall(maze, p, Direction.West);
         }
 
 

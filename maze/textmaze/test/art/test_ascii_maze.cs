@@ -30,9 +30,10 @@
 
         protected void create_walls(Tile tile, Direction[] directions) {
 
-            int x = tile.get_x(), y = tile.get_y();
+            Position p = tile.get_position();
+
             foreach (Direction dir in directions) {
-                Wall wall = new Wall(tile.get_maze(), x, y, dir); 
+                Wall wall = new Wall(tile.get_maze(), p, dir); 
             }
 
         }
@@ -42,45 +43,55 @@
         public void test_complex() {
             Maze maze = new Maze(6, 3);
 
-            Tile t = new Tile(maze, 0, 2);
-            Wall w = new Wall(maze, 0, 2, Direction.North);
-            w = new Wall(maze, 0, 2, Direction.West);
-            w = new Wall(maze, 0, 2, Direction.East);
-            Character character = new Character(maze, 0, 2);
+            Position p1 = new Position(0, 2);
+            Position p2 = new Position(0, 1);
+            Position p3 = new Position(1, 1);
+            Position p4 = new Position(0, 0);
+            Position p5 = new Position(1, 0);
+            Position p6 = new Position(2, 0);
+            Position p7 = new Position(3, 0);
+            Position p8 = new Position(4, 0);
+            Position p9 = new Position(5, 0);
 
-            t = new Tile(maze, 0, 1);
-            w = new Wall(maze, 0, 1, Direction.West);
+            Tile t = new Tile(maze, p1);
+            Wall w = new Wall(maze, p1, Direction.North);
+            w = new Wall(maze, p1, Direction.West);
+            w = new Wall(maze, p1, Direction.East);
+            Character character = new Character(maze, p1);
 
-            t = new Tile(maze, 1, 1);
-            w = new Wall(maze, 1, 1, Direction.North);
-            w = new Wall(maze, 1, 1, Direction.East);
-            w = new Wall(maze, 1, 1, Direction.South);
+            t = new Tile(maze, p2);
+            w = new Wall(maze, p2, Direction.West);
 
-            t = new Tile(maze, 0, 0);
-            w = new Wall(maze, 0, 0, Direction.West);
-            w = new Wall(maze, 0, 0, Direction.South);
+            t = new Tile(maze, p3);
+            w = new Wall(maze, p3, Direction.North);
+            w = new Wall(maze, p3, Direction.East);
+            w = new Wall(maze, p3, Direction.South);
 
-            t = new Tile(maze, 1, 0);
-            w = new Wall(maze, 1, 0, Direction.South);
+            t = new Tile(maze, p4);
+            w = new Wall(maze, p4, Direction.West);
+            w = new Wall(maze, p4, Direction.South);
 
-            t = new Tile(maze, 2, 0);
-            w = new Wall(maze, 2, 0, Direction.South);
-            w = new Wall(maze, 2, 0, Direction.North);
+            t = new Tile(maze, p5);
+            w = new Wall(maze, p5, Direction.South);
 
-
-            t = new Tile(maze, 3, 0);
-            w = new Wall(maze, 3, 0, Direction.South);
-            w = new Wall(maze, 3, 0, Direction.North);
-
-            t = new Tile(maze, 4, 0);
-            w = new Wall(maze, 4, 0, Direction.South);
-            w = new Wall(maze, 4, 0, Direction.North);
+            t = new Tile(maze, p6);
+            w = new Wall(maze, p6, Direction.South);
+            w = new Wall(maze, p6, Direction.North);
 
 
-            t = new Tile(maze, 5, 0);
-            w = new Wall(maze, 5, 0, Direction.South);
-            w = new Wall(maze, 5, 0, Direction.East);
-            w = new Wall(maze, 5, 0, Direction.North);
+            t = new Tile(maze, p7);
+            w = new Wall(maze, p7, Direction.South);
+            w = new Wall(maze, p7, Direction.North);
+
+            t = new Tile(maze, p8);
+            w = new Wall(maze, p8, Direction.South);
+            w = new Wall(maze, p8, Direction.North);
+
+
+            t = new Tile(maze, p9);
+            w = new Wall(maze, p9, Direction.South);
+            w = new Wall(maze, p9, Direction.East);
+            w = new Wall(maze, p9, Direction.North);
 
 
             string expected = "┌─┐          \n" +
@@ -100,8 +111,8 @@
         [Test]
         public void test_two_rooms_vertical() {
             Maze maze = new Maze(1, 2);
-            Tile tile1 = new Tile(maze, 0, 0);
-            Tile tile2 = new Tile(maze, 0, 1);
+            Tile tile1 = new Tile(maze, new Position(0, 0));
+            Tile tile2 = new Tile(maze, new Position(0, 1));
 
             this.create_walls(tile1, new Direction[] { Direction.South, Direction.East, Direction.West });
             this.create_walls(tile2, new Direction[] { Direction.North, Direction.East, Direction.West });
@@ -119,8 +130,8 @@
         [Test]
         public void test_two_rooms_horizontal() {
             Maze maze = new Maze(2, 1);
-            Tile tile1 = new Tile(maze, 0, 0);
-            Tile tile2 = new Tile(maze, 1, 0);
+            Tile tile1 = new Tile(maze, new Position(0, 0));
+            Tile tile2 = new Tile(maze, new Position(1, 0));
 
             this.create_walls(tile1, new Direction[] { Direction.North, Direction.South, Direction.West });
             this.create_walls(tile2, new Direction[] { Direction.North, Direction.South, Direction.East });
@@ -138,7 +149,7 @@
         [Test]
         public void test_one_room() {
             Maze maze = new Maze(1, 1);
-            Tile tile = new Tile(maze, 0, 0);
+            Tile tile = new Tile(maze, new Position(0, 0));
             this.create_walls(tile, new Direction[]{Direction.North, Direction.East, Direction.South, Direction.West});
 
             ASCIIWallMaze character_maze = new ASCIIWallMaze(maze);
@@ -152,10 +163,10 @@
         [Test]
         public void test_two_rooms() {
             Maze maze = new Maze(2, 1);
-            Tile tile1 = new Tile(maze, 0, 0);
+            Tile tile1 = new Tile(maze, new Position(0, 0));
             this.create_walls(tile1, new Direction[] { Direction.North, Direction.East, Direction.South, Direction.West });
 
-            Tile tile2 = new Tile(maze, 1, 0);
+            Tile tile2 = new Tile(maze, new Position(1, 0));
             this.create_walls(tile2, new Direction[] { Direction.North, Direction.East, Direction.South, Direction.West });
 
             
@@ -172,10 +183,10 @@
         public void test_four_tiles() {
 
             Maze maze = new Maze(2, 2);
-            Tile tile1 = new Tile(maze, 0, 0);
-            Tile tile2 = new Tile(maze, 0, 1);
-            Tile tile3 = new Tile(maze, 1, 0);
-            Tile tile4 = new Tile(maze, 1, 1);
+            Tile tile1 = new Tile(maze, new Position(0, 0));
+            Tile tile2 = new Tile(maze, new Position(0, 1));
+            Tile tile3 = new Tile(maze, new Position(1, 0));
+            Tile tile4 = new Tile(maze, new Position(1, 1));
 
             Direction[] four_walls = {Direction.North, Direction.East, Direction.South, Direction.West};
             this.create_walls(tile1, four_walls);
@@ -200,10 +211,12 @@
         [TestCase(Direction.West,  "◄")]
         public void test_character_direction(Direction orientation, string char_glyph) {
             Maze maze = new Maze(1, 1);
-            Tile tile = new Tile(maze, 0, 0);
+            Position p = new Position(0, 0);
+
+            Tile tile = new Tile(maze, p);
             this.create_walls(tile, new Direction[] { Direction.North, Direction.East, Direction.South, Direction.West });
 
-            Character character = new Character(maze, 0, 0);
+            Character character = new Character(maze, p);
             character.set_orientation(orientation);
 
             ASCIIWallMaze character_maze = new ASCIIWallMaze(maze);
@@ -219,7 +232,7 @@
         public void test_new_style() {
 
             Maze maze = new Maze(1, 1);
-            Tile tile = new Tile(maze, 0, 0);
+            Tile tile = new Tile(maze, new Position(0, 0));
             this.create_walls(tile, new Direction[] { Direction.North, Direction.East, Direction.South, Direction.West });
 
             Glyph<Type> tile_glyph = new Glyph<Type>('#');
@@ -242,11 +255,11 @@
         public void test_four_rooms() {
 
             Maze maze = new Maze(2, 2);
-            Tile tile_ll = new Tile(maze, 0, 0);
-            Tile tile_ur = new Tile(maze, 1, 1);
+            Tile tile_ll = new Tile(maze, new Position(0, 0));
+            Tile tile_ur = new Tile(maze, new Position(1, 1));
 
-            Tile block_lr = new Block(maze, 1, 0);
-            Tile block_ul = new Block(maze, 0, 1);
+            Tile block_lr = new Block(maze, new Position(1, 0));
+            Tile block_ul = new Block(maze, new Position(0, 1));
 
             string expected = "█ \n" +
                               " █";
@@ -261,13 +274,13 @@
         public void with_character() {
 
             Maze maze = new Maze(2, 2);
-            Tile tile_ll = new Tile(maze, 0, 0);
-            Tile tile_ur = new Tile(maze, 1, 1);
+            Tile tile_ll = new Tile(maze, new Position(0, 0));
+            Tile tile_ur = new Tile(maze, new Position(1, 1));
 
-            Tile block_lr = new Block(maze, 1, 0);
-            Tile block_ul = new Block(maze, 0, 1);
+            Tile block_lr = new Block(maze, new Position(1, 0));
+            Tile block_ul = new Block(maze, new Position(0, 1));
 
-            Character character = new Character(maze, 0, 0);
+            Character character = new Character(maze, tile_ll.get_position());
 
             string expected = "█ \n" +
                               "▲█";

@@ -10,7 +10,7 @@
         //NOTE, all x and y's are reversed here.  
 
         abstract public char[][] render_char_array();
-        abstract public Tuple<int, int> maze_to_render_coords(Maze maze, int p_x, int p_y);
+        abstract public Tuple<int, int> maze_to_render_coords(Maze maze, Position p);
 
         public string[] render_string_array() {
             char[][] char_map = this.render_char_array();
@@ -69,56 +69,57 @@
             joint_direction_map[Direction.West] = WallJoint.West;
         }
 
-        public override Tuple<int, int> maze_to_render_coords(Maze maze, int p_x, int p_y) {
+        public override Tuple<int, int> maze_to_render_coords(Maze maze, Position p) {
             
-            int converted_y  = (p_y * 2) + 1;
+            int converted_y  = (p.y * 2) + 1;
             int maze_ceiling = (maze.get_y_range() * 2) + 1;
 
-            return new Tuple<int, int>((p_x * 2) + 1, maze_ceiling - converted_y);
+            return new Tuple<int, int>((p.x * 2) + 1, maze_ceiling - converted_y);
         }
 
         protected void process_tile(Tile tile, char[][] char_map) {
             if (tile == null) {
                 return;
             }
-            int chr_x_idx = (tile.get_x() * 2) + 1;
-            int chr_y_idx = (tile.get_y() * 2) + 1;
+            Position p = tile.get_position();
+
+            int chr_x_idx = (p.x * 2) + 1;
+            int chr_y_idx = (p.y * 2) + 1;
 
             //character
             char tile_char = this.style.get_tile_char( tile );
             if (tile.is_occupied()) {
                 //TODO: tile needs a 'get_character' method
-                Character character = tile.get_maze().get_character(tile.get_x(), tile.get_y());
+                Character character = tile.get_maze().get_character(tile.get_position());
                 tile_char = style.get_character_char(character);  
             }
             char_map[chr_y_idx][chr_x_idx] = tile_char;
 
 
             //shouldn't have to worry about out of bounds
-            int tmp_x, tmp_y;
             foreach(Direction dir in new Direction[]{Direction.North, Direction.East, Direction.South, Direction.West}){
                 if (tile.get_wall(dir) == null) {
                     continue;
                 }
-                
-                tmp_x = chr_x_idx; tmp_y = chr_y_idx;
-                DirectionControl.move(ref tmp_x, ref tmp_y, dir, 1);
-                char_map[tmp_y][tmp_x] = style.get_wall_char(tile, dir);
+                p = new Position(chr_x_idx, chr_y_idx);
+                p = DirectionControl.move(p, dir, 1);
+                char_map[p.y][p.x] = style.get_wall_char(tile, dir);
             }
         }
 
         protected void process_walls(char[][] char_map) {
 
-            int tmp_x, tmp_y;
+            Position p;
 
             for (int y = 0; y < char_map.Length; y += 2) {
                 for (int x = 0; x < char_map[y].Length; x += 2) {
                     WallJoint wall_joint = 0;
+                    
                     foreach (Direction dir in new Direction[]{Direction.North, Direction.East, Direction.South, Direction.West}) {
-                        tmp_x = x; tmp_y = y;
-                        DirectionControl.move(ref tmp_x, ref tmp_y, dir, 1);
+                        p = new Position(x, y);
+                        p = DirectionControl.move(p, dir, 1);
                         try {
-                            if (char_map[tmp_y][tmp_x] != style.get_wall_joint_char(0)) {
+                            if (char_map[p.y][p.x] != style.get_wall_joint_char(0)) {
                                 wall_joint = wall_joint | joint_direction_map[dir];
                             }
                         }catch (Exception) { continue; }  
@@ -146,7 +147,7 @@
             //process tiles
             for (int x = 0; x < maze.get_x_range(); x++) {
                 for (int y = 0; y < maze.get_y_range(); y++) {
-                    this.process_tile(maze.get_tile(x, y), char_map); 
+                    this.process_tile(maze.get_tile(new Position(x, y)), char_map); 
                 }
             }
             //process walls
@@ -161,8 +162,8 @@
 
         public ASCIIBlockMaze(Maze maze, IASCIIMazeStyle style = null) : base(maze, style) { }
 
-        public override Tuple<int, int> maze_to_render_coords(Maze maze, int p_x, int p_y) {
-            return new Tuple<int, int>(p_x, maze.get_y_range() - p_y);
+        public override Tuple<int, int> maze_to_render_coords(Maze maze, Position p) {
+            return new Tuple<int, int>(p.x, maze.get_y_range() - p.y);
         }
 
         protected override char[][] do_render_char_array()
@@ -178,10 +179,10 @@
                 char_map[y] = new char[maze.get_x_range()];
                 for (int x = 0; x < maze.get_x_range(); x++) {
 
-                    tile = maze.get_tile(x, y);
+                    tile = maze.get_tile(new Position(x, y));
                     tile_char = style.get_tile_char(tile);
                     if (tile.is_occupied()) {
-                        character = maze.get_character(tile.get_x(), tile.get_y());
+                        character = maze.get_character(tile.get_position());
                         tile_char = style.get_character_char(character); 
                     }
                     char_map[y][x] = tile_char;
