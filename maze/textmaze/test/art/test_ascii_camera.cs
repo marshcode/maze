@@ -21,15 +21,15 @@
             this.center_y = center_y;
         }
 
-        public Tuple<int, int> get_center_point(ASCIIRendererCamera camera){
-            return new Tuple<int, int>(this.center_x, this.center_y);
+        public Position get_center_point(ASCIIRendererCamera camera){
+            return new Position(this.center_x, this.center_y);
         }
 
     }
 
     class MyAsciiRenderer : ASCIIRenderer{
-        public override Tuple<int, int> maze_to_render_coords(Maze maze, Position p) {
-            return new Tuple<int, int>(p.x, p.y);
+        public override Position maze_to_render_coords(Maze maze, Position p) {
+            return p;
         }
 
         public override char[][] render_char_array(){

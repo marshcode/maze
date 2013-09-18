@@ -109,7 +109,7 @@ namespace windowmaze
          ********************************/
         //this should also be put into some kind of controller class.  It still belongs in Window maze
         //because this is the top level controller
-        public Tuple<int, int> get_char_position(ASCIIRendererCamera camera) {
+        public Position get_char_position(ASCIIRendererCamera camera) {
 
             return camera.maze_to_render_coords( this.maze, this.character.get_position());
         }
