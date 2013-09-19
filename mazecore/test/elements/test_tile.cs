@@ -67,10 +67,10 @@
         public void get_neighbor_tile_good() {
             Position p = new Position(2, 3);
 
-            Position east_p = DirectionControl.move(p, Direction.East, 1);
-            Position west_p = DirectionControl.move(p, Direction.West, 1);
-            Position north_p = DirectionControl.move(p, Direction.North, 1);
-            Position south_p = DirectionControl.move(p, Direction.South, 1);
+            Position east_p = p.move(Direction.East, 1);
+            Position west_p = p.move(Direction.West, 1);
+            Position north_p = p.move(Direction.North, 1);
+            Position south_p = p.move(Direction.South, 1);
 
 
             Maze maze = TestTile.create_maze();
@@ -107,7 +107,7 @@
         [Test]
         public void get_wall_good() {
             Position p = new Position(2, 2);
-            Position west_p = DirectionControl.move(p, Direction.West, 1);
+            Position west_p = p.move(Direction.West, 1);
 
             Maze maze = TestTile.create_maze();
             Tile a = TestTile.create_tile(maze, p);

@@ -46,7 +46,7 @@ namespace mazecore.elements {
                 return false;
             }
 
-            this.position = DirectionControl.move(this.position, direction, 1);
+            this.position = this.position.move(direction, 1);
             this.maze.set_character(this, this.position);
             
 

@@ -19,6 +19,8 @@
         }
 
         public override Position maze_to_render_coords(Position p) {
+
+
             return this.renderer.maze_to_render_coords(p);
         }
 

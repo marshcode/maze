@@ -106,7 +106,7 @@
                     continue;
                 }
                 p = new Position(chr_x_idx, chr_y_idx);
-                p = DirectionControl.move(p, dir, 1);
+                p = p.move(dir, 1);
                 char_map[p.y][p.x] = style.get_wall_char(tile, dir);
             }
         }
@@ -121,7 +121,7 @@
                     
                     foreach (Direction dir in new Direction[]{Direction.North, Direction.East, Direction.South, Direction.West}) {
                         p = new Position(x, y);
-                        p = DirectionControl.move(p, dir, 1);
+                        p = p.move(dir, 1);
                         try {
                             if (char_map[p.y][p.x] != style.get_wall_joint_char(0)) {
                                 wall_joint = wall_joint | joint_direction_map[dir];
