@@ -11,7 +11,7 @@
 
     class ASCIIMazeTest {
 
-        protected bool render_compare(ASCIIRenderer character_maze, string expected) {
+        protected bool render_compare(ASCIIRenderer character_maze, string expected, bool trim=true) {
             string actual = character_maze.render_string();
 
             Console.WriteLine("---");
@@ -20,7 +20,11 @@
             Console.WriteLine(expected);
             Console.WriteLine("---");
 
-            return actual.Trim().Equals(expected.Trim());
+            if (trim) {
+                expected = expected.Trim();
+            }
+
+            return actual.Trim().Equals(expected);
         }
 
     }

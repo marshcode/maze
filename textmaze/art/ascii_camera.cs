@@ -36,17 +36,17 @@
 
             
             int x_range = full_char_map[0].Length;
-            int t_x = x_range;
+            int d_x = x_range;
             if (this.x_range >= 0) {
                 x_range = this.x_range;
-                t_x = (x_range * 2) + 1;
+                d_x = (x_range * 2) + 1;
             }
 
             int y_range = full_char_map.Length;
-            int t_y = y_range;
+            int d_y = y_range;
             if (this.y_range >= 0) {
                 y_range = this.y_range;
-                t_y = (y_range * 2) + 1;
+                d_y = (y_range * 2) + 1;
             }
 
 
@@ -63,11 +63,11 @@
             int y_min_idx = Math.Max(center_y - y_range, 0);
             int y_max_idx = Math.Min(center_y + y_range, max_y_idx);
 
-            char[] default_line = new String(' ', t_x).ToCharArray();
-            clipped_char_map = new char[t_y][];
-            for (int i = 0; i < t_y; i++) {
-                clipped_char_map[i] = new char[t_x];
-                Array.Copy(default_line, clipped_char_map[i], t_x);
+            char[] default_line = new String(' ', d_x).ToCharArray();
+            clipped_char_map = new char[d_y][];
+            for (int i = 0; i < d_y; i++) {
+                clipped_char_map[i] = new char[d_x];
+                Array.Copy(default_line, clipped_char_map[i], d_x);
             }
 
             for (int f_y = y_min_idx, c_y = 0; f_y <= y_max_idx; f_y++, c_y++){

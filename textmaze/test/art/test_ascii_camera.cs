@@ -48,6 +48,8 @@
     [TestFixture]
     class TestASCIIRendererCamera : ASCIIMazeTest
     {
+
+
         public static ASCIIRendererCamera create_camera(ASCIIRenderer renderer, int center_x, int center_y) {
             PointStorage ps = new PointStorage(center_x, center_y);
             ASCIIRendererCamera camera = new ASCIIRendererCamera(renderer, ps.get_center_point);
@@ -61,9 +63,11 @@
             ASCIIRendererCamera arc = create_camera(mar, 0, 0);
             arc.set_range(2, 2);
 
-            string expected = "abc\n" +
-                              "fgh\n" +
-                              "klm";
+            string expected = "abc  \n" +
+                              "fgh  \n" +
+                              "klm  \n" +
+                              "     \n" +
+                              "     ";
 
             Assert.True(this.render_compare(arc, expected));
         }
@@ -78,9 +82,9 @@
                               "fghij\n" +
                               "klmno\n" +
                               "pqrst\n" +
-                              "uvwxy\n";
+                              "uvwxy";
 
-            Assert.True(this.render_compare(arc, expected));
+            Assert.True(this.render_compare(arc, expected, trim: false));
         }
 
         [TestCase(10, 10)]
@@ -103,13 +107,19 @@
         {
             MyAsciiRenderer mar = new MyAsciiRenderer();
             ASCIIRendererCamera arc = create_camera(mar, 2, 2);
-            arc.set_range(10, 10);
+            arc.set_range(5, 5);
 
-            string expected = "abcde\n" +
-                              "fghij\n" +
-                              "klmno\n" +
-                              "pqrst\n" +
-                              "uvwxy\n";
+            string expected = "abcde      \n" +
+                              "fghij      \n" +
+                              "klmno      \n" +
+                              "pqrst      \n" +
+                              "uvwxy      \n" +
+                              "           \n" +
+                              "           \n" +
+                              "           \n" +
+                              "           \n" +
+                              "           \n" +
+                              "           ";
 
             Assert.True(this.render_compare(arc, expected));
         }
@@ -123,12 +133,12 @@
 
             string expected = "ghi\n" +
                               "lmn\n" +
-                              "qrs\n";
+                              "qrs";
             arc.set_range(1, 1);
-            Assert.True(this.render_compare(arc, expected));
+            Assert.True(this.render_compare(arc, expected, trim: false));
 
             arc.set_range(-1, -1);
-            Assert.True(this.render_compare(arc, expected));
+            Assert.True(this.render_compare(arc, expected, trim: false));
         }
 
 
@@ -140,9 +150,9 @@
 
             string expected = "ghi\n" +
                               "lmn\n" +
-                              "qrs\n";
+                              "qrs";
 
-            Assert.True(this.render_compare(arc, expected));
+            Assert.True(this.render_compare(arc, expected, trim: false));
         }
 
         [Test]
@@ -153,7 +163,7 @@
 
             string expected = "m";
 
-            Assert.True(this.render_compare(arc, expected));
+            Assert.True(this.render_compare(arc, expected, trim: false));
         }
 
 
