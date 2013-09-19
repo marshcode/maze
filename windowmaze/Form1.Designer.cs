@@ -198,7 +198,6 @@
             this.MainMenuStrip = this.mnuMain;
             this.Name = "Form1";
             this.Text = "Beautiful Mazes";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.handle_user_input);
             this.mnuMain.ResumeLayout(false);
             this.mnuMain.PerformLayout();
