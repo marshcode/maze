@@ -37,9 +37,9 @@ namespace windowmaze
          *******************************/
 
         Maze maze;
-        ASCIIRenderer the_renderer;
+        ASCIIRenderer final_renderer;
         ASCIIRendererCamera camera;
-        ASCIIRenderer the_maze;
+        ASCIIRenderer first_renderer;
 
         Character character;
 
@@ -48,8 +48,8 @@ namespace windowmaze
             InitializeComponent();
             this.maze         = null;
             this.character    = null;
-            this.the_maze     = null;
-            this.the_renderer = null;
+            this.final_renderer = null;
+            this.first_renderer = null;
 
             this.menu_new_wall_maze(null, null);
             this.set_font_size(10); //any smaller and it doesn't look right.
@@ -111,7 +111,7 @@ namespace windowmaze
         //because this is the top level controller
         public Position get_char_position(ASCIIRendererCamera camera) {
 
-            return camera.maze_to_render_coords( this.maze, this.character.get_position());
+            return first_renderer.maze_to_render_coords( this.character.get_position());
         }
         private void initialize_maze(Maze maze, ASCIIRenderer maze_renderer){
             this.maze = maze;
@@ -119,9 +119,9 @@ namespace windowmaze
             this.character = PlaceCharacter(this.maze);
 
             ASCIIRendererCamera camera = new ASCIIRendererCamera(maze_renderer, this.get_char_position);
-            this.the_maze = maze_renderer;
+            this.first_renderer = maze_renderer;
             this.camera = camera;
-            this.the_renderer = camera;
+            this.final_renderer = camera;
 
             this.draw_maze();
             this.maze_resized();
@@ -132,7 +132,7 @@ namespace windowmaze
         private void draw_maze(){
             if(maze == null){return;}
 
-            this.maze_label.Text = this.the_renderer.render_string();
+            this.maze_label.Text = this.final_renderer.render_string();
         }
 
 
@@ -198,6 +198,10 @@ namespace windowmaze
             this.camera.set_range(new_view, new_view);
             this.draw_maze();
             this.maze_resized();
+        }
+
+        private void Form1_Load(object sender, EventArgs e) {
+
         }
 
     }

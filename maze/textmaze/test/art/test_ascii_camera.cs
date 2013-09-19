@@ -28,7 +28,7 @@
     }
 
     class MyAsciiRenderer : ASCIIRenderer{
-        public override Position maze_to_render_coords(Maze maze, Position p) {
+        public override Position maze_to_render_coords(Position p) {
             return p;
         }
 

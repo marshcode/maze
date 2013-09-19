@@ -18,8 +18,8 @@
             this.reset_range();
         }
 
-        public override Position maze_to_render_coords(Maze maze, Position p) {
-            return this.renderer.maze_to_render_coords(maze, p);
+        public override Position maze_to_render_coords(Position p) {
+            return this.renderer.maze_to_render_coords(p);
         }
 
         public override char[][] render_char_array() {

@@ -10,7 +10,7 @@
         //NOTE, all x and y's are reversed here.  
 
         abstract public char[][] render_char_array();
-        abstract public Position maze_to_render_coords(Maze maze, Position p);
+        abstract public Position maze_to_render_coords(Position p);
 
         public string[] render_string_array() {
             char[][] char_map = this.render_char_array();
@@ -69,10 +69,14 @@
             joint_direction_map[Direction.West] = WallJoint.West;
         }
 
-        public override Position maze_to_render_coords(Maze maze, Position p) {
-            
+        public override Position maze_to_render_coords(Position p) {
+
+            if (!this.maze.in_range(p)) {
+                throw new MazeException(String.Format("Position is out of range: ({0}, {1})", p.x, p.y));
+            }
+
             int converted_y  = (p.y * 2) + 1;
-            int maze_ceiling = (maze.get_y_range() * 2) + 1;
+            int maze_ceiling = (this.maze.get_y_range() * 2) + 1;
 
             return new Position((p.x * 2) + 1, maze_ceiling - converted_y);
         }
@@ -162,8 +166,12 @@
 
         public ASCIIBlockMaze(Maze maze, IASCIIMazeStyle style = null) : base(maze, style) { }
 
-        public override Position maze_to_render_coords(Maze maze, Position p) {
-            return new Position(p.x, maze.get_y_range() - p.y);
+        public override Position maze_to_render_coords(Position p) {
+            if (!this.maze.in_range(p)) {
+                throw new MazeException(String.Format("Position is out of range: ({0}, {1})", p.x, p.y));
+            }
+
+            return new Position(p.x, this.maze.get_y_range() - p.y);
         }
 
         protected override char[][] do_render_char_array()
