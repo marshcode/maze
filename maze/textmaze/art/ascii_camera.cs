@@ -34,8 +34,21 @@
             int center_x = center_point.x;
             int center_y = center_point.y;
 
-            int x_range = this.x_range >= 0 ? this.x_range : full_char_map[0].Length;
-            int y_range = this.y_range >= 0 ? this.y_range : full_char_map.Length;
+            
+            int x_range = full_char_map[0].Length;
+            int t_x = x_range;
+            if (this.x_range >= 0) {
+                x_range = this.x_range;
+                t_x = (x_range * 2) + 1;
+            }
+
+            int y_range = full_char_map.Length;
+            int t_y = y_range;
+            if (this.y_range >= 0) {
+                y_range = this.y_range;
+                t_y = (y_range * 2) + 1;
+            }
+
 
             if (center_x < 0 || center_x > max_x_idx){
                 throw new mazecore.elements.MazeException(string.Format("Bad center x: {0}", center_x));
@@ -49,14 +62,17 @@
 
             int y_min_idx = Math.Max(center_y - y_range, 0);
             int y_max_idx = Math.Min(center_y + y_range, max_y_idx);
-            
-            clipped_char_map = new char[y_max_idx - y_min_idx + 1][];
+
+            char[] default_line = new String(' ', t_x).ToCharArray();
+            clipped_char_map = new char[t_y][];
+            for (int i = 0; i < t_y; i++) {
+                clipped_char_map[i] = new char[t_x];
+                Array.Copy(default_line, clipped_char_map[i], t_x);
+            }
 
             for (int f_y = y_min_idx, c_y = 0; f_y <= y_max_idx; f_y++, c_y++){
-                clipped_char_map[c_y] = new char[x_max_idx - x_min_idx + 1];
-                for (int f_x = x_min_idx, c_x=0; f_x <= x_max_idx; f_x++, c_x++){
-                    clipped_char_map[c_y][c_x] = full_char_map[f_y][f_x];
-                }
+                Array.Copy(full_char_map[f_y], x_min_idx, clipped_char_map[c_y], 0, x_max_idx - x_min_idx +1);
+
             }
             return clipped_char_map; 
         }
@@ -72,6 +88,4 @@
         }
 
     }
-
-
 }
