@@ -21,6 +21,11 @@ namespace mazecore.elements {
             this.y = y;
         }
 
+        public Position move(Direction direction, int by) {
+            return DirectionControl.move(this, direction, by);
+        }
+
+
     }
 
     public class Maze {

@@ -20,7 +20,7 @@ namespace mazecore.elements.test {
             Character character = TestCharacter.create_character(maze, p);
 
 
-            p = DirectionControl.move(p, Direction.South, 1);
+            p = p.move(Direction.South, 1);
             Tile tile_south = TestCharacter.create_tile(maze, p);
 
             Assert.AreEqual(character.get_tile(), tile);
@@ -98,10 +98,10 @@ namespace mazecore.elements.test {
             Maze maze = TestCharacter.create_maze();
             Tile tile = TestCharacter.create_tile(maze, p);
 
-            p_t = DirectionControl.move(p, Direction.North, 1);
+            p_t = p.move(Direction.North, 1);
             Tile tile_north = TestCharacter.create_tile(maze, p_t);
 
-            p_t = DirectionControl.move(p, Direction.South, 1);
+            p_t = p.move(Direction.South, 1);
             Tile tile_south = TestCharacter.create_tile(maze, p_t);
             Character character_south = TestCharacter.create_character(maze, p_t);
 
@@ -165,10 +165,10 @@ namespace mazecore.elements.test {
         public static Tile[] create_tile_neighbors(Maze maze, Tile t) {
             Position p = t.get_position();
 
-            Tile tile_north = TestNavigation.create_tile(maze, DirectionControl.move(p, Direction.North, 1));
-            Tile tile_east = TestNavigation.create_tile(maze, DirectionControl.move(p, Direction.East, 1));
-            Tile tile_south = TestNavigation.create_tile(maze, DirectionControl.move(p, Direction.South, 1));
-            Tile tile_west = TestNavigation.create_tile(maze, DirectionControl.move(p, Direction.West, 1));
+            Tile tile_north = TestNavigation.create_tile(maze, p.move(Direction.North, 1));
+            Tile tile_east = TestNavigation.create_tile(maze, p.move(Direction.East, 1));
+            Tile tile_south = TestNavigation.create_tile(maze, p.move(Direction.South, 1));
+            Tile tile_west = TestNavigation.create_tile(maze, p.move(Direction.West, 1));
 
 
             return new Tile[] { tile_north, tile_east, tile_south, tile_west };

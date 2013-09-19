@@ -34,7 +34,7 @@ namespace mazecore.elements
 
         public Tile get_neighbor_tile(Direction direction) {
 
-            Position p = DirectionControl.move(this.get_position(), direction, 1);
+            Position p = this.get_position().move(direction, 1);
             try{
                 return this.maze.get_tile(p);
             }catch(ArgumentOutOfRangeException){

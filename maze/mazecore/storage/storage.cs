@@ -103,11 +103,11 @@
         }
         private Tuple<Position, Direction> position_correct(Position p, Direction direction) {
             if (direction == Direction.South) {
-                p = DirectionControl.move(p, direction, 1);
+                p = p.move(direction, 1);
                 direction = Direction.North;
             }
             else if (direction == Direction.West) {
-                p = DirectionControl.move(p, direction, 1);
+                p = p.move(direction, 1);
                 direction = Direction.East;
             }
             return new Tuple<Position, Direction>(p, direction);
