@@ -5,24 +5,24 @@
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
     <Node UniqueName="[0-1000]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\maze.sln" Expanded="true" />
-    <Node UniqueName="[0-1163]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll" Expanded="true" />
-    <Node UniqueName="[0-1164]mazecore" Expanded="true" />
-    <Node UniqueName="[0-1172]mazecore.control" Expanded="true" />
-    <Node UniqueName="[0-1173]mazecore.control.test" Expanded="true" />
-    <Node UniqueName="[0-1158]mazecore.control.test.ExceptionTrap+TestEventManager&lt;T&gt;" Expanded="true" />
-    <Node UniqueName="[0-1170]mazecore.direction" Expanded="true" />
-    <Node UniqueName="[0-1171]mazecore.direction.test" Expanded="true" />
-    <Node UniqueName="[0-1167]mazecore.elements" Expanded="true" />
-    <Node UniqueName="[0-1168]mazecore.elements.test" Expanded="true" />
-    <Node UniqueName="[0-1169]mazecore.elements.tests" Expanded="true" />
-    <Node UniqueName="[0-1165]mazecore.storage" Expanded="true" />
-    <Node UniqueName="[0-1166]mazecore.storage.test" Expanded="true" />
-    <Node UniqueName="[0-1257]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\bin\Debug\textmaze.dll" Expanded="true" />
-    <Node UniqueName="[0-1258]textmaze" Expanded="true" />
-    <Node UniqueName="[0-1259]textmaze.art" Expanded="true" />
-    <Node UniqueName="[0-1260]textmaze.art.test" Expanded="true" />
-    <Node UniqueName="[0-1265]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\bin\Debug\mazegen.dll" Expanded="true" />
-    <Node UniqueName="[0-1266]mazegen" Expanded="true" />
-    <Node UniqueName="[0-1267]mazegen.test" Expanded="true" />
+    <Node UniqueName="[0-1156]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazecore\bin\Debug\mazecore.dll" Expanded="true" />
+    <Node UniqueName="[0-1157]mazecore" Expanded="true" />
+    <Node UniqueName="[0-1165]mazecore.control" Expanded="true" />
+    <Node UniqueName="[0-1166]mazecore.control.test" Expanded="true" />
+    <Node UniqueName="[0-1151]mazecore.control.test.ExceptionTrap+TestEventManager&lt;T&gt;" Expanded="true" />
+    <Node UniqueName="[0-1163]mazecore.direction" Expanded="true" />
+    <Node UniqueName="[0-1164]mazecore.direction.test" Expanded="true" />
+    <Node UniqueName="[0-1160]mazecore.elements" Expanded="true" />
+    <Node UniqueName="[0-1161]mazecore.elements.test" Expanded="true" />
+    <Node UniqueName="[0-1162]mazecore.elements.tests" Expanded="true" />
+    <Node UniqueName="[0-1158]mazecore.storage" Expanded="true" />
+    <Node UniqueName="[0-1159]mazecore.storage.test" Expanded="true" />
+    <Node UniqueName="[0-1250]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\bin\Debug\textmaze.dll" Expanded="true" />
+    <Node UniqueName="[0-1251]textmaze" Expanded="true" />
+    <Node UniqueName="[0-1252]textmaze.art" Expanded="true" />
+    <Node UniqueName="[0-1253]textmaze.art.test" Expanded="true" />
+    <Node UniqueName="[0-1258]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\bin\Debug\mazegen.dll" Expanded="true" />
+    <Node UniqueName="[0-1259]mazegen" Expanded="true" />
+    <Node UniqueName="[0-1260]mazegen.test" Expanded="true" />
   </Nodes>
 </VisualState>

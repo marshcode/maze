@@ -1,4 +1,4 @@
-﻿namespace mazecore.elements.tests {
+﻿namespace mazecore.elements.test {
     
     using NUnit.Framework;
     using mazecore.direction;

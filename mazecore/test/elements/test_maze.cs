@@ -19,6 +19,30 @@
             Assert.AreEqual(maze.get_x_range(), 10);
             Assert.AreEqual(maze.get_y_range(), 15);
         }
+
+        [TestCase(0, 0, true),
+         TestCase(2, 2, true),
+         TestCase(5, 5, true),
+         TestCase(8, 8, true),
+         TestCase(10, 12, true),
+         TestCase(10, 15, true),
+         TestCase(0, 15, true),
+         TestCase(2, 12, true),
+         TestCase(5, 8, true),
+         TestCase(8, 5, true),
+         TestCase(10, 2, true),
+         TestCase(10, 0, true),
+         TestCase(-1, -1, false),
+         TestCase(11, 16, false),
+         TestCase(0, -1, false),
+         TestCase(-1, 0, false)
+        ]
+        public void test_in_range(int x, int y, bool expected) {
+            Maze maze = TestMaze.create_maze();
+            Assert.AreEqual(maze.in_range(new Position(x, y)), expected);
+
+        }
+
         [Test]
         public void test_tile() {
 

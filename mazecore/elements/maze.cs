@@ -35,7 +35,14 @@ namespace mazecore.elements {
             this.wall_storage = new SharedEdgeStorage<Wall>(x_range, y_range);
             this.character_storage = new GridStorage<Character>(x_range, y_range);
         }
-        
+
+        public bool in_range(Position p) {
+            if (p.x < 0 || p.x > this.get_x_range() || p.y < 0 || p.y > this.get_y_range()) {
+                return false;
+            }
+            return true;
+        }
+
         public int get_x_range() { return this.tile_storage.get_x_range(); }
         public int get_y_range() { return this.tile_storage.get_y_range(); }
 

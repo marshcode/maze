@@ -38,6 +38,37 @@
 
         }
 
+        [TestCase(-1, -1),
+         TestCase(11, 16)]
+        public void test_maze_to_render_coords_fail(int x, int y) {
+            Position original = new Position(x, y);
+            Maze maze = new Maze(10, 15);
+            ASCIIWallMaze maze_renderer = new ASCIIWallMaze(maze);
+            Assert.Throws<MazeException>(
+                    delegate { maze_renderer.maze_to_render_coords(original); });
+            
+           
+        }
+
+        [TestCase(0, 0, 1, 30),
+
+         TestCase(0, 1, 1, 28),
+         TestCase(0, 2, 1, 26),
+        //notice in the last three, a difference of one in the orignal is a difference of two in the new coordiantes
+         //this is due to the wall renderng taking up two spaces on either size.
+         TestCase(1, 0, 3, 30),
+         TestCase(2, 0, 5, 30),
+         TestCase(10, 15, 21, 0)]
+        public void test_maze_to_render_coords(int x, int y, int exp_x, int exp_y) {
+
+            Position original = new Position(x, y);
+            Maze maze = new Maze(10, 15);
+            ASCIIWallMaze maze_renderer = new ASCIIWallMaze(maze);
+            Position new_ = maze_renderer.maze_to_render_coords(original);
+
+            Assert.AreEqual(new_.x, exp_x);
+            Assert.AreEqual(new_.y, exp_y);
+        }
 
         [Test]
         public void test_complex() {
@@ -289,6 +320,38 @@
             Assert.True(this.render_compare(maze_render, expected));
 
         }
+
+        [TestCase(-1, -1),
+         TestCase(11, 16)]
+        public void test_maze_to_render_coords_fail(int x, int y) {
+            Position original = new Position(x, y);
+            Maze maze = new Maze(10, 15);
+            ASCIIBlockMaze maze_renderer = new ASCIIBlockMaze(maze);
+            Assert.Throws<MazeException>(
+                    delegate { maze_renderer.maze_to_render_coords(original); });
+
+
+        }
+
+        [TestCase(0, 0, 0, 15),
+         TestCase(0, 1, 0, 14),
+         TestCase(0, 2, 0, 13),
+         //notice these last three: a difference of one in the original is a difference of 1 in the new coordinates
+         TestCase(1, 0, 1, 15),
+         TestCase(2, 0, 2, 15),
+         TestCase(10, 15, 10, 0)]
+        public void test_maze_to_render_coords(int x, int y, int exp_x, int exp_y) {
+
+            Position original = new Position(x, y);
+            Maze maze = new Maze(10, 15);
+            ASCIIBlockMaze maze_renderer = new ASCIIBlockMaze(maze);
+            Position new_ = maze_renderer.maze_to_render_coords(original);
+
+            Assert.AreEqual(new_.x, exp_x);
+            Assert.AreEqual(new_.y, exp_y);
+        }
+
+
 
     }
 
