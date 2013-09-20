@@ -52,10 +52,10 @@ namespace mazecore.elements
         }
 
         //internally visible methods.  Determine the best usage for these two methods:
-        //should the character be provided to the tile or should the character be able to obtain
+        //should the character be provided to the tile or should the tile be able to obtain
         //the character from the maze
-        void action_step_on() { }
-        void action_stop_off() { }
+        void action_step_on(Character c) { }
+        void action_stop_off(Character c) { }
 
     }
 
