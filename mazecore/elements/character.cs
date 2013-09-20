@@ -36,9 +36,6 @@ namespace mazecore.elements {
             return this.get_maze().get_tile(this.position);
         }
 
-
-
-
         public bool move(Direction direction) {
             bool can_move = this.navigation.can_move(direction);
 
@@ -46,9 +43,11 @@ namespace mazecore.elements {
                 return false;
             }
 
-            this.position = this.position.move(direction, 1);
-            this.maze.set_character(this, this.position);
-            
+            //The event system needs the character position to 
+            //reflect the storage position until after the update.
+            Position new_p = this.position.move(direction, 1);
+            this.maze.set_character(this, new_p);
+            this.position = new_p;
 
             return true;
 

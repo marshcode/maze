@@ -5,6 +5,23 @@
     using mazecore.elements;
     using mazecore.test;
 
+    class TileEventCount : Tile {
+
+        public int on_count;
+        public int off_count;
+
+        public TileEventCount(Maze maze, Position p)
+            : base(maze, p) {
+                this.on_count = 0;
+                this.off_count = 0;
+        }
+
+        public override void action_step_on(Character c) { this.on_count += 1; }
+        public override void action_step_off(Character c) { this.off_count += 1; }
+
+    }
+
+
     [TestFixture]
     class TestMaze : TestBaseClass {
         /********************
@@ -187,6 +204,56 @@
 
             Assert.Throws<ArgumentOutOfRangeException>(
                     delegate { TestMaze.create_character(maze, p1); });
+        }
+
+
+        [Test]
+        public void test_normal_event() {            
+            Maze maze = new Maze(1, 2);
+            TileEventCount t00 = new TileEventCount(maze, new Position(0, 0));
+            TileEventCount t01 = new TileEventCount(maze, new Position(0, 1));
+            Character c;
+            int event_count = 0;
+
+
+            maze.get_movement_event(t00.get_position()).register(delegate(MovementEvent evt) {
+                event_count += 1;
+            });
+
+            maze.get_movement_event(t01.get_position()).register(delegate(MovementEvent evt) {
+                event_count += 1;
+            });
+
+            Assert.AreEqual(t00.on_count, 0);
+            Assert.AreEqual(t00.off_count, 0);
+            Assert.AreEqual(t01.on_count, 0);
+            Assert.AreEqual(t01.off_count, 0);
+            Assert.AreEqual(event_count, 0);
+
+            //events don't fire when the position is the same.  
+            c = new Character(maze, t00.get_position());
+            Assert.AreEqual(t00.on_count, 0);
+            Assert.AreEqual(t00.off_count, 0);
+            Assert.AreEqual(t01.on_count, 0);
+            Assert.AreEqual(t01.off_count, 0);
+            Assert.AreEqual(event_count, 0);
+
+            c.move(Direction.North);
+
+            Assert.AreEqual(t00.on_count, 0);
+            Assert.AreEqual(t00.off_count, 1);
+            Assert.AreEqual(t01.on_count, 1);
+            Assert.AreEqual(t01.off_count, 0);
+            Assert.AreEqual(event_count, 1);
+
+            c.move(Direction.South);
+            Assert.AreEqual(t00.on_count, 1);
+            Assert.AreEqual(t00.off_count, 1);
+            Assert.AreEqual(t01.on_count, 1);
+            Assert.AreEqual(t01.off_count, 1);
+            Assert.AreEqual(event_count, 2);
+
+
         }
     }
 }
