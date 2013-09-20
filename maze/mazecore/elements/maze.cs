@@ -41,26 +41,31 @@ namespace mazecore.elements {
         }
 
     }
-
-    public class Maze {
-
-
-        public class MovementEvent {
-            public readonly Character character;
-            public MovementEvent(Character character) {
-                this.character = character;
-            }
+    /// <summary>
+    /// Movement Event that details the step on and off
+    /// </summary>
+    public class MovementEvent {
+        public readonly Character character;
+        public MovementEvent(Character character) {
+            this.character = character;
         }
+    }
+
+    /// <summary>
+    /// Holds the topology of the maze
+    /// </summary>
+    public class Maze {
 
         private GridStorage<Tile> tile_storage;
         private SharedEdgeStorage<Wall> wall_storage;
         private GridStorage<Character> character_storage;
-        private Dictionary<Tuple<int, int>, EventManager<MovementEvent>> events;
+        private Dictionary<Position, EventManager<MovementEvent>> movement_events;
 
         public Maze(int x_range, int y_range) {
             this.tile_storage = new GridStorage<Tile>(x_range, y_range);
             this.wall_storage = new SharedEdgeStorage<Wall>(x_range, y_range);
             this.character_storage = new GridStorage<Character>(x_range, y_range);
+            this.movement_events = new Dictionary<Position, EventManager<MovementEvent>>();
         }
 
         public bool in_range(Position p) {
@@ -89,13 +94,34 @@ namespace mazecore.elements {
                 throw new MazeException(string.Format("Cannot set character on {0}, {1}.  Tile is already occupied", p.x, p.y));
             }
 
+            bool do_events = !character.get_position().Equals(p);
+            Console.WriteLine(do_events);
+            if (do_events) {
+                this.get_tile(character.get_position()).action_step_off(character);
+            }
+            
             this.character_storage.move(character, p);
 
-            //maze will be responsible for tile events
-        
+            if (do_events) {
+                this.get_tile(p).action_step_on(character);
+                this.get_movement_event(p).announce(new MovementEvent(character));
+            }
+
         }
         public Character get_character(Position p) { return this.character_storage.get_item(p); }
         public void remove_character(Position p) { this.character_storage.remove_item(p); }
+
+        public EventManager<MovementEvent> get_movement_event(Position p){
+
+            EventManager<MovementEvent> event_manager;
+            if (!this.movement_events.ContainsKey(p)) {
+                event_manager = new EventManager<MovementEvent>();
+                this.movement_events.Add(p, event_manager);
+            }else {
+                event_manager = this.movement_events[p];
+            }
+            return event_manager;
+        }
 
     }
 

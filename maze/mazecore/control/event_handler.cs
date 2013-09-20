@@ -2,7 +2,7 @@
 namespace mazecore.control {
     using System;
 
-    class EventManager<R> {
+    public class EventManager<R> {
 
         private Action<R> callbacks;
 
