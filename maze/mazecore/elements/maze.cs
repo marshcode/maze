@@ -2,9 +2,11 @@
 namespace mazecore.elements {
 
     using System;
+    using System.Collections.Generic;
 
     using mazecore.storage;
     using mazecore.direction;
+    using mazecore.control;
 
     public class MazeException : Exception {
         public MazeException(string message)
@@ -25,15 +27,35 @@ namespace mazecore.elements {
             return DirectionControl.move(this, direction, by);
         }
 
+        public override bool Equals(object obj) {
+            Position other_pos = obj as Position;
+            return other_pos.x == this.x && other_pos.y == this.y;
+        }
+
+        public override int GetHashCode() {
+            int hash = 17;
+            hash = (hash * 31) + this.x.GetHashCode();
+            hash = (hash * 31) + this.y.GetHashCode();
+            return hash;
+
+        }
 
     }
 
     public class Maze {
 
 
+        public class MovementEvent {
+            public readonly Character character;
+            public MovementEvent(Character character) {
+                this.character = character;
+            }
+        }
+
         private GridStorage<Tile> tile_storage;
         private SharedEdgeStorage<Wall> wall_storage;
         private GridStorage<Character> character_storage;
+        private Dictionary<Tuple<int, int>, EventManager<MovementEvent>> events;
 
         public Maze(int x_range, int y_range) {
             this.tile_storage = new GridStorage<Tile>(x_range, y_range);
