@@ -54,8 +54,8 @@ namespace mazecore.elements
         //internally visible methods.  Determine the best usage for these two methods:
         //should the character be provided to the tile or should the tile be able to obtain
         //the character from the maze
-        public virtual void action_step_on(Character c) { }
-        public virtual void action_step_off(Character c) { }
+        public virtual void action_step_on(MovementEvent e) { }
+        public virtual void action_step_off(MovementEvent e) { }
 
     }
 

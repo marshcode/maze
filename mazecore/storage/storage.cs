@@ -58,13 +58,13 @@
             return this.storage.GetLength(1);
         }
 
-        public void move(T item, Position new_) {
+        public Position move(T item, Position new_) {
             Position old = this.get_position(item);
             if (old != null) {
                 this.remove_item(old);
             }
             this.set_item(item, new_);
-
+            return old;
         }
 
         public void set_item(T item, Position p) {
