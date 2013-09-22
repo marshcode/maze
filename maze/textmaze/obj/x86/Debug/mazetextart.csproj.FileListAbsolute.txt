@@ -1,0 +1,10 @@
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\bin\Debug\textmaze.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\bin\Debug\textmaze.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\bin\Debug\mazecore.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\bin\Debug\mazegen.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\bin\Debug\nunit.framework.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\bin\Debug\mazecore.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\bin\Debug\mazegen.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\obj\x86\Debug\textmaze.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\obj\x86\Debug\textmaze.pdb

@@ -85,9 +85,9 @@
       <Project>{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}</Project>
       <Name>mazegen</Name>
     </ProjectReference>
-    <ProjectReference Include="..\textmaze\textmaze.csproj">
+    <ProjectReference Include="..\textmaze\mazetextart.csproj">
       <Project>{D63BAB76-9B4C-4D74-BF7B-D328C4BBB6F3}</Project>
-      <Name>textmaze</Name>
+      <Name>mazetextart</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

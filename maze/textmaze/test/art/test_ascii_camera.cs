@@ -1,8 +1,8 @@
-﻿namespace textmaze.art.test
+﻿namespace mazetextart.art.test
 {
 
     using NUnit.Framework;
-    using textmaze.art;
+    using mazetextart.art;
     using System;
 
     using mazecore.elements;

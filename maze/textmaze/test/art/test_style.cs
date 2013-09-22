@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace textmaze.art.test
+namespace mazetextart.art.test
 {
     using mazecore.test;
     using mazecore.elements;

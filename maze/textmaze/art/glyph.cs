@@ -1,4 +1,4 @@
-﻿namespace textmaze.art {
+﻿namespace mazetextart.art {
 
     using System.Collections.Generic;
 
