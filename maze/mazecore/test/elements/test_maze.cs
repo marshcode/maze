@@ -9,27 +9,26 @@
 
     class TileEventCount : Tile {
 
-        public int on_count;
-        public int off_count;
-
         public List<MovementEvent> on_events;
         public List<MovementEvent> off_events;
 
         public TileEventCount(Maze maze, Position p)
             : base(maze, p) {
-                this.on_count = 0;
-                this.off_count = 0;
-
                 this.on_events = new List<MovementEvent>();
                 this.off_events = new List<MovementEvent>();
         }
 
+        public MovementEvent get_last_on_event(){
+            return this.on_events[this.on_events.Count-1];
+        }
         public override void action_step_on(MovementEvent me) { 
-            this.on_count += 1;
             this.on_events.Add(me);
         }
+
+        public MovementEvent get_last_off_event() {
+            return this.off_events[this.off_events.Count-1];
+        }
         public override void action_step_off(MovementEvent me) { 
-            this.off_count += 1;
             this.off_events.Add(me);
         }
 
@@ -224,9 +223,23 @@
         [Test]
         public void test_normal_event() {            
             Maze maze = new Maze(1, 2);
+
             TileEventCount t00 = new TileEventCount(maze, new Position(0, 0));
             TileEventCount t01 = new TileEventCount(maze, new Position(0, 1));
             Character c;
+
+            Action<MovementEvent, Character, Position, Position> assert_movement_event = 
+                delegate( MovementEvent me, Character character,
+                          Position moved_from, Position moved_to) {
+
+                Assert.AreEqual(me.character, character, "Character failure.");
+                Assert.AreEqual(me.character.get_position(), moved_to, "Character position does not match given destination.");
+                Assert.AreEqual(me.moved_from, moved_from, "Position: Moved from failure.");
+                Assert.AreEqual(me.moved_to, moved_to, "Position: Moved to failure.");
+
+            };
+
+
             int t0_event_count = 0;
             int t1_event_count = 0;
 
@@ -240,7 +253,7 @@
 
             maze.get_movement_event(t00.get_position()).register(ft0);
             maze.get_movement_event(t01.get_position()).register(ft1);
-
+            //TODO: test the actual Character and positions being provided with the MovementEvent objects
             Assert.AreEqual(t00.on_events.Count, 0);
             Assert.AreEqual(t00.off_events.Count, 0);
             Assert.AreEqual(t01.on_events.Count, 0);
@@ -248,8 +261,6 @@
             Assert.AreEqual(t0_event_count, 0);
             Assert.AreEqual(t1_event_count, 0);
 
-
-            //events don't fire when the position is the same.  
             c = new Character(maze, t00.get_position());
             Assert.AreEqual(t00.on_events.Count, 1);
             Assert.AreEqual(t00.off_events.Count, 0);
@@ -258,6 +269,7 @@
             Assert.AreEqual(t0_event_count, 1);
             Assert.AreEqual(t1_event_count, 0);
 
+            assert_movement_event(t00.get_last_on_event(), c, null, t00.get_position());
 
             c.move(Direction.North);
             Assert.AreEqual(t00.on_events.Count, 1);
@@ -267,6 +279,9 @@
             Assert.AreEqual(t0_event_count, 1);
             Assert.AreEqual(t1_event_count, 1);
 
+            assert_movement_event(t00.get_last_off_event(), c, t00.get_position(), t01.get_position());
+            assert_movement_event(t01.get_last_on_event(), c, t00.get_position(), t01.get_position());
+
             c.move(Direction.South);
             Assert.AreEqual(t00.on_events.Count, 2);
             Assert.AreEqual(t00.off_events.Count, 1);
@@ -275,6 +290,11 @@
             Assert.AreEqual(t0_event_count, 2);
             Assert.AreEqual(t1_event_count, 1);
 
+            assert_movement_event(t01.get_last_off_event(), c, t01.get_position(), t00.get_position());
+            assert_movement_event(t00.get_last_on_event(), c, t01.get_position(), t00.get_position());
+
+            //for the next two sections, tile events keep firing but we are unregistering ourselves
+            //from the custom event
             maze.get_movement_event(t01.get_position()).unregister(ft1);
             c.move(Direction.North);
             Assert.AreEqual(t00.on_events.Count, 2);
