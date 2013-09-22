@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mazecore", "mazecore\mazecore.csproj", "{57D74725-1FCF-485C-B9BF-B7EA6437998B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "textmaze", "textmaze\textmaze.csproj", "{D63BAB76-9B4C-4D74-BF7B-D328C4BBB6F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mazetextart", "textmaze\mazetextart.csproj", "{D63BAB76-9B4C-4D74-BF7B-D328C4BBB6F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mazegen", "mazegen\mazegen.csproj", "{69803D1C-63C7-4D8F-B4C3-1FD6B3BEE856}"
 EndProject

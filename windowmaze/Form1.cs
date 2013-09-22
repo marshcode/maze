@@ -13,7 +13,7 @@ namespace windowmaze
     using mazecore.elements;
     using mazecore.direction;
     using mazegen;
-    using textmaze.art;
+    using mazetextart.art;
     
 
     public partial class Form1 : Form
