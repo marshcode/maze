@@ -43,11 +43,16 @@ namespace mazecore.elements {
                 return false;
             }
 
-            //The event system needs the character position to 
-            //reflect the storage position until after the update.
-            Position new_p = this.position.move(direction, 1);
-            this.maze.set_character(this, new_p);
-            this.position = new_p;
+
+            Position old_position = this.position;
+            this.position = this.position.move(direction, 1);
+            try{
+                this.maze.set_character(this, this.position);
+            }catch(MazeException){
+                this.position = old_position;
+                throw;
+            }
+
 
             return true;
 

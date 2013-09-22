@@ -35,6 +35,13 @@
 
         }
 
+        public void test_equal_null() {
+            Position p1 = new Position(0, 0);
+
+            Assert.False(p1.Equals(null));
+        }
+        
+
         [Test]
         public void test_hash() {
 

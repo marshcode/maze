@@ -3,6 +3,7 @@ namespace mazecore.elements {
 
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
 
     using mazecore.storage;
     using mazecore.direction;
@@ -29,7 +30,7 @@ namespace mazecore.elements {
 
         public override bool Equals(object obj) {
             Position other_pos = obj as Position;
-            return other_pos.x == this.x && other_pos.y == this.y;
+            return obj != null && other_pos.x == this.x && other_pos.y == this.y;
         }
 
         public override int GetHashCode() {
@@ -43,11 +44,18 @@ namespace mazecore.elements {
     }
     /// <summary>
     /// Movement Event that details the step on and off
+    /// This represents the movement after it has occured.  The character has left the tile it was standing on
+    /// When the tile is notified.
     /// </summary>
     public class MovementEvent {
         public readonly Character character;
-        public MovementEvent(Character character) {
+        public readonly Position moved_from;
+        public readonly Position moved_to;
+
+        public MovementEvent(Character character, Position moved_from, Position moved_to) {
             this.character = character;
+            this.moved_from = moved_from;
+            this.moved_to = moved_to;
         }
     }
 
@@ -78,14 +86,26 @@ namespace mazecore.elements {
         public int get_x_range() { return this.tile_storage.get_x_range(); }
         public int get_y_range() { return this.tile_storage.get_y_range(); }
 
-        public void set_tile(Tile tile, Position p) { this.tile_storage.set_item(tile, p); }
-        public Tile get_tile(Position p) { return this.tile_storage.get_item(p); }
-        public void remove_tile(Position p) { this.tile_storage.remove_item(p); }
+        public void set_tile(Tile tile, Position p) { 
+            this.tile_storage.set_item(tile, p); 
+        }
+        public Tile get_tile(Position p) { 
+            return this.tile_storage.get_item(p); 
+        }
+        public void remove_tile(Position p) {
+            this.tile_storage.remove_item(p); 
+        }
 
         //should you be allowed to set walls where there are no tiles?  Nobody would really notice.
-        public void set_wall(Wall wall, Position p, Direction direction) { this.wall_storage.set_item(wall, p, direction); }
-        public Wall get_wall(Position p, Direction direction) { return this.wall_storage.get_item(p, direction); }
-        public void remove_wall(Position p, Direction direction) { this.wall_storage.remove_item(p, direction); }
+        public void set_wall(Wall wall, Position p, Direction direction) { 
+            this.wall_storage.set_item(wall, p, direction); 
+        }
+        public Wall get_wall(Position p, Direction direction) { 
+            return this.wall_storage.get_item(p, direction); 
+        }
+        public void remove_wall(Position p, Direction direction) { 
+            this.wall_storage.remove_item(p, direction); 
+        }
 
         public void set_character(Character character, Position p) {
             if (this.tile_storage.get_item(p) == null) {
@@ -94,22 +114,32 @@ namespace mazecore.elements {
                 throw new MazeException(string.Format("Cannot set character on {0}, {1}.  Tile is already occupied", p.x, p.y));
             }
 
-            bool do_events = !character.get_position().Equals(p);
-            Console.WriteLine(do_events);
-            if (do_events) {
-                this.get_tile(character.get_position()).action_step_off(character);
-            }
             
-            this.character_storage.move(character, p);
-
-            if (do_events) {
-                this.get_tile(p).action_step_on(character);
-                this.get_movement_event(p).announce(new MovementEvent(character));
+            Position moved_from = this.character_storage.move(character, p);
+            bool do_events = !p.Equals(moved_from);
+            //this code will successfully handle having new characters added to the maze
+            //the equal comparison catches null points (which is an indication that this character is not present).  
+            //If this code is restructured, ensure that the character does NOT have to be in the character_storge.
+            if(!do_events){
+                return;
             }
+
+            MovementEvent me = new MovementEvent(character, moved_from, p);
+            if (moved_from != null) {//do not call the step off function for first timers
+                this.get_tile(moved_from).action_step_off(me);
+            }
+            this.get_tile(p).action_step_on(me);
+            this.get_movement_event(p).announce(me);
+
+
 
         }
-        public Character get_character(Position p) { return this.character_storage.get_item(p); }
-        public void remove_character(Position p) { this.character_storage.remove_item(p); }
+        public Character get_character(Position p) { 
+            return this.character_storage.get_item(p); 
+        }
+        public void remove_character(Position p) { 
+            this.character_storage.remove_item(p); 
+        }
 
         public EventManager<MovementEvent> get_movement_event(Position p){
 

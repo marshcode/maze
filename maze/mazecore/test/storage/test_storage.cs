@@ -98,13 +98,20 @@
         public void test_move() {
             GridStorage<TestClass> grid_storage = TestGridStorage.create_storage();
             TestClass test_class = TestGridStorage.create_tile();
+            Position old,
+                     p1 = new Position(1, 1),
+                     p2 = new Position(1, 2);
 
-            grid_storage.move(test_class, new Position(1, 1));
-            Assert.AreEqual(grid_storage.get_item(new Position(1, 1)), test_class);
-            Assert.Null(grid_storage.get_item(new Position(1, 2)));
-            grid_storage.move(test_class, new Position(1, 2));
-            Assert.AreEqual(grid_storage.get_item(new Position(1, 2)), test_class);
-            Assert.Null(grid_storage.get_item(new Position(1, 1)));
+
+            old = grid_storage.move(test_class, p1);
+            Assert.AreEqual(grid_storage.get_item(p1), test_class);
+            Assert.Null(grid_storage.get_item(p2));
+            Assert.Null(old);
+
+            old = grid_storage.move(test_class, p2);
+            Assert.AreEqual(grid_storage.get_item(p2), test_class);
+            Assert.Null(grid_storage.get_item(p1));
+            Assert.True(old.Equals(p1));
 
         }
 

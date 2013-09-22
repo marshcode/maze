@@ -1,5 +1,7 @@
 ﻿namespace mazecore.elements.test {
     using System;
+    using System.Collections.Generic;
+
     using NUnit.Framework;
     using mazecore.direction;
     using mazecore.elements;
@@ -10,14 +12,26 @@
         public int on_count;
         public int off_count;
 
+        public List<MovementEvent> on_events;
+        public List<MovementEvent> off_events;
+
         public TileEventCount(Maze maze, Position p)
             : base(maze, p) {
                 this.on_count = 0;
                 this.off_count = 0;
+
+                this.on_events = new List<MovementEvent>();
+                this.off_events = new List<MovementEvent>();
         }
 
-        public override void action_step_on(Character c) { this.on_count += 1; }
-        public override void action_step_off(Character c) { this.off_count += 1; }
+        public override void action_step_on(MovementEvent me) { 
+            this.on_count += 1;
+            this.on_events.Add(me);
+        }
+        public override void action_step_off(MovementEvent me) { 
+            this.off_count += 1;
+            this.off_events.Add(me);
+        }
 
     }
 
@@ -227,54 +241,56 @@
             maze.get_movement_event(t00.get_position()).register(ft0);
             maze.get_movement_event(t01.get_position()).register(ft1);
 
-            Assert.AreEqual(t00.on_count, 0);
-            Assert.AreEqual(t00.off_count, 0);
-            Assert.AreEqual(t01.on_count, 0);
-            Assert.AreEqual(t01.off_count, 0);
+            Assert.AreEqual(t00.on_events.Count, 0);
+            Assert.AreEqual(t00.off_events.Count, 0);
+            Assert.AreEqual(t01.on_events.Count, 0);
+            Assert.AreEqual(t01.off_events.Count, 0);
             Assert.AreEqual(t0_event_count, 0);
             Assert.AreEqual(t1_event_count, 0);
+
 
             //events don't fire when the position is the same.  
             c = new Character(maze, t00.get_position());
-            Assert.AreEqual(t00.on_count, 0);
-            Assert.AreEqual(t00.off_count, 0);
-            Assert.AreEqual(t01.on_count, 0);
-            Assert.AreEqual(t01.off_count, 0);
-            Assert.AreEqual(t0_event_count, 0);
+            Assert.AreEqual(t00.on_events.Count, 1);
+            Assert.AreEqual(t00.off_events.Count, 0);
+            Assert.AreEqual(t01.on_events.Count, 0);
+            Assert.AreEqual(t01.off_events.Count, 0);
+            Assert.AreEqual(t0_event_count, 1);
             Assert.AreEqual(t1_event_count, 0);
 
+
             c.move(Direction.North);
-            Assert.AreEqual(t00.on_count, 0);
-            Assert.AreEqual(t00.off_count, 1);
-            Assert.AreEqual(t01.on_count, 1);
-            Assert.AreEqual(t01.off_count, 0);
-            Assert.AreEqual(t0_event_count, 0);
+            Assert.AreEqual(t00.on_events.Count, 1);
+            Assert.AreEqual(t00.off_events.Count, 1);
+            Assert.AreEqual(t01.on_events.Count, 1);
+            Assert.AreEqual(t01.off_events.Count, 0);
+            Assert.AreEqual(t0_event_count, 1);
             Assert.AreEqual(t1_event_count, 1);
 
             c.move(Direction.South);
-            Assert.AreEqual(t00.on_count, 1);
-            Assert.AreEqual(t00.off_count, 1);
-            Assert.AreEqual(t01.on_count, 1);
-            Assert.AreEqual(t01.off_count, 1);
-            Assert.AreEqual(t0_event_count, 1);
+            Assert.AreEqual(t00.on_events.Count, 2);
+            Assert.AreEqual(t00.off_events.Count, 1);
+            Assert.AreEqual(t01.on_events.Count, 1);
+            Assert.AreEqual(t01.off_events.Count, 1);
+            Assert.AreEqual(t0_event_count, 2);
             Assert.AreEqual(t1_event_count, 1);
 
             maze.get_movement_event(t01.get_position()).unregister(ft1);
             c.move(Direction.North);
-            Assert.AreEqual(t00.on_count, 1);
-            Assert.AreEqual(t00.off_count, 2); 
-            Assert.AreEqual(t01.on_count, 2);
-            Assert.AreEqual(t01.off_count, 1);
-            Assert.AreEqual(t0_event_count, 1);
+            Assert.AreEqual(t00.on_events.Count, 2);
+            Assert.AreEqual(t00.off_events.Count, 2); 
+            Assert.AreEqual(t01.on_events.Count, 2);
+            Assert.AreEqual(t01.off_events.Count, 1);
+            Assert.AreEqual(t0_event_count, 2);
             Assert.AreEqual(t1_event_count, 1);
 
             maze.get_movement_event(t00.get_position()).unregister(ft0);
             c.move(Direction.South);
-            Assert.AreEqual(t00.on_count, 2);
-            Assert.AreEqual(t00.off_count, 2);
-            Assert.AreEqual(t01.on_count, 2);
-            Assert.AreEqual(t01.off_count, 2);
-            Assert.AreEqual(t0_event_count, 1);
+            Assert.AreEqual(t00.on_events.Count, 3);
+            Assert.AreEqual(t00.off_events.Count, 2);
+            Assert.AreEqual(t01.on_events.Count, 2);
+            Assert.AreEqual(t01.off_events.Count, 2);
+            Assert.AreEqual(t0_event_count, 2);
             Assert.AreEqual(t1_event_count, 1);
 
         }

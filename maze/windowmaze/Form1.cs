@@ -116,6 +116,17 @@ namespace windowmaze
         private void initialize_maze(Maze maze, ASCIIRenderer maze_renderer){
             this.maze = maze;
 
+            Action<MovementEvent> f = delegate(MovementEvent evt) {
+                MessageBox.Show(String.Format("Previous: {0}, {1}\nCurrent: {2}, {3}", evt.moved_from.x, evt.moved_from.y,
+                                                                                       evt.moved_to.x, evt.moved_to.y));
+
+
+            };
+
+            //this.maze.get_movement_event(new Position(0, 0)).register(f);
+            //this.maze.get_movement_event(new Position(0, 1)).register(f);
+            //this.maze.get_movement_event(new Position(1, 0)).register(f);
+
             this.character = PlaceCharacter(this.maze);
 
             ASCIIRendererCamera camera = new ASCIIRendererCamera(maze_renderer, this.get_char_position);
