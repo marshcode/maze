@@ -25,12 +25,18 @@ namespace mazecore.elements
 
         }
 
+        //Virtual Methods that can be subclassed if desired
+        public virtual bool can_stand() {
+            return true;
+        }
+
+
         public Position get_position() { return this.position; }
         public Maze get_maze() { return this.maze; }
 
-        public bool is_occupied() { return this.maze.get_character(this.get_position()) != null; }
-        public virtual bool can_stand() { return true; }
-
+        public bool is_occupied() { 
+            return this.maze.get_character(this.get_position()) != null; 
+        }
 
         public Tile get_neighbor_tile(Direction direction) {
 
@@ -51,9 +57,6 @@ namespace mazecore.elements
 
         }
 
-        //internally visible methods.  Determine the best usage for these two methods:
-        //should the character be provided to the tile or should the tile be able to obtain
-        //the character from the maze
         public virtual void action_step_on(MovementEvent e) { }
         public virtual void action_step_off(MovementEvent e) { }
 
