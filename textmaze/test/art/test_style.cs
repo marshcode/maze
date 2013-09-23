@@ -43,6 +43,55 @@ namespace mazetextart.art.test
             style_dictionary.Add(MazeStyles.wall_joint, new ASCIIMazeGlyphStyle(wall_joint_glyph: new_wall_joint_glyph));
         }
 
+        [Test]
+        public void test_set_tile_char() {
+            ASCIIMazeGlyphStyle amgz = new ASCIIMazeGlyphStyle();
+            Position p = new Position(0, 0);
+            Maze maze = TestBaseClass.create_maze();
+            Tile t = TestBaseClass.create_tile(maze, p);
+
+            Assert.AreEqual(amgz.get_tile_char(t), ' ');
+            amgz.set_tile_char(typeof(Tile), 'X');
+            Assert.AreEqual(amgz.get_tile_char(t), 'X');
+
+        }
+
+        [Test]
+        public void test_set_wall_char() {
+            ASCIIMazeGlyphStyle amgz = new ASCIIMazeGlyphStyle();
+            Position p = new Position(0, 0);
+            Maze maze = TestBaseClass.create_maze();
+            Tile t = TestBaseClass.create_tile(maze, p);
+            Character c = new Character(maze, p);
+
+            Assert.AreEqual(amgz.get_character_char(c), '▲');
+            amgz.set_character_char(Direction.North, 'X');
+            Assert.AreEqual(amgz.get_character_char(c), 'X');
+
+        }
+
+        [Test]
+        public void test_set_character_char() {
+            ASCIIMazeGlyphStyle amgz = new ASCIIMazeGlyphStyle();
+            Position p = new Position(0, 0);
+            Maze maze = TestBaseClass.create_maze();
+            Tile t = TestBaseClass.create_tile(maze, p);
+
+            Assert.AreEqual(amgz.get_wall_char(t, Direction.North), '─');
+            amgz.set_wall_char(t, Direction.North, 'X');
+            Assert.AreEqual(amgz.get_wall_char(t, Direction.North), 'X');
+
+        }
+
+        [Test]
+        public void test_set_wall_joint_char() {
+            ASCIIMazeGlyphStyle amgz = new ASCIIMazeGlyphStyle();
+
+            Assert.AreEqual(amgz.get_wall_joint_char(1), '─');
+            amgz.set_wall_joint_char(1, 'X');
+            Assert.AreEqual(amgz.get_wall_joint_char(1), 'X');
+
+        }
 
         [TestCase(Direction.North, '▲', MazeStyles.default_)]
         [TestCase(Direction.East, '►',  MazeStyles.default_)]
