@@ -83,7 +83,7 @@
             this.mnuMain_File_New_Block,
             this.mnuMain_File_New_Wall});
             this.mnuMain_File_New.Name = "mnuMain_File_New";
-            this.mnuMain_File_New.Size = new System.Drawing.Size(98, 22);
+            this.mnuMain_File_New.Size = new System.Drawing.Size(152, 22);
             this.mnuMain_File_New.Text = "&New";
             // 
             // mnuMain_File_New_Block
@@ -103,7 +103,7 @@
             // mnuMain_File_Quit
             // 
             this.mnuMain_File_Quit.Name = "mnuMain_File_Quit";
-            this.mnuMain_File_Quit.Size = new System.Drawing.Size(98, 22);
+            this.mnuMain_File_Quit.Size = new System.Drawing.Size(152, 22);
             this.mnuMain_File_Quit.Text = "&Quit";
             this.mnuMain_File_Quit.Click += new System.EventHandler(this.menu_application_quit);
             // 
@@ -198,6 +198,7 @@
             this.MainMenuStrip = this.mnuMain;
             this.Name = "Form1";
             this.Text = "Beautiful Mazes";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.handle_user_input);
             this.mnuMain.ResumeLayout(false);
             this.mnuMain.PerformLayout();

@@ -8,7 +8,7 @@ namespace mazegen.test {
 
         [Test]
         public void test_generate_fill_area() {
-            CellulartMazeGenerator cmg = new CellulartMazeGenerator();
+            CellularMazeGenerator cmg = new CellularMazeGenerator();
             int x_range = 5, y_range = 10;
 
             Maze maze = cmg.generate(x_range, y_range);
