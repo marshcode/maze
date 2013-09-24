@@ -29,23 +29,17 @@ namespace treasuremaze.window {
 
         private void easyToolStripMenuItem_Click(object sender, EventArgs e) {
             this.treasure_maze = factory.create(1, TreasureMazeFactory.Difficulty.Easy, this.maze_type);
-
-            this.draw_maze();
-            this.resize();
+            this.reset();
         }
 
         private void mediumToolStripMenuItem_Click(object sender, EventArgs e) {
-            this.treasure_maze = factory.create(1, TreasureMazeFactory.Difficulty.Medium, this.maze_type);
-
-            this.draw_maze();
-            this.resize();
+            this.treasure_maze = factory.create(3, TreasureMazeFactory.Difficulty.Medium, this.maze_type);
+            this.reset();
         }
 
         private void hardToolStripMenuItem_Click(object sender, EventArgs e) {
-            this.treasure_maze = factory.create(1, TreasureMazeFactory.Difficulty.Hard, this.maze_type);
-
-            this.draw_maze();
-            this.resize();
+            this.treasure_maze = factory.create(5, TreasureMazeFactory.Difficulty.Hard, this.maze_type);
+            this.reset();
         }
 
         ///////////////////////////////
@@ -76,10 +70,21 @@ namespace treasuremaze.window {
         }
 
 
+        private void reset() {
+            this.draw_maze();
+            this.resize();
+            this.timer1.Start();
+        }
+
         /////////////////////////////////
         //Maze/Application Interaction
         /////////////////////////////////
         private void handle_input(object sender, KeyPressEventArgs e) {
+            
+            if(this.treasure_maze == null){
+                return;
+             }
+            
             char input = char.ToLower(e.KeyChar);
             Nullable<Direction> direction = null;
 
@@ -106,6 +111,19 @@ namespace treasuremaze.window {
 
         private void update(object sender, EventArgs e) {
             this.draw_maze();
+
+            if (this.treasure_maze == null) {
+                return;
+            }
+            int remaining_treasures = this.treasure_maze.maze.get_treasures_remaining();
+
+            this.statusStrip1.Items[0].Text = String.Format("Remaining: {0}", remaining_treasures);
+
+            if (remaining_treasures == 0) {
+                this.timer1.Stop();
+                MessageBox.Show("Try a harder setting", "You Win!");
+            }
+            
         }
 
         private void resize(object sender=null, EventArgs e=null) {
@@ -114,7 +132,7 @@ namespace treasuremaze.window {
 
 
 
-            int height_padding_offset = 50 + (int)this.maze_label.Font.Size,
+            int height_padding_offset = 50 + (int)this.maze_label.Font.Size + this.statusStrip1.Size.Height,
                 width_padding_offset = 20;
 
 

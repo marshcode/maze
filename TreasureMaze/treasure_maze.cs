@@ -21,6 +21,9 @@
 
         public TreasureTileStyle(TreasureMaze treasure_maze) {
             this.default_style = new ASCIIMazeGlyphStyle();
+            this.default_style.set_tile_char(typeof(TreasureTile), ' ');
+
+
             this.treasure_maze = treasure_maze;
 
             }
@@ -65,14 +68,15 @@
             this.treasure = false;
         }
     }
-    public class TreasureMaze : Maze {
+    public class TreasureMaze {
 
         private HashSet<TreasureTile> tiles;
-        public TreasureMaze(int x_range, int y_range, HashSet<TreasureTile> tiles)
-            : base(x_range, y_range) {
+        public Maze maze;
+
+        public TreasureMaze(Maze maze, HashSet<TreasureTile> tiles){
 
                 foreach (TreasureTile t in tiles) {
-                    Trace.Assert(t.get_maze().Equals(this), "Mazes not equal on tile");
+                    Trace.Assert(t.get_maze().Equals(maze), "Mazes not equal on tile");
                 }
                 this.tiles = tiles;
         }
@@ -105,11 +109,11 @@
     /////////////////////////////////
     public class TreasureMazeStruct {
 
-        public readonly Maze maze;
+        public readonly TreasureMaze maze;
         public readonly ASCIIRenderer final_renderer;
         public readonly Character character;
 
-        public TreasureMazeStruct(Maze maze, ASCIIRenderer renderer, Character character) {
+        public TreasureMazeStruct(TreasureMaze maze, ASCIIRenderer renderer, Character character) {
             this.maze = maze;
             this.final_renderer = renderer;
             this.character = character;
@@ -208,7 +212,8 @@
             ////////////////////////////////
             Character character = this.place_character(maze);
             HashSet<TreasureTile> tiles = this.place_tiles(maze, num_treasures);
-            TreasureTileStyle tts = new TreasureTileStyle(tiles);
+            TreasureMaze treasure_maze = new TreasureMaze(maze, tiles);
+            TreasureTileStyle tts = new TreasureTileStyle(treasure_maze);
             renderer.set_style(tts); 
 
             Func<ASCIIRendererCamera, Position> center = delegate(ASCIIRendererCamera camera){
@@ -218,7 +223,7 @@
 
             ASCIIRendererCamera camera_renderer = new ASCIIRendererCamera(renderer, center);
             camera_renderer.set_range(camera_range, camera_range);
-            return new TreasureMazeStruct(maze, camera_renderer, character);
+            return new TreasureMazeStruct(treasure_maze, camera_renderer, character);
 
         }
     }
