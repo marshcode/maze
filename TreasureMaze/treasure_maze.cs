@@ -177,18 +177,18 @@
             //Set the difficulty
             ///////////////////////
             if(difficulty == Difficulty.Easy){
-                x_range = 5;
-                y_range = 5;
+                x_range = 10;
+                y_range = 10;
                 camera_range = -1;
             }
             else if (difficulty == Difficulty.Medium) {
-                x_range = 10;
-                y_range = 10;
+                x_range = 15;
+                y_range = 15;
                 camera_range = 5;
             }
             else {
-                x_range = 15;
-                y_range = 15;
+                x_range = 20;
+                y_range = 20;
                 camera_range = 4;
             }
 
