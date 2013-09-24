@@ -36,10 +36,11 @@
             this.wallMazeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blockMazeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maze_label = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.sim_timer = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.game_timer = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -145,33 +146,40 @@
             this.maze_label.Size = new System.Drawing.Size(0, 18);
             this.maze_label.TabIndex = 1;
             // 
-            // timer1
+            // sim_timer
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.update);
+            this.sim_timer.Enabled = true;
+            this.sim_timer.Tick += new System.EventHandler(this.update);
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 240);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 238);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(284, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(284, 24);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
+            this.toolStripStatusLabel1.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(70, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(74, 19);
             this.toolStripStatusLabel1.Text = "Remaining: ";
             // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(44, 17);
-            this.toolStripStatusLabel2.Text = "Timer: ";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(28, 19);
+            this.toolStripStatusLabel2.Text = "0:00";
+            // 
+            // game_timer
+            // 
+            this.game_timer.Enabled = true;
+            this.game_timer.Interval = 1000;
+            this.game_timer.Tick += new System.EventHandler(this.game_timer_Tick);
             // 
             // TreasureForm
             // 
@@ -209,10 +217,11 @@
         private System.Windows.Forms.ToolStripMenuItem wallMazeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem blockMazeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer sim_timer;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.Timer game_timer;
     }
 }
 

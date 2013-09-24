@@ -16,6 +16,8 @@ namespace treasuremaze.window {
         TreasureMazeFactory factory;
         TreasureMazeStruct treasure_maze;
         TreasureMazeFactory.MazeType maze_type = TreasureMazeFactory.MazeType.Wall;
+        int seconds_remaining = 0;
+
 
         public TreasureForm() {
             InitializeComponent();
@@ -28,18 +30,18 @@ namespace treasuremaze.window {
         //////////////////////////////
 
         private void easyToolStripMenuItem_Click(object sender, EventArgs e) {
-            this.treasure_maze = factory.create(1, TreasureMazeFactory.Difficulty.Easy, this.maze_type);
-            this.reset();
+            this.treasure_maze = factory.create(3, TreasureMazeFactory.Difficulty.Easy, this.maze_type);
+            this.reset(60);
         }
 
         private void mediumToolStripMenuItem_Click(object sender, EventArgs e) {
-            this.treasure_maze = factory.create(3, TreasureMazeFactory.Difficulty.Medium, this.maze_type);
-            this.reset();
+            this.treasure_maze = factory.create(5, TreasureMazeFactory.Difficulty.Medium, this.maze_type);
+            this.reset(60*3);
         }
 
         private void hardToolStripMenuItem_Click(object sender, EventArgs e) {
-            this.treasure_maze = factory.create(5, TreasureMazeFactory.Difficulty.Hard, this.maze_type);
-            this.reset();
+            this.treasure_maze = factory.create(7, TreasureMazeFactory.Difficulty.Hard, this.maze_type);
+            this.reset(60 * 5);
         }
 
         ///////////////////////////////
@@ -69,11 +71,16 @@ namespace treasuremaze.window {
             this.maze_label.Text = this.treasure_maze.final_renderer.render_string();
         }
 
-
-        private void reset() {
+        private void stop() {
+            this.sim_timer.Stop();
+            this.game_timer.Stop();
+        }
+        private void reset(int seconds_remaining) {
+            this.seconds_remaining = seconds_remaining;
             this.draw_maze();
             this.resize();
-            this.timer1.Start();
+            this.sim_timer.Start();
+            this.game_timer.Start();
         }
 
         /////////////////////////////////
@@ -109,7 +116,7 @@ namespace treasuremaze.window {
             this.treasure_maze.character.set_orientation(direction.Value);
         }
 
-        private void update(object sender, EventArgs e) {
+        private void update(object sender=null, EventArgs e=null) {
             this.draw_maze();
 
             if (this.treasure_maze == null) {
@@ -117,10 +124,16 @@ namespace treasuremaze.window {
             }
             int remaining_treasures = this.treasure_maze.maze.get_treasures_remaining();
 
+            //remaining treasures
             this.statusStrip1.Items[0].Text = String.Format("Remaining: {0}", remaining_treasures);
+            
+            //remaining time
+            int minutes = this.seconds_remaining / 60;
+            int seconds = this.seconds_remaining - (minutes * 60);
+            this.statusStrip1.Items[1].Text = String.Format("{0}:{1}", minutes.ToString("0"), seconds.ToString("00"));
 
             if (remaining_treasures == 0) {
-                this.timer1.Stop();
+                this.stop();
                 MessageBox.Show("Try a harder setting", "You Win!");
             }
             
@@ -141,12 +154,24 @@ namespace treasuremaze.window {
                                  (int)(this.maze_label.Size.Height * height_padding_gain) + height_padding_offset);
         }
 
+
+        private void game_timer_Tick(object sender, EventArgs e) {
+            this.seconds_remaining -= 1;
+
+            if (this.seconds_remaining == 0) {
+                this.update();
+                this.stop();
+                MessageBox.Show("Try Again", "You Lose!");
+            }
+        }
+
         ////////////////////////////
         //Application
         ////////////////////////////
         private void quitToolStripMenuItem_Click(object sender, EventArgs e) {
             Application.Exit();
         }
+
 
 
     }
