@@ -17,12 +17,7 @@ namespace mazegen {
             Wall west_wall = new Wall(maze, p, Direction.West);
         }
 
-        public abstract void generate(Maze maze);
-        public Maze generate(int x_range, int y_range) {
-            Maze maze = new Maze(x_range, y_range);
-            this.generate(maze);
-            return maze;
-        }
+        public abstract Maze generate(int x_range, int y_range);
 
     }
 
