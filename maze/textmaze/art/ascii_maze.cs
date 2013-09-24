@@ -42,6 +42,11 @@
             }
             this.style = style;
         }
+
+        public void set_style(IASCIIMazeStyle new_style){
+            this.style = new_style;
+        }
+
         public override char[][] render_char_array()
         {
             char[][] char_map = this.do_render_char_array();

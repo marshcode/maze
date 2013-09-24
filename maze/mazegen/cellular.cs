@@ -3,13 +3,13 @@
     using System.Collections.Generic;
     using mazecore.elements;
 
-    public class CellulartMazeGenerator : MazeGenerator {
+    public class CellularMazeGenerator : MazeGenerator {
         //http://en.wikipedia.org/wiki/Maze_generation_algorithm#Cellular_automaton_algorithms
 
         protected double complexity;
         protected double density;
 
-        public CellulartMazeGenerator(double complexity = 0.75, double density = 0.75) {
+        public CellularMazeGenerator(double complexity = 0.75, double density = 0.75) {
             this.complexity = complexity;
             this.density = density;
         }

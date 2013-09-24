@@ -1,0 +1,16 @@
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\TreasureMaze\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\TreasureMaze\obj\x86\Debug\treasuremaze.window.Properties.Resources.resources
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\TreasureMaze\obj\x86\Debug\treasuremaze.window.TreasureForm.resources
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\TreasureMaze\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\TreasureMaze\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\TreasureMaze\bin\Debug\TreasureMaze.exe
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\TreasureMaze\bin\Debug\TreasureMaze.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\TreasureMaze\bin\Debug\mazecore.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\TreasureMaze\bin\Debug\mazegen.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\TreasureMaze\bin\Debug\textmaze.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\TreasureMaze\bin\Debug\nunit.framework.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\TreasureMaze\bin\Debug\mazecore.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\TreasureMaze\bin\Debug\mazegen.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\TreasureMaze\bin\Debug\textmaze.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\TreasureMaze\obj\x86\Debug\TreasureMaze.exe
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\TreasureMaze\obj\x86\Debug\TreasureMaze.pdb

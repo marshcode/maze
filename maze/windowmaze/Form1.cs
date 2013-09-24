@@ -65,7 +65,7 @@ namespace windowmaze
         //the front end should have a few utility methods that encapsulate this.
         private void menu_new_block_maze(object sender, EventArgs e)
         {
-            CellulartMazeGenerator cmg = new CellulartMazeGenerator();
+            CellularMazeGenerator cmg = new CellularMazeGenerator();
             Maze maze = cmg.generate(40, 30);
             IASCIIMazeStyle style = new ASCIIMazeGlyphStyle();
             ASCIIBlockMaze maze_renderer = new ASCIIBlockMaze(maze, style);
