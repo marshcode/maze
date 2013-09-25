@@ -73,12 +73,14 @@
         private HashSet<TreasureTile> tiles;
         public Maze maze;
 
-        public TreasureMaze(Maze maze, HashSet<TreasureTile> tiles){
+        public TreasureMaze(Maze maze){
+                this.tiles = new HashSet<TreasureTile>();
+                this.maze = maze;
+        }
 
-                foreach (TreasureTile t in tiles) {
-                    Trace.Assert(t.get_maze().Equals(maze), "Mazes not equal on tile");
-                }
-                this.tiles = tiles;
+        public void set_treasure(Position p) {
+            this.maze.remove_tile(p);
+            this.tiles.Add(new TreasureTile(maze, p));
         }
 
         public bool has_treasure(Position p) {
@@ -123,8 +125,38 @@
     public class TreasureMazeFactory {
 
 
+        private static TreasureMaze splash_maze;
+        static TreasureMazeFactory() {
+
+            Maze maze = new Maze(35, 15);
+            Block b;
+            Tile t;
+
+            for (int x = 0; x < maze.get_x_range(); x++) {
+                for (int y = 0; y < maze.get_y_range(); y++) {
+                    //b = new Block(maze, new Position(x, y));
+                    t = new Tile(maze, new Position(x, y));
+                }
+            }
+
+            
+
+            TreasureMaze tm = new TreasureMaze(maze);
+            TreasureMazeFactory.splash_maze = tm;
+
+            tm.set_treasure(new Position(1, 14));
+            tm.set_treasure(new Position(1, 13));
+            tm.set_treasure(new Position(1, 12));
+            tm.set_treasure(new Position(1, 11));
+            tm.set_treasure(new Position(1, 10));
+        
+        
+        }
+
+
+
         public enum Difficulty { Easy, Medium, Hard };
-        public enum MazeType { Wall, Block };
+        public enum MazeType { Wall, Block, Splash };
 
         public TreasureMazeFactory() {
 
@@ -144,27 +176,24 @@
             return character;
         }
 
-        private HashSet<TreasureTile> place_tiles(Maze maze, int num_treasures) {
+        private void place_tiles(TreasureMaze treasure_maze, int num_treasures) {
 
             Tile temp_tile;
             Position p;
 
-            HashSet<TreasureTile> tiles = new HashSet<TreasureTile>();
             Random rng = new Random();
-            int x_range = maze.get_x_range(),
-                y_range = maze.get_y_range();
+            int x_range = treasure_maze.maze.get_x_range(),
+                y_range = treasure_maze.maze.get_y_range();
 
-            while (tiles.Count != num_treasures) {
+            while (treasure_maze.get_treasures_remaining() != num_treasures) {
                 p = new Position(rng.Next(1, x_range-1),
                                  rng.Next(1, y_range-1));
-                temp_tile = maze.get_tile(p);
+                temp_tile = treasure_maze.maze.get_tile(p);
                 if (temp_tile.can_stand()) {
-                    maze.remove_tile(p);
-                    tiles.Add(new TreasureTile(maze, p));
+                    treasure_maze.set_treasure(p);
                 }
 
             }
-            return tiles;
         }
 
 
@@ -198,21 +227,30 @@
             //Generate maze and renderers
             ///////////////////////////////
             ASCIIMazeRenderer renderer;
-            
+            TreasureMaze treasure_maze;
+
             if (maze_type == MazeType.Block) {
                 maze = new CellularMazeGenerator().generate(x_range*2, y_range*2);
-                renderer = new ASCIIBlockMaze(maze); 
+                renderer = new ASCIIBlockMaze(maze);
+                treasure_maze = new TreasureMaze(maze);
+                this.place_tiles(treasure_maze, num_treasures);
             }
-            else {
+            else if(maze_type == MazeType.Wall){
                 maze = new DepthFirstMazeGenerator().generate(x_range, y_range);
-                renderer = new ASCIIWallMaze(maze); 
+                renderer = new ASCIIWallMaze(maze);
+                treasure_maze = new TreasureMaze(maze);
+                this.place_tiles(treasure_maze, num_treasures);
+            }else{
+                treasure_maze = TreasureMazeFactory.splash_maze;
+                maze = treasure_maze.maze;
+                renderer = new ASCIIBlockMaze(maze); 
             }
             ////////////////////////////////
             //Maze Placement
             ////////////////////////////////
             Character character = this.place_character(maze);
-            HashSet<TreasureTile> tiles = this.place_tiles(maze, num_treasures);
-            TreasureMaze treasure_maze = new TreasureMaze(maze, tiles);
+            
+            
             TreasureTileStyle tts = new TreasureTileStyle(treasure_maze);
             renderer.set_style(tts); 
 

@@ -337,13 +337,13 @@
 
         }
 
-        [TestCase(0, 0, 0, 15),
-         TestCase(0, 1, 0, 14),
-         TestCase(0, 2, 0, 13),
+        [TestCase(0, 0, 0, 14),
+         TestCase(0, 1, 0, 13),
+         TestCase(0, 2, 0, 12),
          //notice these last three: a difference of one in the original is a difference of 1 in the new coordinates
-         TestCase(1, 0, 1, 15),
-         TestCase(2, 0, 2, 15),
-         TestCase(10, 15, 10, 0)]
+         TestCase(1, 0, 1, 14),
+         TestCase(2, 0, 2, 14),
+         TestCase(9, 14, 9, 0)]
         public void test_maze_to_render_coords(int x, int y, int exp_x, int exp_y) {
 
             Position original = new Position(x, y);
