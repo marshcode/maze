@@ -35,6 +35,10 @@
             this.mazeTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wallMazeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blockMazeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.smallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mediumToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.largeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maze_label = new System.Windows.Forms.Label();
             this.sim_timer = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -106,7 +110,8 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mazeTypeToolStripMenuItem});
+            this.mazeTypeToolStripMenuItem,
+            this.sizeToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
@@ -137,18 +142,50 @@
             this.blockMazeToolStripMenuItem.Text = "Block Maze";
             this.blockMazeToolStripMenuItem.Click += new System.EventHandler(this.blockMazeToolStripMenuItem_Click);
             // 
+            // sizeToolStripMenuItem
+            // 
+            this.sizeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.smallToolStripMenuItem,
+            this.mediumToolStripMenuItem1,
+            this.largeToolStripMenuItem});
+            this.sizeToolStripMenuItem.Name = "sizeToolStripMenuItem";
+            this.sizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sizeToolStripMenuItem.Text = "Size";
+            // 
+            // smallToolStripMenuItem
+            // 
+            this.smallToolStripMenuItem.Checked = true;
+            this.smallToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.smallToolStripMenuItem.Name = "smallToolStripMenuItem";
+            this.smallToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.smallToolStripMenuItem.Text = "Small";
+            this.smallToolStripMenuItem.Click += new System.EventHandler(this.smallToolStripMenuItem_Click);
+            // 
+            // mediumToolStripMenuItem1
+            // 
+            this.mediumToolStripMenuItem1.Name = "mediumToolStripMenuItem1";
+            this.mediumToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.mediumToolStripMenuItem1.Text = "Medium";
+            this.mediumToolStripMenuItem1.Click += new System.EventHandler(this.mediumToolStripMenuItem1_Click);
+            // 
+            // largeToolStripMenuItem
+            // 
+            this.largeToolStripMenuItem.Name = "largeToolStripMenuItem";
+            this.largeToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.largeToolStripMenuItem.Text = "Large";
+            this.largeToolStripMenuItem.Click += new System.EventHandler(this.largeToolStripMenuItem_Click);
+            // 
             // maze_label
             // 
             this.maze_label.AutoSize = true;
-            this.maze_label.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maze_label.Font = new System.Drawing.Font("Courier New", 16F);
             this.maze_label.Location = new System.Drawing.Point(4, 21);
             this.maze_label.Name = "maze_label";
-            this.maze_label.Size = new System.Drawing.Size(0, 18);
+            this.maze_label.Size = new System.Drawing.Size(0, 24);
             this.maze_label.TabIndex = 1;
             // 
             // sim_timer
             // 
-            this.sim_timer.Enabled = true;
             this.sim_timer.Tick += new System.EventHandler(this.update);
             // 
             // statusStrip1
@@ -177,7 +214,6 @@
             // 
             // game_timer
             // 
-            this.game_timer.Enabled = true;
             this.game_timer.Interval = 1000;
             this.game_timer.Tick += new System.EventHandler(this.game_timer_Tick);
             // 
@@ -222,6 +258,10 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.Timer game_timer;
+        private System.Windows.Forms.ToolStripMenuItem sizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem smallToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mediumToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem largeToolStripMenuItem;
     }
 }
 

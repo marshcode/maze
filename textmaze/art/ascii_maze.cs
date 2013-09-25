@@ -176,7 +176,7 @@
                 throw new MazeException(String.Format("Position is out of range: ({0}, {1})", p.x, p.y));
             }
 
-            return new Position(p.x, this.maze.get_y_range() - p.y);
+            return new Position(p.x, this.maze.get_y_range() - 1 - p.y);
         }
 
         protected override char[][] do_render_char_array()
