@@ -81,6 +81,8 @@
         public void set_treasure(Position p) {
             this.maze.remove_tile(p);
             this.tiles.Add(new TreasureTile(maze, p));
+            //bug: multiple tiles can be added.
+            //this affects the graphics but not the underlying maze
         }
 
         public bool has_treasure(Position p) {
@@ -123,37 +125,6 @@
     }
 
     public class TreasureMazeFactory {
-
-
-        private static TreasureMaze splash_maze;
-        static TreasureMazeFactory() {
-
-            Maze maze = new Maze(35, 15);
-            Block b;
-            Tile t;
-
-            for (int x = 0; x < maze.get_x_range(); x++) {
-                for (int y = 0; y < maze.get_y_range(); y++) {
-                    //b = new Block(maze, new Position(x, y));
-                    t = new Tile(maze, new Position(x, y));
-                }
-            }
-
-            
-
-            TreasureMaze tm = new TreasureMaze(maze);
-            TreasureMazeFactory.splash_maze = tm;
-
-            tm.set_treasure(new Position(1, 14));
-            tm.set_treasure(new Position(1, 13));
-            tm.set_treasure(new Position(1, 12));
-            tm.set_treasure(new Position(1, 11));
-            tm.set_treasure(new Position(1, 10));
-        
-        
-        }
-
-
 
         public enum Difficulty { Easy, Medium, Hard };
         public enum MazeType { Wall, Block, Splash };
@@ -241,7 +212,7 @@
                 treasure_maze = new TreasureMaze(maze);
                 this.place_tiles(treasure_maze, num_treasures);
             }else{
-                treasure_maze = TreasureMazeFactory.splash_maze;
+                treasure_maze = SplashMaze.splash_maze;
                 maze = treasure_maze.maze;
                 renderer = new ASCIIBlockMaze(maze); 
             }

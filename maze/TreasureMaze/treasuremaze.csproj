@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="splash.cs" />
     <Compile Include="TreasureForm.cs">
       <SubType>Form</SubType>
     </Compile>
