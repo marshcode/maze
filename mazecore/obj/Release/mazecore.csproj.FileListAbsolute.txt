@@ -1,0 +1,5 @@
+C:\Users\dave\documents\visual studio 2010\Projects\maze\mazecore\bin\Release\mazecore.dll
+C:\Users\dave\documents\visual studio 2010\Projects\maze\mazecore\bin\Release\mazecore.pdb
+C:\Users\dave\documents\visual studio 2010\Projects\maze\mazecore\obj\Release\ResolveAssemblyReference.cache
+C:\Users\dave\documents\visual studio 2010\Projects\maze\mazecore\obj\Release\mazecore.dll
+C:\Users\dave\documents\visual studio 2010\Projects\maze\mazecore\obj\Release\mazecore.pdb

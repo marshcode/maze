@@ -1,0 +1,9 @@
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\bin\Release\textmaze.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\bin\Release\textmaze.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\bin\Release\mazecore.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\bin\Release\mazegen.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\bin\Release\mazecore.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\bin\Release\mazegen.pdb
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\obj\x86\Release\textmaze.dll
+C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\textmaze\obj\x86\Release\textmaze.pdb

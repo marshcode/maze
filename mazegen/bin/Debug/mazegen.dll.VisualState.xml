@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1004]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\bin\Debug\mazegen.dll</TopNode>
+  <SelectedNode>[0-1004]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\bin\Debug\mazegen.dll</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1004]C:\Users\dave\Documents\Visual Studio 2010\Projects\maze\mazegen\bin\Debug\mazegen.dll" Expanded="true" />
+    <Node UniqueName="[0-1005]mazegen" Expanded="true" />
+    <Node UniqueName="[0-1006]mazegen.test" Expanded="true" />
+    <Node UniqueName="[0-1002]mazegen.test.TestCellulartMazeGenerator" Expanded="true" />
+    <Node UniqueName="[0-1000]mazegen.test.TestDepthFirstMazeGenerator" Expanded="true" />
+  </Nodes>
+</VisualState>
