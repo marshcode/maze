@@ -75,7 +75,10 @@ namespace mazecore.elements
         }
 
         /// <summary>
-        /// Returns the shared wall between this tile and tile.get_neighbor_tile(direction)
+        /// Returns the shared wall between this tile and:
+        /// <code>
+        /// tile.get_neighbor_tile(direction)
+        /// </code>
         /// </summary>
         /// <param name="direction"></param>
         /// <returns></returns>
@@ -87,8 +90,18 @@ namespace mazecore.elements
             }
 
         }
-
+        /// <summary>
+        /// Callback that the maze activates when a character leaves the tile.  The movement has already happend
+        /// and we are just being informed about it.
+        /// </summary>
+        /// <param name="e">MovementEvent with all details about the movement</param>
         public virtual void action_step_on(MovementEvent e) { }
+
+        /// <summary>
+        /// Callback that the maze activates when a character step on to the tile.The movement has already happend
+        /// and we are just being informed about it.
+        /// </summary>
+        /// <param name="e">MovementEvent with all details about the movement</param>
         public virtual void action_step_off(MovementEvent e) { }
 
     }
